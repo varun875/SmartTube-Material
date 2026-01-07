@@ -159,15 +159,27 @@ public class SearchTagsFragment extends SearchTagsFragmentBase {
         startSearch(null, true);
     }
 
+    private final android.os.Handler mHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+    private Runnable mRunnable;
+
     @Override
     public boolean onQueryTextChange(String newQuery) {
-        loadSearchTags(newQuery);
-
-        // Commit on voice input.
-        // Note, that voice detection is far from ideal and may results duplicate search loading.
-        if (isVoiceQuery(newQuery)) {
-            loadSearchResult(newQuery);
+        if (mRunnable != null) {
+            mHandler.removeCallbacks(mRunnable);
         }
+
+        mRunnable = () -> {
+            loadSearchTags(newQuery);
+
+            // Commit on voice input.
+            // Note, that voice detection is far from ideal and may results duplicate search
+            // loading.
+            if (isVoiceQuery(newQuery)) {
+                loadSearchResult(newQuery);
+            }
+        };
+
+        mHandler.postDelayed(mRunnable, 200);
 
         return true;
     }
@@ -200,7 +212,7 @@ public class SearchTagsFragment extends SearchTagsFragmentBase {
         for (int i = 0; i < rows.size(); i++) {
             Object row = rows.get(i);
             if (row instanceof ListRow &&
-                ((ListRow) row).getAdapter() instanceof VideoGroupObjectAdapter) {
+                    ((ListRow) row).getAdapter() instanceof VideoGroupObjectAdapter) {
                 index = i;
                 break;
             }
@@ -262,7 +274,7 @@ public class SearchTagsFragment extends SearchTagsFragmentBase {
                 return adapter;
             }
         }
-        
+
         return null;
     }
 
@@ -294,7 +306,8 @@ public class SearchTagsFragment extends SearchTagsFragmentBase {
         try {
             return SpeechRecognizer.isRecognitionAvailable(getContext());
         } catch (NullPointerException e) {
-            // Attempt to invoke virtual method 'android.content.pm.PackageManager android.content.Context.getPackageManager()' on a null object reference
+            // Attempt to invoke virtual method 'android.content.pm.PackageManager
+            // android.content.Context.getPackageManager()' on a null object reference
             return false;
         }
     }
@@ -322,10 +335,11 @@ public class SearchTagsFragment extends SearchTagsFragmentBase {
         VideoGroupObjectAdapter existingAdapter = mSearchGroupAdapters.get(mediaGroupId);
 
         if (existingAdapter == null) {
-            VideoGroupObjectAdapter mediaGroupAdapter = new VideoGroupObjectAdapter(group, group.isShorts() ? mShortsPresenter : mCardPresenter);
+            VideoGroupObjectAdapter mediaGroupAdapter = new VideoGroupObjectAdapter(group,
+                    group.isShorts() ? mShortsPresenter : mCardPresenter);
 
             mSearchGroupAdapters.put(mediaGroupId, mediaGroupAdapter);
-            
+
             attachAdapter(getResultsAdapter().size(), rowHeader, mediaGroupAdapter);
         } else {
             Log.d(TAG, "Continue row %s %s", group.getTitle(), System.currentTimeMillis());
@@ -381,16 +395,20 @@ public class SearchTagsFragment extends SearchTagsFragmentBase {
     private boolean isComputingLayout(VideoGroup group) {
         int action = group.getAction();
 
-        // Attempt to fix: IllegalStateException: Cannot call this method while RecyclerView is computing a layout or scrolling
-        if (action == VideoGroup.ACTION_SYNC && getRowsSupportFragment() != null && getRowsSupportFragment().getVerticalGridView() != null) {
+        // Attempt to fix: IllegalStateException: Cannot call this method while
+        // RecyclerView is computing a layout or scrolling
+        if (action == VideoGroup.ACTION_SYNC && getRowsSupportFragment() != null
+                && getRowsSupportFragment().getVerticalGridView() != null) {
             int position = findPositionById(group.getId());
             if (position != -1) {
-                RecyclerView.ViewHolder viewHolder = getRowsSupportFragment().getVerticalGridView().findViewHolderForAdapterPosition(position);
+                RecyclerView.ViewHolder viewHolder = getRowsSupportFragment().getVerticalGridView()
+                        .findViewHolderForAdapterPosition(position);
                 if (viewHolder != null) {
                     Object nestedRecyclerView = Helpers.getField(viewHolder, "mNestedRecyclerView");
                     if (nestedRecyclerView instanceof WeakReference) {
                         Object recyclerView = ((WeakReference<?>) nestedRecyclerView).get();
-                        return recyclerView instanceof RecyclerView && ((RecyclerView) recyclerView).isComputingLayout();
+                        return recyclerView instanceof RecyclerView
+                                && ((RecyclerView) recyclerView).isComputingLayout();
                     }
                 }
             }
@@ -419,7 +437,7 @@ public class SearchTagsFragment extends SearchTagsFragmentBase {
                 mSearchPresenter.onVideoItemLongClicked((Video) item);
             } else if (item instanceof Tag) {
                 mSearchPresenter.onTagLongClicked((Tag) item);
-                //startSearch(((Tag) item).tag, false);
+                // startSearch(((Tag) item).tag, false);
             }
         }
     }

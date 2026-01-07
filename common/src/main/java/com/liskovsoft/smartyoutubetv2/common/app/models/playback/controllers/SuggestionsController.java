@@ -71,8 +71,9 @@ public class SuggestionsController extends BasePlayerController {
         // Remote control fix. Slow network fix. Suggestions may still be loading.
         // This could lead to changing current video info (title, id etc) to wrong one.
         disposeActions();
-        //mCurrentGroup = video.getGroup(); // disable garbage collected
-        //appendNextSectionVideoIfNeeded(video); // ConcurrentModificationException error
+        // mCurrentGroup = video.getGroup(); // disable garbage collected
+        // appendNextSectionVideoIfNeeded(video); // ConcurrentModificationException
+        // error
     }
 
     /**
@@ -83,11 +84,11 @@ public class SuggestionsController extends BasePlayerController {
         loadSuggestions(item);
     }
 
-    // Could make negative impact on the video load time.
-    //@Override
-    //public void onSourceChanged(Video item) {
-    //    loadSuggestions(item);
-    //}
+    @Override
+    public void onSourceChanged(Video item) {
+        // High-speed responsiveness: pre-load suggestions as soon as source is known
+        loadSuggestions(item);
+    }
 
     @Override
     public void onEngineReleased() {
@@ -208,18 +209,18 @@ public class SuggestionsController extends BasePlayerController {
                             if (getPlayer() != null) {
                                 getPlayer().showProgressBar(false);
                             }
-                        }
-                );
+                        });
 
         mActions.add(continueAction);
     }
 
     private void syncCurrentVideo(MediaItemMetadata mediaItemMetadata, Video video) {
-        //if (getPlayer().containsMedia()) {
-        //    video.isUpcoming = false; // live stream started
-        //}
+        // if (getPlayer().containsMedia()) {
+        // video.isUpcoming = false; // live stream started
+        // }
 
-        // NOTE: Skip upcoming or unplayable (no media) because default title more informative (e.g. has scheduled time).
+        // NOTE: Skip upcoming or unplayable (no media) because default title more
+        // informative (e.g. has scheduled time).
         // NOTE: Upcoming videos metadata wrongly reported as live
         if (!getPlayer().containsMedia()) {
             return;
@@ -252,9 +253,11 @@ public class SuggestionsController extends BasePlayerController {
 
         Observable<MediaItemMetadata> observable;
 
-        // NOTE: Load suggestions from mediaItem isn't robust. Because playlistId may be initialized from RemoteControlManager.
+        // NOTE: Load suggestions from mediaItem isn't robust. Because playlistId may be
+        // initialized from RemoteControlManager.
         // Video might be loaded from Channels section (has playlistParams)
-        observable = mMediaItemService.getMetadataObserve(video.videoId, video.getPlaylistId(), video.playlistIndex, video.playlistParams);
+        observable = mMediaItemService.getMetadataObserve(video.videoId, video.getPlaylistId(), video.playlistIndex,
+                video.playlistParams);
 
         Disposable metadataAction = observable
                 .subscribe(
@@ -267,8 +270,7 @@ public class SuggestionsController extends BasePlayerController {
                                 MessageHelpers.showLongMessage(getContext(), "loadSuggestions error: %s", message);
                             }
                             error.printStackTrace();
-                        }
-                );
+                        });
 
         mActions.add(metadataAction);
     }
@@ -418,7 +420,8 @@ public class SuggestionsController extends BasePlayerController {
     }
 
     /**
-     * Merge remote queue with player's queue (when phone cast just started or user clicked on playlist item)
+     * Merge remote queue with player's queue (when phone cast just started or user
+     * clicked on playlist item)
      */
     private void mergePlaybackAndRemoteQueueIfNeeded(Video video, MediaItemMetadata metadata) {
         // Ensure that the user pressed video thumb on the phone
@@ -536,13 +539,14 @@ public class SuggestionsController extends BasePlayerController {
         ChapterItem chapter = getNextChapter();
 
         if (chapter != null) {
-            Utils.postDelayed(mChapterHandler, (long) ((chapter.getStartTimeMs() - positionMs) * getPlayer().getSpeed()));
+            Utils.postDelayed(mChapterHandler,
+                    (long) ((chapter.getStartTimeMs() - positionMs) * getPlayer().getSpeed()));
         }
     }
 
     private void appendChaptersIfNeeded(MediaItemMetadata mediaItemMetadata) {
         mChapters = mediaItemMetadata.getChapters();
-        
+
         addChapterMarkersIfNeeded();
         appendChapterSuggestionsIfNeeded();
         startChapterNotificationServiceIfNeeded();
@@ -618,7 +622,8 @@ public class SuggestionsController extends BasePlayerController {
 
             SeekBarSegment seekBarSegment = new SeekBarSegment();
             float startRatio = (float) chapter.getStartTimeMs() / getPlayer().getDurationMs(); // Range: [0, 1]
-            float endRatio = (float) (chapter.getStartTimeMs() + markLengthMs) / getPlayer().getDurationMs(); // Range: [0, 1]
+            float endRatio = (float) (chapter.getStartTimeMs() + markLengthMs) / getPlayer().getDurationMs(); // Range:
+                                                                                                              // [0, 1]
             seekBarSegment.startProgress = startRatio;
             seekBarSegment.endProgress = endRatio;
             seekBarSegment.color = ContextCompat.getColor(getContext(), R.color.black);
@@ -642,7 +647,8 @@ public class SuggestionsController extends BasePlayerController {
     }
 
     private void focusAndContinueIfNeeded(VideoGroup group) {
-       focusAndContinueIfNeeded(group, () -> {});
+        focusAndContinueIfNeeded(group, () -> {
+        });
     }
 
     private void focusAndContinueIfNeeded(VideoGroup group, Runnable onDone) {
@@ -672,7 +678,8 @@ public class SuggestionsController extends BasePlayerController {
             onDone.run();
         } else {
             // load more and repeat
-            continueGroup(group, newGroup -> focusAndContinueIfNeeded(newGroup, onDone), getPlayer().isSuggestionsShown());
+            continueGroup(group, newGroup -> focusAndContinueIfNeeded(newGroup, onDone),
+                    getPlayer().isSuggestionsShown());
             mFocusCount++;
         }
     }
@@ -760,9 +767,9 @@ public class SuggestionsController extends BasePlayerController {
                     // return to previous dialog or close if no other dialogs in stack
                     dialogPresenter.closeDialog();
                     ChapterItem nextChapter = getNextChapter();
-                    getPlayer().setPositionMs(nextChapter != null ? nextChapter.getStartTimeMs() : getPlayer().getDurationMs());
-                }
-        );
+                    getPlayer().setPositionMs(
+                            nextChapter != null ? nextChapter.getStartTimeMs() : getPlayer().getDurationMs());
+                });
 
         dialogPresenter.appendSingleButton(acceptOption);
 
@@ -849,8 +856,7 @@ public class SuggestionsController extends BasePlayerController {
                     video.sync(dislikeData);
                     getPlayer().setVideo(video);
                 },
-                error -> Log.e(TAG, "Dislike not working...")
-        );
+                error -> Log.e(TAG, "Dislike not working..."));
 
         mActions.add(dislikeAction);
     }

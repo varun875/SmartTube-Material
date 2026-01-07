@@ -24,7 +24,7 @@ public class DeArrowProcessor implements OnDataChange, BrowseProcessor {
     private final DeArrowData mDeArrowData;
     private boolean mIsReplaceTitlesEnabled;
     private boolean mIsReplaceThumbnailsEnabled;
-    private Disposable mResult;
+    private final io.reactivex.disposables.CompositeDisposable mResult = new io.reactivex.disposables.CompositeDisposable();
 
     public DeArrowProcessor(Context context, OnItemReady onItemReady) {
         mOnItemReady = onItemReady;
@@ -52,9 +52,12 @@ public class DeArrowProcessor implements OnDataChange, BrowseProcessor {
         }
 
         List<String> videoIds = getVideoIds(videoGroup);
-        mResult = mItemService.getDeArrowDataObserve(videoIds)
+        mResult.add(mItemService.getDeArrowDataObserve(videoIds)
                 .subscribe(deArrowData -> {
                     Video video = videoGroup.findVideoById(deArrowData.getVideoId());
+                    if (video == null) {
+                        return;
+                    }
                     if (mIsReplaceTitlesEnabled) {
                         video.deArrowTitle = deArrowData.getTitle();
                     }
@@ -63,9 +66,9 @@ public class DeArrowProcessor implements OnDataChange, BrowseProcessor {
                     }
                     mOnItemReady.onItemReady(video);
                 },
-                error -> {
-                    Log.d(TAG, "DeArrow cannot process the video");
-                });
+                        error -> {
+                            Log.d(TAG, "DeArrow cannot process the video");
+                        }));
     }
 
     @Override

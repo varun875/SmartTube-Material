@@ -22,6 +22,8 @@ public class MediaServiceSearchTagProvider implements SearchTagsProvider {
         mContentService = service.getContentService();
     }
 
+    private final java.util.HashMap<String, java.util.List<Tag>> mTagsCache = new java.util.HashMap<>();
+
     @Override
     public void search(String query, ResultsCallback callback) {
         RxHelper.disposeActions(mTagsAction);
@@ -31,10 +33,18 @@ public class MediaServiceSearchTagProvider implements SearchTagsProvider {
             return;
         }
 
+        if (mTagsCache.containsKey(query)) {
+            callback.onResults(mTagsCache.get(query));
+            return;
+        }
+
         mTagsAction = mContentService.getSearchTagsObserve(query)
                 .subscribe(
-                        tags -> callback.onResults(Tag.from(tags)),
-                        error -> Log.e(TAG, "Result is empty. Just ignore it. Error msg: %s", error.getMessage())
-                );
+                        tags -> {
+                            java.util.List<Tag> result = Tag.from(tags);
+                            mTagsCache.put(query, result);
+                            callback.onResults(result);
+                        },
+                        error -> Log.e(TAG, "Result is empty. Just ignore it. Error msg: %s", error.getMessage()));
     }
 }

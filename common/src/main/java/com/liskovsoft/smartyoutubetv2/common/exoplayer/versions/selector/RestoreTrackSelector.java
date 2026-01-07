@@ -20,17 +20,22 @@ public class RestoreTrackSelector extends DefaultTrackSelector {
 
     public interface TrackSelectorCallback {
         Pair<Definition, MediaTrack> onSelectVideoTrack(TrackGroupArray groups, Parameters params);
+
         Pair<Definition, MediaTrack> onSelectAudioTrack(TrackGroupArray groups, Parameters params);
+
         Pair<Definition, MediaTrack> onSelectSubtitleTrack(TrackGroupArray groups, Parameters params);
+
         void updateVideoTrackSelection(TrackGroupArray groups, Parameters params, Definition definition);
+
         void updateAudioTrackSelection(TrackGroupArray groups, Parameters params, Definition definition);
+
         void updateSubtitleTrackSelection(TrackGroupArray groups, Parameters params, Definition definition);
     }
 
     public RestoreTrackSelector(Factory trackSelectionFactory) {
         super(trackSelectionFactory);
-        // Could help with Shield resolution bug?
-        //setParameters(buildUponParameters().setForceHighestSupportedBitrate(true));
+        // Optimizing for high-speed connections (300mbps+)
+        setParameters(buildUponParameters().setForceHighestSupportedBitrate(true));
     }
 
     public void setOnTrackSelectCallback(TrackSelectorCallback callback) {
@@ -38,93 +43,118 @@ public class RestoreTrackSelector extends DefaultTrackSelector {
     }
 
     // Exo 2.9
-    //@Nullable
-    //@Override
-    //protected TrackSelection selectVideoTrack(TrackGroupArray groups, int[][] formatSupports, int mixedMimeTypeAdaptationSupports,
-    //                                          Parameters params, @Nullable Factory adaptiveTrackSelectionFactory) throws ExoPlaybackException {
-    //    if (mCallback != null) {
-    //        Pair<Definition, MediaTrack> resultPair = mCallback.onSelectVideoTrack(groups, params);
+    // @Nullable
+    // @Override
+    // protected TrackSelection selectVideoTrack(TrackGroupArray groups, int[][]
+    // formatSupports, int mixedMimeTypeAdaptationSupports,
+    // Parameters params, @Nullable Factory adaptiveTrackSelectionFactory) throws
+    // ExoPlaybackException {
+    // if (mCallback != null) {
+    // Pair<Definition, MediaTrack> resultPair =
+    // mCallback.onSelectVideoTrack(groups, params);
     //
-    //        if (resultPair != null) {
-    //            Log.d(TAG, "selectVideoTrack: choose custom video processing");
-    //            return resultPair.first.toSelection();
-    //        }
-    //    }
+    // if (resultPair != null) {
+    // Log.d(TAG, "selectVideoTrack: choose custom video processing");
+    // return resultPair.first.toSelection();
+    // }
+    // }
     //
-    //    Log.d(TAG, "selectVideoTrack: choose default video processing");
+    // Log.d(TAG, "selectVideoTrack: choose default video processing");
     //
-    //    TrackSelection trackSelection = super.selectVideoTrack(groups, formatSupports, mixedMimeTypeAdaptationSupports, params, adaptiveTrackSelectionFactory);
+    // TrackSelection trackSelection = super.selectVideoTrack(groups,
+    // formatSupports, mixedMimeTypeAdaptationSupports, params,
+    // adaptiveTrackSelectionFactory);
     //
-    //    // Don't invoke if track already has been selected by the app
-    //    if (mCallback != null && trackSelection != null && !params.hasSelectionOverride(TrackSelectorManager.RENDERER_INDEX_VIDEO, groups)) {
-    //        mCallback.updateVideoTrackSelection(groups, params, Definition.from(trackSelection));
-    //    }
+    // // Don't invoke if track already has been selected by the app
+    // if (mCallback != null && trackSelection != null &&
+    // !params.hasSelectionOverride(TrackSelectorManager.RENDERER_INDEX_VIDEO,
+    // groups)) {
+    // mCallback.updateVideoTrackSelection(groups, params,
+    // Definition.from(trackSelection));
+    // }
     //
-    //    return trackSelection;
-    //}
+    // return trackSelection;
+    // }
 
     // Exo 2.9
-    //@Nullable
-    //@Override
-    //protected Pair<TrackSelection, AudioTrackScore> selectAudioTrack(TrackGroupArray groups, int[][] formatSupports,
-    //                                                                 int mixedMimeTypeAdaptationSupports, Parameters params,
-    //                                                                 @Nullable Factory adaptiveTrackSelectionFactory) throws ExoPlaybackException {
-    //    if (mCallback != null) {
-    //        Pair<Definition, MediaTrack> resultPair = mCallback.onSelectAudioTrack(groups, params);
-    //        if (resultPair != null) {
-    //            Log.d(TAG, "selectVideoTrack: choose custom audio processing");
-    //            return new Pair<>(resultPair.first.toSelection(), new AudioTrackScore(resultPair.second.format, params, RendererCapabilities.FORMAT_HANDLED));
-    //        }
-    //    }
+    // @Nullable
+    // @Override
+    // protected Pair<TrackSelection, AudioTrackScore>
+    // selectAudioTrack(TrackGroupArray groups, int[][] formatSupports,
+    // int mixedMimeTypeAdaptationSupports, Parameters params,
+    // @Nullable Factory adaptiveTrackSelectionFactory) throws ExoPlaybackException
+    // {
+    // if (mCallback != null) {
+    // Pair<Definition, MediaTrack> resultPair =
+    // mCallback.onSelectAudioTrack(groups, params);
+    // if (resultPair != null) {
+    // Log.d(TAG, "selectVideoTrack: choose custom audio processing");
+    // return new Pair<>(resultPair.first.toSelection(), new
+    // AudioTrackScore(resultPair.second.format, params,
+    // RendererCapabilities.FORMAT_HANDLED));
+    // }
+    // }
     //
-    //    Log.d(TAG, "selectAudioTrack: choose default audio processing");
+    // Log.d(TAG, "selectAudioTrack: choose default audio processing");
     //
-    //    Pair<TrackSelection, AudioTrackScore> selectionPair =
-    //            super.selectAudioTrack(groups, formatSupports, mixedMimeTypeAdaptationSupports, params, adaptiveTrackSelectionFactory);
+    // Pair<TrackSelection, AudioTrackScore> selectionPair =
+    // super.selectAudioTrack(groups, formatSupports,
+    // mixedMimeTypeAdaptationSupports, params, adaptiveTrackSelectionFactory);
     //
-    //    // Don't invoke if track already has been selected by the app
-    //    if (mCallback != null && selectionPair != null && !params.hasSelectionOverride(TrackSelectorManager.RENDERER_INDEX_AUDIO, groups)) {
-    //        mCallback.updateAudioTrackSelection(groups, params, Definition.from(selectionPair.first));
-    //    }
+    // // Don't invoke if track already has been selected by the app
+    // if (mCallback != null && selectionPair != null &&
+    // !params.hasSelectionOverride(TrackSelectorManager.RENDERER_INDEX_AUDIO,
+    // groups)) {
+    // mCallback.updateAudioTrackSelection(groups, params,
+    // Definition.from(selectionPair.first));
+    // }
     //
-    //    return selectionPair;
-    //}
+    // return selectionPair;
+    // }
 
     // Exo 2.9
-    //@Nullable
-    //@Override
-    //protected Pair<TrackSelection, Integer> selectTextTrack(TrackGroupArray groups, int[][] formatSupport, Parameters params) throws ExoPlaybackException {
-    //    if (mCallback != null) {
-    //        Pair<Definition, MediaTrack> resultPair = mCallback.onSelectSubtitleTrack(groups, params);
-    //        if (resultPair != null) {
-    //            Log.d(TAG, "selectTextTrack: choose custom text processing");
-    //            return new Pair<>(resultPair.first.toSelection(), 10);
-    //        }
-    //    }
+    // @Nullable
+    // @Override
+    // protected Pair<TrackSelection, Integer> selectTextTrack(TrackGroupArray
+    // groups, int[][] formatSupport, Parameters params) throws ExoPlaybackException
+    // {
+    // if (mCallback != null) {
+    // Pair<Definition, MediaTrack> resultPair =
+    // mCallback.onSelectSubtitleTrack(groups, params);
+    // if (resultPair != null) {
+    // Log.d(TAG, "selectTextTrack: choose custom text processing");
+    // return new Pair<>(resultPair.first.toSelection(), 10);
+    // }
+    // }
     //
-    //    Log.d(TAG, "selectTextTrack: choose default text processing");
+    // Log.d(TAG, "selectTextTrack: choose default text processing");
     //
-    //    Pair<TrackSelection, Integer> selectionPair = super.selectTextTrack(groups, formatSupport, params);
+    // Pair<TrackSelection, Integer> selectionPair = super.selectTextTrack(groups,
+    // formatSupport, params);
     //
-    //    // Don't invoke if track already has been selected by the app
-    //    if (mCallback != null && selectionPair != null && !params.hasSelectionOverride(TrackSelectorManager.RENDERER_INDEX_SUBTITLE, groups)) {
-    //        mCallback.updateSubtitleTrackSelection(groups, params, Definition.from(selectionPair.first));
-    //    }
+    // // Don't invoke if track already has been selected by the app
+    // if (mCallback != null && selectionPair != null &&
+    // !params.hasSelectionOverride(TrackSelectorManager.RENDERER_INDEX_SUBTITLE,
+    // groups)) {
+    // mCallback.updateSubtitleTrackSelection(groups, params,
+    // Definition.from(selectionPair.first));
+    // }
     //
-    //    return selectionPair;
-    //}
+    // return selectionPair;
+    // }
 
-    //@Override
-    //public void setParameters(Parameters parameters) {
-    //    // Fix dropping to 144p by disabling any overrides.
-    //    invalidate();
-    //}
+    // @Override
+    // public void setParameters(Parameters parameters) {
+    // // Fix dropping to 144p by disabling any overrides.
+    // invalidate();
+    // }
 
     // Exo 2.10 and up
     @Nullable
     @Override
-    protected Definition selectVideoTrack(TrackGroupArray groups, int[][] formatSupports, int mixedMimeTypeAdaptationSupports,
-                                              Parameters params, boolean enableAdaptiveTrackSelection) throws ExoPlaybackException {
+    protected Definition selectVideoTrack(TrackGroupArray groups, int[][] formatSupports,
+            int mixedMimeTypeAdaptationSupports,
+            Parameters params, boolean enableAdaptiveTrackSelection) throws ExoPlaybackException {
         if (mCallback != null) {
             Pair<Definition, MediaTrack> resultPair = mCallback.onSelectVideoTrack(groups, params);
 
@@ -138,7 +168,8 @@ public class RestoreTrackSelector extends DefaultTrackSelector {
 
         Log.d(TAG, "selectVideoTrack: choose default video processing");
 
-        Definition definition = super.selectVideoTrack(groups, formatSupports, mixedMimeTypeAdaptationSupports, params, false);
+        Definition definition = super.selectVideoTrack(groups, formatSupports, mixedMimeTypeAdaptationSupports, params,
+                false);
 
         // Don't invoke if track already has been selected by the app
         if (mCallback != null && definition != null) {
@@ -152,12 +183,14 @@ public class RestoreTrackSelector extends DefaultTrackSelector {
     @Nullable
     @Override
     protected Pair<Definition, AudioTrackScore> selectAudioTrack(TrackGroupArray groups, int[][] formatSupports,
-                                                                 int mixedMimeTypeAdaptationSupports, Parameters params, boolean enableAdaptiveTrackSelection) throws ExoPlaybackException {
+            int mixedMimeTypeAdaptationSupports, Parameters params, boolean enableAdaptiveTrackSelection)
+            throws ExoPlaybackException {
         if (mCallback != null) {
             Pair<Definition, MediaTrack> resultPair = mCallback.onSelectAudioTrack(groups, params);
             if (resultPair != null) {
                 Log.d(TAG, "selectVideoTrack: choose custom audio processing");
-                return new Pair<>(resultPair.first, new AudioTrackScore(resultPair.second.format, params, RendererCapabilities.FORMAT_HANDLED));
+                return new Pair<>(resultPair.first,
+                        new AudioTrackScore(resultPair.second.format, params, RendererCapabilities.FORMAT_HANDLED));
             } else {
                 return null; // audio disabled
             }
@@ -179,19 +212,22 @@ public class RestoreTrackSelector extends DefaultTrackSelector {
     // Exo 2.10 and up
     @Nullable
     @Override
-    protected Pair<Definition, TextTrackScore> selectTextTrack(TrackGroupArray groups, int[][] formatSupport, Parameters params,
-                                                               @Nullable String selectedAudioLanguage) throws ExoPlaybackException {
+    protected Pair<Definition, TextTrackScore> selectTextTrack(TrackGroupArray groups, int[][] formatSupport,
+            Parameters params,
+            @Nullable String selectedAudioLanguage) throws ExoPlaybackException {
         if (mCallback != null) {
             Pair<Definition, MediaTrack> resultPair = mCallback.onSelectSubtitleTrack(groups, params);
             if (resultPair != null) {
                 Log.d(TAG, "selectTextTrack: choose custom text processing");
-                return new Pair<>(resultPair.first, new TextTrackScore(resultPair.second.format, params, RendererCapabilities.FORMAT_HANDLED, ""));
+                return new Pair<>(resultPair.first,
+                        new TextTrackScore(resultPair.second.format, params, RendererCapabilities.FORMAT_HANDLED, ""));
             }
         }
 
         Log.d(TAG, "selectTextTrack: choose default text processing");
 
-        Pair<Definition, TextTrackScore> definitionPair = super.selectTextTrack(groups, formatSupport, params, selectedAudioLanguage);
+        Pair<Definition, TextTrackScore> definitionPair = super.selectTextTrack(groups, formatSupport, params,
+                selectedAudioLanguage);
 
         // Don't invoke if track already has been selected by the app
         if (mCallback != null && definitionPair != null) {
@@ -205,7 +241,8 @@ public class RestoreTrackSelector extends DefaultTrackSelector {
         final int videoTrackIndex = 0;
 
         for (int j = 0; j < formatSupports[videoTrackIndex].length; j++) {
-            if (formatSupports[videoTrackIndex][j] == FORMAT_NOT_SUPPORTED) { // video format not supported by system decoders
+            if (formatSupports[videoTrackIndex][j] == FORMAT_NOT_SUPPORTED) { // video format not supported by system
+                                                                              // decoders
                 formatSupports[videoTrackIndex][j] = FORMAT_FORCE_SUPPORT; // force support of video format
             }
         }

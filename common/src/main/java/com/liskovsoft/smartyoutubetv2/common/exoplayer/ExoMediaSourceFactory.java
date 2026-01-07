@@ -57,16 +57,18 @@ import java.util.concurrent.Executors;
 public class ExoMediaSourceFactory {
     private static final String TAG = ExoMediaSourceFactory.class.getSimpleName();
     @SuppressLint("StaticFieldLeak")
-    //private static ExoMediaSourceFactory sInstance;
-    private static final int MAX_SEGMENTS_PER_LOAD = 3; // default - 1 (1-5)
+    // private static ExoMediaSourceFactory sInstance;
+    private static final int MAX_SEGMENTS_PER_LOAD = 5; // default - 1 (1-5)
     private static final String USER_AGENT = DefaultHeaders.APP_USER_AGENT;
     @SuppressLint("StaticFieldLeak")
-    private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
+    private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter.Builder(null)
+            .setInitialBitrateEstimate(25_000_000) // 25mbps - ready for 4K immediately
+            .build();
     private final Context mContext;
     private static final Uri DASH_MANIFEST_URI = Uri.parse("https://example.com/test.mpd");
     private static final String DASH_MANIFEST_EXTENSION = "mpd";
     private static final String HLS_PLAYLIST_EXTENSION = "m3u8";
-    private static final boolean USE_BANDWIDTH_METER = false;
+    private static final boolean USE_BANDWIDTH_METER = true;
     private TrackErrorFixer mTrackErrorFixer;
     private Factory mMediaDataSourceFactory;
 
@@ -101,14 +103,16 @@ public class ExoMediaSourceFactory {
             mediaSources[i] = buildMediaSource(Uri.parse(urlList.get(i)), null);
         }
 
-        //return mediaSources.length == 1 ? mediaSources[0] : new ConcatenatingMediaSource(mediaSources); // or playlist
+        // return mediaSources.length == 1 ? mediaSources[0] : new
+        // ConcatenatingMediaSource(mediaSources); // or playlist
         return mediaSources[0]; // item with max resolution
     }
 
     /**
      * Returns a new DataSource factory.
      *
-     * @param useBandwidthMeter Whether to set {@link #BANDWIDTH_METER} as a listener to the new
+     * @param useBandwidthMeter Whether to set {@link #BANDWIDTH_METER} as a
+     *                          listener to the new
      *                          DataSource factory.
      * @return A new DataSource factory.
      */
@@ -120,7 +124,8 @@ public class ExoMediaSourceFactory {
     /**
      * Returns a new HttpDataSource factory.
      *
-     * @param useBandwidthMeter Whether to set {@link #BANDWIDTH_METER} as a listener to the new
+     * @param useBandwidthMeter Whether to set {@link #BANDWIDTH_METER} as a
+     *                          listener to the new
      *                          DataSource factory.
      * @return A new HttpDataSource factory.
      */
@@ -128,41 +133,41 @@ public class ExoMediaSourceFactory {
         PlayerTweaksData tweaksData = PlayerTweaksData.instance(mContext);
         int source = tweaksData.getPlayerDataSource();
         DefaultBandwidthMeter bandwidthMeter = useBandwidthMeter ? BANDWIDTH_METER : null;
-        return source == PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP ? buildOkHttpDataSourceFactory(bandwidthMeter) :
-                        source == PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET && CronetManager.getEngine(mContext) != null ? buildCronetDataSourceFactory(bandwidthMeter) :
-                                buildDefaultHttpDataSourceFactory(bandwidthMeter);
+        return source == PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP ? buildOkHttpDataSourceFactory(bandwidthMeter)
+                : source == PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET && CronetManager.getEngine(mContext) != null
+                        ? buildCronetDataSourceFactory(bandwidthMeter)
+                        : buildDefaultHttpDataSourceFactory(bandwidthMeter);
     }
 
     @SuppressWarnings("deprecation")
     private MediaSource buildMediaSource(Uri uri, String overrideExtension) {
-        int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
+        int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri)
+                : Util.inferContentType("." + overrideExtension);
         switch (type) {
             case C.TYPE_SS:
-                SsMediaSource ssSource =
-                        new SsMediaSource.Factory(
-                                getSsChunkSourceFactory(),
-                                getMediaDataSourceFactory()
-                        )
-                                .createMediaSource(uri);
+                SsMediaSource ssSource = new SsMediaSource.Factory(
+                        getSsChunkSourceFactory(),
+                        getMediaDataSourceFactory())
+                        .createMediaSource(uri);
                 if (mTrackErrorFixer != null) {
                     ssSource.addEventListener(Utils.sHandler, mTrackErrorFixer);
                 }
                 return ssSource;
             case C.TYPE_DASH:
-                DashMediaSource dashSource =
-                        new DashMediaSource.Factory(
-                                getDashChunkSourceFactory(),
-                                getMediaDataSourceFactory()
-                        )
-                                .setManifestParser(new LiveDashManifestParser()) // Don't make static! Need state reset for each live source.
-                                .setLoadErrorHandlingPolicy(new DashDefaultLoadErrorHandlingPolicy())
-                                .createMediaSource(uri);
+                DashMediaSource dashSource = new DashMediaSource.Factory(
+                        getDashChunkSourceFactory(),
+                        getMediaDataSourceFactory())
+                        .setManifestParser(new LiveDashManifestParser()) // Don't make static! Need state reset for each
+                                                                         // live source.
+                        .setLoadErrorHandlingPolicy(new DashDefaultLoadErrorHandlingPolicy())
+                        .createMediaSource(uri);
                 if (mTrackErrorFixer != null) {
                     dashSource.addEventListener(Utils.sHandler, mTrackErrorFixer);
                 }
                 return dashSource;
             case C.TYPE_HLS:
-                HlsMediaSource hlsSource = new HlsMediaSource.Factory(getMediaDataSourceFactory()).createMediaSource(uri);
+                HlsMediaSource hlsSource = new HlsMediaSource.Factory(getMediaDataSourceFactory())
+                        .createMediaSource(uri);
                 if (mTrackErrorFixer != null) {
                     hlsSource.addEventListener(Utils.sHandler, mTrackErrorFixer);
                 }
@@ -182,11 +187,11 @@ public class ExoMediaSourceFactory {
     }
 
     private MediaSource buildSabrMediaSource(MediaItemFormatInfo formatInfo) {
-        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build your player?
+        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build
+        // your player?
         SabrMediaSource sabrSource = new SabrMediaSource.Factory(
                 getSabrChunkSourceFactory(),
-                null
-        )
+                null)
                 .setLoadErrorHandlingPolicy(new SabrDefaultLoadErrorHandlingPolicy())
                 .createMediaSource(getSabrManifest(formatInfo));
         if (mTrackErrorFixer != null) {
@@ -196,11 +201,11 @@ public class ExoMediaSourceFactory {
     }
 
     private MediaSource buildDashMediaSource(MediaItemFormatInfo formatInfo) {
-        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build your player?
+        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build
+        // your player?
         DashMediaSource dashSource = new DashMediaSource.Factory(
                 getDashChunkSourceFactory(),
-                null
-        )
+                null)
                 .setLoadErrorHandlingPolicy(new DashDefaultLoadErrorHandlingPolicy())
                 .createMediaSource(getManifest(formatInfo));
         if (mTrackErrorFixer != null) {
@@ -210,11 +215,11 @@ public class ExoMediaSourceFactory {
     }
 
     private MediaSource buildMPDMediaSource(Uri uri, InputStream mpdContent) {
-        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build your player?
+        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build
+        // your player?
         DashMediaSource dashSource = new DashMediaSource.Factory(
                 getDashChunkSourceFactory(),
-                null
-        )
+                null)
                 .setLoadErrorHandlingPolicy(new DashDefaultLoadErrorHandlingPolicy())
                 .createMediaSource(getManifest(uri, mpdContent));
         if (mTrackErrorFixer != null) {
@@ -229,11 +234,11 @@ public class ExoMediaSourceFactory {
             return null;
         }
 
-        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build your player?
+        // Are you using FrameworkSampleSource or ExtractorSampleSource when you build
+        // your player?
         DashMediaSource dashSource = new DashMediaSource.Factory(
                 new DefaultDashChunkSource.Factory(getMediaDataSourceFactory()),
-                null
-        )
+                null)
                 .createMediaSource(getManifest(uri, mpdContent));
         if (mTrackErrorFixer != null) {
             dashSource.addEventListener(Utils.sHandler, mTrackErrorFixer);
@@ -277,23 +282,23 @@ public class ExoMediaSourceFactory {
      * Use OkHttp for networking
      */
     private HttpDataSource.Factory buildOkHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
-        OkHttpDataSourceFactory dataSourceFactory = new OkHttpDataSourceFactory(OkHttpManager.instance().getClient(), USER_AGENT,
+        OkHttpDataSourceFactory dataSourceFactory = new OkHttpDataSourceFactory(OkHttpManager.instance().getClient(),
+                USER_AGENT,
                 bandwidthMeter);
         addCommonHeaders(dataSourceFactory);
         return dataSourceFactory;
     }
 
     private HttpDataSource.Factory buildCronetDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
-        CronetDataSourceFactory dataSourceFactory =
-                new CronetDataSourceFactory(
-                        new CronetEngineWrapper(CronetManager.getEngine(mContext)),
-                        Executors.newSingleThreadExecutor(),
-                        null,
-                        bandwidthMeter,
-                        (int) OkHttpManager.getConnectTimeoutMs(),
-                        (int) OkHttpManager.getReadTimeoutMs(),
-                        true,
-                        USER_AGENT);
+        CronetDataSourceFactory dataSourceFactory = new CronetDataSourceFactory(
+                new CronetEngineWrapper(CronetManager.getEngine(mContext)),
+                Executors.newSingleThreadExecutor(),
+                null,
+                bandwidthMeter,
+                (int) OkHttpManager.getConnectTimeoutMs(),
+                (int) OkHttpManager.getReadTimeoutMs(),
+                true,
+                USER_AGENT);
         addCommonHeaders(dataSourceFactory);
         return dataSourceFactory;
     }
@@ -313,39 +318,52 @@ public class ExoMediaSourceFactory {
     private static void addCommonHeaders(BaseFactory dataSourceFactory) {
         // Doesn't work
         // Trying to fix 429 error (too many requests)
-        //String authorization = RetrofitOkHttpHelper.getAuthHeaders().get("Authorization");
+        // String authorization =
+        // RetrofitOkHttpHelper.getAuthHeaders().get("Authorization");
         //
-        //if (authorization != null) {
-        //    dataSourceFactory.getDefaultRequestProperties().set("Authorization", authorization);
-        //}
+        // if (authorization != null) {
+        // dataSourceFactory.getDefaultRequestProperties().set("Authorization",
+        // authorization);
+        // }
 
-        //HeaderManager headerManager = new HeaderManager(context);
-        //HashMap<String, String> headers = headerManager.getHeaders();
+        // HeaderManager headerManager = new HeaderManager(context);
+        // HashMap<String, String> headers = headerManager.getHeaders();
 
-        // NOTE: "Accept-Encoding" should not be set manually (gzip is added by default).
+        // NOTE: "Accept-Encoding" should not be set manually (gzip is added by
+        // default).
 
-        //for (String header : headers.keySet()) {
-        //    if (EXO_HEADERS.contains(header)) {
-        //        dataSourceFactory.getDefaultRequestProperties().set(header, headers.get(header));
-        //    }
-        //}
+        // for (String header : headers.keySet()) {
+        // if (EXO_HEADERS.contains(header)) {
+        // dataSourceFactory.getDefaultRequestProperties().set(header,
+        // headers.get(header));
+        // }
+        // }
 
         // Emulate browser request
-        //dataSourceFactory.getDefaultRequestProperties().set("accept", "*/*");
-        //dataSourceFactory.getDefaultRequestProperties().set("accept-encoding", "identity"); // Next won't work: gzip, deflate, br
-        //dataSourceFactory.getDefaultRequestProperties().set("accept-language", "en-US,en;q=0.9");
-        //dataSourceFactory.getDefaultRequestProperties().set("dnt", "1");
-        //dataSourceFactory.getDefaultRequestProperties().set("origin", "https://www.youtube.com");
-        //dataSourceFactory.getDefaultRequestProperties().set("referer", "https://www.youtube.com/");
-        //dataSourceFactory.getDefaultRequestProperties().set("sec-fetch-dest", "empty");
-        //dataSourceFactory.getDefaultRequestProperties().set("sec-fetch-mode", "cors");
-        //dataSourceFactory.getDefaultRequestProperties().set("sec-fetch-site", "cross-site");
+        // dataSourceFactory.getDefaultRequestProperties().set("accept", "*/*");
+        // dataSourceFactory.getDefaultRequestProperties().set("accept-encoding",
+        // "identity"); // Next won't work: gzip, deflate, br
+        // dataSourceFactory.getDefaultRequestProperties().set("accept-language",
+        // "en-US,en;q=0.9");
+        // dataSourceFactory.getDefaultRequestProperties().set("dnt", "1");
+        // dataSourceFactory.getDefaultRequestProperties().set("origin",
+        // "https://www.youtube.com");
+        // dataSourceFactory.getDefaultRequestProperties().set("referer",
+        // "https://www.youtube.com/");
+        // dataSourceFactory.getDefaultRequestProperties().set("sec-fetch-dest",
+        // "empty");
+        // dataSourceFactory.getDefaultRequestProperties().set("sec-fetch-mode",
+        // "cors");
+        // dataSourceFactory.getDefaultRequestProperties().set("sec-fetch-site",
+        // "cross-site");
 
         // WARN: Compression won't work with legacy streams.
         // "Accept-Encoding" should not be set manually (gzip is added by default).
         // Otherwise you should do decompression yourself.
-        // Source: https://stackoverflow.com/questions/18898959/httpurlconnection-not-decompressing-gzip/42346308#42346308
-        //dataSourceFactory.getDefaultRequestProperties().set("Accept-Encoding", AppConstants.ACCEPT_ENCODING_DEFAULT);
+        // Source:
+        // https://stackoverflow.com/questions/18898959/httpurlconnection-not-decompressing-gzip/42346308#42346308
+        // dataSourceFactory.getDefaultRequestProperties().set("Accept-Encoding",
+        // AppConstants.ACCEPT_ENCODING_DEFAULT);
     }
 
     public void setTrackErrorFixer(TrackErrorFixer trackErrorFixer) {
@@ -412,36 +430,36 @@ public class ExoMediaSourceFactory {
     }
 
     // EXO: 2.13
-    //private static class StaticDashManifestParser extends DashManifestParser {
-    //    @Override
-    //    protected DashManifest buildMediaPresentationDescription(
-    //            long availabilityStartTime,
-    //            long durationMs,
-    //            long minBufferTimeMs,
-    //            boolean dynamic,
-    //            long minUpdateTimeMs,
-    //            long timeShiftBufferDepthMs,
-    //            long suggestedPresentationDelayMs,
-    //            long publishTimeMs,
-    //            @Nullable ProgramInformation programInformation,
-    //            @Nullable UtcTimingElement utcTiming,
-    //            @Nullable ServiceDescriptionElement serviceDescription,
-    //            @Nullable Uri location,
-    //            List<Period> periods) {
-    //        return new DashManifest(
-    //                availabilityStartTime,
-    //                durationMs,
-    //                minBufferTimeMs,
-    //                false,
-    //                minUpdateTimeMs,
-    //                timeShiftBufferDepthMs,
-    //                suggestedPresentationDelayMs,
-    //                publishTimeMs,
-    //                programInformation,
-    //                utcTiming,
-    //                serviceDescription,
-    //                location,
-    //                periods);
-    //    }
-    //}
+    // private static class StaticDashManifestParser extends DashManifestParser {
+    // @Override
+    // protected DashManifest buildMediaPresentationDescription(
+    // long availabilityStartTime,
+    // long durationMs,
+    // long minBufferTimeMs,
+    // boolean dynamic,
+    // long minUpdateTimeMs,
+    // long timeShiftBufferDepthMs,
+    // long suggestedPresentationDelayMs,
+    // long publishTimeMs,
+    // @Nullable ProgramInformation programInformation,
+    // @Nullable UtcTimingElement utcTiming,
+    // @Nullable ServiceDescriptionElement serviceDescription,
+    // @Nullable Uri location,
+    // List<Period> periods) {
+    // return new DashManifest(
+    // availabilityStartTime,
+    // durationMs,
+    // minBufferTimeMs,
+    // false,
+    // minUpdateTimeMs,
+    // timeShiftBufferDepthMs,
+    // suggestedPresentationDelayMs,
+    // publishTimeMs,
+    // programInformation,
+    // utcTiming,
+    // serviceDescription,
+    // location,
+    // periods);
+    // }
+    // }
 }

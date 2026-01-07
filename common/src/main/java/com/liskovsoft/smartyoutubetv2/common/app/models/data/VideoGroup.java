@@ -100,10 +100,11 @@ public class VideoGroup {
         videoGroup.mPosition = groupPosition;
         videoGroup.mVideos = new ArrayList<>();
         videoGroup.mMediaGroup = mediaGroup;
-        videoGroup.mTitle = mediaGroup != null && mediaGroup.getTitle() != null ?
-                mediaGroup.getTitle() : section != null ? section.getTitle() : null;
+        videoGroup.mTitle = mediaGroup != null && mediaGroup.getTitle() != null ? mediaGroup.getTitle()
+                : section != null ? section.getTitle() : null;
         // Fix duplicated rows e.g. Shorts
-        //videoGroup.mId = !TextUtils.isEmpty(videoGroup.mTitle) ? videoGroup.mTitle.hashCode() : videoGroup.hashCode();
+        // videoGroup.mId = !TextUtils.isEmpty(videoGroup.mTitle) ?
+        // videoGroup.mTitle.hashCode() : videoGroup.hashCode();
         videoGroup.mId = videoGroup.hashCode();
 
         if (mediaGroup == null) {
@@ -198,9 +199,9 @@ public class VideoGroup {
     public void setTitle(String title) {
         mTitle = title;
 
-        //if (!TextUtils.isEmpty(title) && (mId == 0 || mId == hashCode())) {
-        //    mId = title.hashCode();
-        //}
+        // if (!TextUtils.isEmpty(title) && (mId == 0 || mId == hashCode())) {
+        // mId = title.hashCode();
+        // }
     }
 
     public int getId() {
@@ -225,8 +226,8 @@ public class VideoGroup {
         }
 
         for (int i = 0; i < Math.min(8, mVideos.size()); i++) {
-             if (!mVideos.get(i).isShorts)
-                 return false;
+            if (!mVideos.get(i).isShorts)
+                return false;
         }
 
         return true;
@@ -257,7 +258,8 @@ public class VideoGroup {
     }
 
     public int getType() {
-        return mType != -1 ? mType : getMediaGroup() != null ? getMediaGroup().getType() : mSection != null ? mSection.getId() : -1;
+        return mType != -1 ? mType
+                : getMediaGroup() != null ? getMediaGroup().getType() : mSection != null ? mSection.getId() : -1;
     }
 
     public void setType(int type) {
@@ -371,27 +373,24 @@ public class VideoGroup {
         return result;
     }
 
-    public void clear() {
-        if (mVideos == null) {
-            return;
-        }
-
-        mVideos.clear();
-    }
+    private java.util.Set<Integer> mVideoIds;
 
     public boolean contains(Video video) {
         if (mVideos == null) {
             return false;
         }
-
-        return mVideos.contains(video);
+        if (mVideoIds == null) {
+            mVideoIds = new java.util.HashSet<>();
+            for (Video v : mVideos)
+                mVideoIds.add(v.hashCode());
+        }
+        return mVideoIds.contains(video.hashCode());
     }
 
     public int getSize() {
         if (mVideos == null) {
             return -1;
         }
-
         return mVideos.size();
     }
 
@@ -399,7 +398,6 @@ public class VideoGroup {
         if (mVideos == null) {
             return -1;
         }
-
         return mVideos.indexOf(video);
     }
 
@@ -407,7 +405,6 @@ public class VideoGroup {
         if (mVideos == null) {
             return null;
         }
-
         return mVideos.get(idx);
     }
 
@@ -419,6 +416,8 @@ public class VideoGroup {
         try {
             // ConcurrentModificationException fix?
             mVideos.remove(video);
+            if (mVideoIds != null)
+                mVideoIds.remove(video.hashCode());
         } catch (UnsupportedOperationException | ConcurrentModificationException e) { // read only collection
             e.printStackTrace();
         }
@@ -439,7 +438,7 @@ public class VideoGroup {
         // Dirty hack for avoiding group duplication.
         // Duplicated items suddenly appeared in Home, Subscriptions and History.
         // See: VideoGroupObjectAdapter.mVideoItems
-        if (mVideos != null && mVideos.contains(video)) {
+        if (mVideoIds != null && mVideoIds.contains(video.hashCode())) {
             return;
         }
 
@@ -456,6 +455,14 @@ public class VideoGroup {
             mVideos = new ArrayList<>();
         }
 
+        if (mVideoIds == null) {
+            mVideoIds = new java.util.HashSet<>();
+            if (!mVideos.isEmpty()) {
+                for (Video v : mVideos)
+                    mVideoIds.add(v.hashCode());
+            }
+        }
+
         // Group position in multi-grid fragments
         video.groupPosition = mPosition;
         video.setGroup(this);
@@ -467,5 +474,17 @@ public class VideoGroup {
         }
 
         mVideos.add(idx, video);
+        mVideoIds.add(video.hashCode());
     }
+
+    public void clear() {
+        if (mVideos == null) {
+            return;
+        }
+
+        mVideos.clear();
+        if (mVideoIds != null)
+            mVideoIds.clear();
+    }
+
 }

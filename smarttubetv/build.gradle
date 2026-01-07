@@ -35,23 +35,27 @@ if (new File("${projectDir}/google-services.json").exists() && (getGradle().getS
 }
 
 android {
+    buildFeatures {
+        buildConfig = true
+    }
+    namespace 'com.liskovsoft.smartyoutubetv2.tv'
     // FIX: Default interface methods are only supported starting with Android N (--min-api 24)
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion project.properties.compileSdkVersion
-    buildToolsVersion project.properties.buildToolsVersion
+    compileSdkVersion project.ext.compileSdkVersion
+    // buildToolsVersion project.ext.buildToolsVersion
     testOptions.unitTests.includeAndroidResources = true
     
     defaultConfig {
         // values linked with applicationId: searchable.searchSuggestAuthority, searchable.searchSuggestIntentData, VideoContract.CONTENT_AUTHORITY
         applicationId "org.smarttube"
-        minSdkVersion project.properties.minSdkVersion
-        targetSdkVersion project.properties.targetSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
         versionCode 2249
-        versionName "30.59"
+        versionName "30.75"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
 
@@ -93,7 +97,7 @@ android {
 
     // gradle 4.6 migration: disable dimensions mechanism
     // more: https://proandroiddev.com/advanced-android-flavors-part-4-a-new-version-fc2ad80c01bb
-    flavorDimensions "default"
+    flavorDimensions = ["default"]
 
     // NOTE: The main goal of prefixing a flavor is to group flavors' folders together
     productFlavors {
@@ -128,14 +132,14 @@ android {
         }
     }
 
-    packagingOptions {
+    packaging {
         // openvpn module fix: More than one file was found with OS independent path 'META-INF/com.android.tools/proguard/coroutines.pro'
         //exclude 'META-INF/com.android.tools/proguard/coroutines.pro'
         // Not working!
         // exclude '**/SearchOrbView.class'
     }
 
-    lintOptions {
+    lint {
         checkReleaseBuilds false // fix for ClassNotFoundException: com.android.tools.lint.client.api.Vendor
     }
 }

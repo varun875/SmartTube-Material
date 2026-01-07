@@ -15,6 +15,7 @@ apply from: '../../constants.gradle'
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.google.android.exoplayer2.demo'
     compileSdkVersion project.ext.compileSdkVersion
 
     compileOptions {
@@ -43,13 +44,13 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         // The demo app isn't indexed, doesn't have translations, and has a
         // banner for AndroidTV that's only in xhdpi density.
         disable 'GoogleAppIndexingWarning','MissingTranslation','IconDensities'
     }
 
-    flavorDimensions "extensions"
+    flavorDimensions = ["extensions"]
 
     productFlavors {
         noExtensions {

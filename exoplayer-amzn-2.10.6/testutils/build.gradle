@@ -15,6 +15,7 @@ apply from: '../constants.gradle'
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.google.android.exoplayer2.testutil'
     compileSdkVersion project.ext.compileSdkVersion
 
     compileOptions {
@@ -27,7 +28,7 @@ android {
         targetSdkVersion project.ext.targetSdkVersion
     }
 
-    lintOptions {
+    lint {
         // Truth depends on JUnit, which depends on java.lang.management, which
         // is not part of Android. Remove this when JUnit 4.13 or later is used.
         // See: https://github.com/junit-team/junit4/pull/1187.

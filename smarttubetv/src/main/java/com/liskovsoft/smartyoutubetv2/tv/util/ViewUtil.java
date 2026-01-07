@@ -31,11 +31,14 @@ public class ViewUtil {
     /**
      * Focused card zoom factor
      */
-    public static final int FOCUS_ZOOM_FACTOR = FocusHighlight.ZOOM_FACTOR_SMALL;
+    /**
+     * Focused card zoom factor
+     */
+    public static final int FOCUS_ZOOM_FACTOR = FocusHighlight.ZOOM_FACTOR_MEDIUM;
     /**
      * Dim focused card?
      */
-    public static final boolean FOCUS_DIMMER_ENABLED = false;
+    public static final boolean FOCUS_DIMMER_ENABLED = true;
     /**
      * Dim other rows in {@link RowPresenter}
      */
@@ -43,8 +46,8 @@ public class ViewUtil {
     /**
      * Scroll continue threshold
      */
-    public static final int GRID_SCROLL_CONTINUE_NUM = 10;
-    public static final int ROW_SCROLL_CONTINUE_NUM = 4;
+    public static final int GRID_SCROLL_CONTINUE_NUM = 15;
+    public static final int ROW_SCROLL_CONTINUE_NUM = 10;
     public static final boolean ROUNDED_CORNERS_ENABLED = true;
 
     /**
@@ -80,7 +83,9 @@ public class ViewUtil {
     }
 
     /**
-     * <a href="https://stackoverflow.com/questions/3332924/textview-marquee-not-working">More info</a>
+     * <a href=
+     * "https://stackoverflow.com/questions/3332924/textview-marquee-not-working">More
+     * info</a>
      */
     public static void enableMarquee(TextView... textViews) {
         if (VERSION.SDK_INT <= 19 || textViews == null || textViews.length == 0) { // Android 4: Broken grid layout fix
@@ -102,20 +107,21 @@ public class ViewUtil {
     }
 
     public static void applyMarqueeRtlParams(TextView textView, boolean scroll) {
-        //if (VERSION.SDK_INT <= 17) {
-        //    return;
-        //}
+        // if (VERSION.SDK_INT <= 17) {
+        // return;
+        // }
 
-        //if (!BidiFormatter.getInstance().isRtlContext()) {
-        //    return;
-        //}
+        // if (!BidiFormatter.getInstance().isRtlContext()) {
+        // return;
+        // }
 
         if (!Helpers.isTextRTL(textView.getText())) {
             // TextView may be reused from rtl context. Do reset.
-            // NOTE: don't enable commented options because Setting item's text won't be centered.
-            //textView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
+            // NOTE: don't enable commented options because Setting item's text won't be
+            // centered.
+            // textView.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
             textView.setTextDirection(TextView.TEXT_DIRECTION_FIRST_STRONG);
-            //textView.setGravity(Gravity.TOP | Gravity.START);
+            // textView.setGravity(Gravity.TOP | Gravity.START);
             return;
         }
 
@@ -177,8 +183,8 @@ public class ViewUtil {
 
     public static RequestOptions glideOptions() {
         return new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.NONE) // ensure start animation from beginning
-                .skipMemoryCache(true); // ensure start animation from beginning
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .skipMemoryCache(false);
     }
 
     public static void enableTransparentDialog(Context context, View rootView) {
@@ -204,10 +210,10 @@ public class ViewUtil {
         }
         if (itemsContainer instanceof VerticalGridView) {
             // Set background for individual buttons in the list.
-            // This is the only way to do this because items haven't been added yet to the container.
+            // This is the only way to do this because items haven't been added yet to the
+            // container.
             ((VerticalGridView) itemsContainer).setOnChildLaidOutListener(
-                    (parent, view, position, id) -> view.setBackgroundResource(R.drawable.transparent_dialog_item_bg)
-            );
+                    (parent, view, position, id) -> view.setBackgroundResource(R.drawable.transparent_dialog_item_bg));
         }
         if (title instanceof FrameLayout) {
             title.setBackgroundColor(transparent);

@@ -26,7 +26,7 @@ public class UnlocalizedTitleProcessor implements OnDataChange, BrowseProcessor 
     private final MediaItemService mItemService;
     private final MainUIData mMainUIData;
     private boolean mIsUnlocalizedTitlesEnabled;
-    private Disposable mResult;
+    private final io.reactivex.disposables.CompositeDisposable mResult = new io.reactivex.disposables.CompositeDisposable();
 
     public UnlocalizedTitleProcessor(Context context, OnItemReady onItemReady) {
         mOnItemReady = onItemReady;
@@ -53,7 +53,7 @@ public class UnlocalizedTitleProcessor implements OnDataChange, BrowseProcessor 
         }
 
         List<String> videoIds = getVideoIds(videoGroup);
-        mResult = Observable.fromIterable(videoIds)
+        mResult.add(Observable.fromIterable(videoIds)
                 .flatMap(videoId -> mItemService.getUnlocalizedTitleObserve(videoId)
                         .map(newTitle -> new Pair<>(videoId, newTitle)))
                 .subscribe(title -> {
@@ -64,9 +64,9 @@ public class UnlocalizedTitleProcessor implements OnDataChange, BrowseProcessor 
                     video.deArrowTitle = title.second;
                     mOnItemReady.onItemReady(video);
                 },
-                error -> {
-                    Log.d(TAG, "Unlocalized title: Cannot process the video");
-                });
+                        error -> {
+                            Log.d(TAG, "Unlocalized title: Cannot process the video");
+                        }));
     }
 
     @Override

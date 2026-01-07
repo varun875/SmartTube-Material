@@ -145,11 +145,34 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
         loadSearchResult(searchText);
     }
 
+    private final java.util.HashMap<String, List<VideoGroup>> mSearchResultCache = new java.util.HashMap<>();
+
     private void loadSearchResult(String searchText) {
         Log.d(TAG, "Start search for '%s'", searchText);
 
         disposeActions();
         getView().showProgressBar(true);
+
+        String cacheKey = searchText + mUploadDateOptions + mDurationOptions + mTypeOptions + mFeatureOptions
+                + mSortingOptions;
+
+        if (mSearchResultCache.containsKey(cacheKey)) {
+            Log.d(TAG, "Search cache hit for '%s'", searchText);
+            List<VideoGroup> groups = mSearchResultCache.get(cacheKey);
+
+            getView().clearSearch();
+
+            if (groups != null) {
+                for (VideoGroup group : groups) {
+                    startPlayFirstVideo(group);
+                    getView().updateSearch(group);
+                    // mBrowseProcessor.process(group); // already processed?
+                }
+            }
+
+            getView().showProgressBar(false);
+            return;
+        }
 
         ContentService contentService = getContentService();
 
@@ -160,12 +183,15 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
                 .subscribe(
                         mediaGroups -> {
                             Log.d(TAG, "Receiving results for '%s'", searchText);
+                            List<VideoGroup> cachedGroups = new ArrayList<>();
                             for (MediaGroup mediaGroup : mediaGroups) {
                                 VideoGroup group = VideoGroup.from(mediaGroup);
                                 startPlayFirstVideo(group);
                                 getView().updateSearch(group);
                                 mBrowseProcessor.process(group);
+                                cachedGroups.add(group);
                             }
+                            mSearchResultCache.put(cacheKey, cachedGroups);
                         },
                         error -> {
                             Log.e(TAG, "loadSearchData error: %s", error.getMessage());
@@ -177,8 +203,7 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
                             if (getView() != null) {
                                 getView().showProgressBar(false);
                             }
-                        }
-                );
+                        });
     }
 
     private void continueGroup(VideoGroup group) {
@@ -215,8 +240,7 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
                             if (getView() != null) {
                                 getView().showProgressBar(false);
                             }
-                        }
-                );
+                        });
     }
 
     @Override
@@ -306,12 +330,12 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
         List<OptionItem> options = new ArrayList<>();
 
         for (int[] pair : new int[][] {
-                {R.string.upload_date_any, 0},
-                {R.string.upload_date_last_hour, SearchOptions.UPLOAD_DATE_LAST_HOUR},
-                {R.string.upload_date_today, SearchOptions.UPLOAD_DATE_TODAY},
-                {R.string.upload_date_this_week, SearchOptions.UPLOAD_DATE_THIS_WEEK},
-                {R.string.upload_date_this_month, SearchOptions.UPLOAD_DATE_THIS_MONTH},
-                {R.string.upload_date_this_year, SearchOptions.UPLOAD_DATE_THIS_YEAR}}) {
+                { R.string.upload_date_any, 0 },
+                { R.string.upload_date_last_hour, SearchOptions.UPLOAD_DATE_LAST_HOUR },
+                { R.string.upload_date_today, SearchOptions.UPLOAD_DATE_TODAY },
+                { R.string.upload_date_this_week, SearchOptions.UPLOAD_DATE_THIS_WEEK },
+                { R.string.upload_date_this_month, SearchOptions.UPLOAD_DATE_THIS_MONTH },
+                { R.string.upload_date_this_year, SearchOptions.UPLOAD_DATE_THIS_YEAR } }) {
             options.add(UiOptionItem.from(getContext().getString(pair[0]),
                     optionItem -> {
                         mUploadDateOptions = pair[1];
@@ -327,10 +351,10 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
         List<OptionItem> options = new ArrayList<>();
 
         for (int[] pair : new int[][] {
-                {R.string.video_duration_any, 0},
-                {R.string.video_duration_under_4, SearchOptions.DURATION_UNDER_4},
-                {R.string.video_duration_between_4_20, SearchOptions.DURATION_BETWEEN_4_20},
-                {R.string.video_duration_over_20, SearchOptions.DURATION_OVER_20}}) {
+                { R.string.video_duration_any, 0 },
+                { R.string.video_duration_under_4, SearchOptions.DURATION_UNDER_4 },
+                { R.string.video_duration_between_4_20, SearchOptions.DURATION_BETWEEN_4_20 },
+                { R.string.video_duration_over_20, SearchOptions.DURATION_OVER_20 } }) {
             options.add(UiOptionItem.from(getContext().getString(pair[0]),
                     optionItem -> {
                         mDurationOptions = pair[1];
@@ -346,11 +370,11 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
         List<OptionItem> options = new ArrayList<>();
 
         for (int[] pair : new int[][] {
-                {R.string.content_type_any, 0},
-                {R.string.content_type_video, SearchOptions.TYPE_VIDEO},
-                {R.string.content_type_channel, SearchOptions.TYPE_CHANNEL},
-                {R.string.content_type_playlist, SearchOptions.TYPE_PLAYLIST},
-                {R.string.content_type_movie, SearchOptions.TYPE_MOVIE}}) {
+                { R.string.content_type_any, 0 },
+                { R.string.content_type_video, SearchOptions.TYPE_VIDEO },
+                { R.string.content_type_channel, SearchOptions.TYPE_CHANNEL },
+                { R.string.content_type_playlist, SearchOptions.TYPE_PLAYLIST },
+                { R.string.content_type_movie, SearchOptions.TYPE_MOVIE } }) {
             options.add(UiOptionItem.from(getContext().getString(pair[0]),
                     optionItem -> {
                         mTypeOptions = pair[1];
@@ -366,12 +390,13 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
         List<OptionItem> options = new ArrayList<>();
 
         for (int[] pair : new int[][] {
-                {R.string.video_feature_live, SearchOptions.FEATURE_LIVE},
-                {R.string.video_feature_4k, SearchOptions.FEATURE_4K},
-                {R.string.video_feature_hdr, SearchOptions.FEATURE_HDR}}) {
+                { R.string.video_feature_live, SearchOptions.FEATURE_LIVE },
+                { R.string.video_feature_4k, SearchOptions.FEATURE_4K },
+                { R.string.video_feature_hdr, SearchOptions.FEATURE_HDR } }) {
             options.add(UiOptionItem.from(getContext().getString(pair[0]),
                     optionItem -> {
-                        mFeatureOptions = optionItem.isSelected() ? mFeatureOptions | pair[1] : mFeatureOptions & ~pair[1];
+                        mFeatureOptions = optionItem.isSelected() ? mFeatureOptions | pair[1]
+                                : mFeatureOptions & ~pair[1];
                         loadSearchResult();
                     },
                     (mFeatureOptions & pair[1]) == pair[1]));
@@ -384,10 +409,10 @@ public class SearchPresenter extends BasePresenter<SearchView> implements VideoG
         List<OptionItem> options = new ArrayList<>();
 
         for (int[] pair : new int[][] {
-                {R.string.sort_by_relevance, 0},
-                {R.string.sort_by_date, SearchOptions.SORT_BY_UPLOAD_DATE},
-                {R.string.sort_by_views, SearchOptions.SORT_BY_VIEW_COUNT},
-                {R.string.sort_by_rating, SearchOptions.SORT_BY_RATING}}) {
+                { R.string.sort_by_relevance, 0 },
+                { R.string.sort_by_date, SearchOptions.SORT_BY_UPLOAD_DATE },
+                { R.string.sort_by_views, SearchOptions.SORT_BY_VIEW_COUNT },
+                { R.string.sort_by_rating, SearchOptions.SORT_BY_RATING } }) {
             options.add(UiOptionItem.from(getContext().getString(pair[0]),
                     optionItem -> {
                         mSortingOptions = pair[1];

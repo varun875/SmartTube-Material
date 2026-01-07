@@ -49,6 +49,7 @@ public class VideoLoaderController extends BasePlayerController {
     private long mSleepTimerStartMs;
     private Disposable mFormatInfoAction;
     private Disposable mMpdStreamAction;
+    // private Disposable mPreloadAction;
     private final Runnable mReloadVideo = () -> {
         getMainController().onNewVideo(getVideo());
     };
@@ -131,7 +132,8 @@ public class VideoLoaderController extends BasePlayerController {
         } else if ((!getVideo().isLive || getVideo().isLiveEnd)
                 && getPlayer().getDurationMs() - getPlayer().getPositionMs() < STREAM_END_THRESHOLD_MS) {
             getMainController().onPlayEnd();
-        } else if (!getVideo().isLive && !getVideo().isLiveEnd && !getPlayerTweaksData().isNetworkErrorFixingDisabled()) {
+        } else if (!getVideo().isLive && !getVideo().isLiveEnd
+                && !getPlayerTweaksData().isNetworkErrorFixingDisabled()) {
             MessageHelpers.showLongMessage(getContext(), R.string.playback_buffering_fix);
             YouTubeServiceManager.instance().invalidateCache();
             // Faster source is different among devices. Try them one by one.
@@ -145,7 +147,7 @@ public class VideoLoaderController extends BasePlayerController {
         if (getPlayer() == null) {
             return;
         }
-        
+
         loadVideo(Helpers.firstNonNull(mPendingVideo, getVideo()));
         getPlayer().setButtonState(R.id.action_repeat, getPlayerData().getPlaybackMode());
         mSleepTimerStartMs = System.currentTimeMillis();
@@ -172,9 +174,13 @@ public class VideoLoaderController extends BasePlayerController {
         }
 
         mLastErrorType = -1;
-        getPlayer().setButtonState(R.id.action_repeat, video.finishOnEnded ? PlayerConstants.PLAYBACK_MODE_CLOSE : getPlayerData().getPlaybackMode());
+        getPlayer().setButtonState(R.id.action_repeat,
+                video.finishOnEnded ? PlayerConstants.PLAYBACK_MODE_CLOSE : getPlayerData().getPlaybackMode());
         // Can't set title at this point
-        //checkSleepTimer();
+        // checkSleepTimer();
+
+        // Preload next video metadata for "excellent performance on the 2nd video"
+        preloadNextVideoIfNeeded();
     }
 
     @Override
@@ -234,7 +240,8 @@ public class VideoLoaderController extends BasePlayerController {
 
         // Stop the playback if the user is browsing options or reading comments
         int playbackMode = getPlaybackMode();
-        if (getAppDialogPresenter().isDialogShown() && !getAppDialogPresenter().isOverlay() && playbackMode != PlayerConstants.PLAYBACK_MODE_ONE) {
+        if (getAppDialogPresenter().isDialogShown() && !getAppDialogPresenter().isOverlay()
+                && playbackMode != PlayerConstants.PLAYBACK_MODE_ONE) {
             getAppDialogPresenter().setOnFinish(mOnApplyPlaybackMode);
         } else {
             applyPlaybackMode(playbackMode);
@@ -270,6 +277,7 @@ public class VideoLoaderController extends BasePlayerController {
     @Override
     public void onTickle() {
         checkSleepTimer();
+        preloadNextVideoIfNeeded();
     }
 
     private void checkSleepTimer() {
@@ -277,7 +285,8 @@ public class VideoLoaderController extends BasePlayerController {
             return;
         }
 
-        if (getPlayerData().isSleepTimerEnabled() && System.currentTimeMillis() - mSleepTimerStartMs > 2 * 60 * 60 * 1_000) {
+        if (getPlayerData().isSleepTimerEnabled()
+                && System.currentTimeMillis() - mSleepTimerStartMs > 2 * 60 * 60 * 1_000) {
             getPlayer().setPlayWhenReady(false);
             getPlayer().setTitle(getContext().getString(R.string.sleep_timer));
             getPlayer().showOverlay(true);
@@ -321,7 +330,8 @@ public class VideoLoaderController extends BasePlayerController {
                 MessageHelpers.showMessageThrottled(getContext(), R.string.wait_data_loading);
             }
             // Short videos next fix (suggestions aren't loaded yet)
-            boolean isEnded = getPlayer() != null && Math.abs(getPlayer().getDurationMs() - getPlayer().getPositionMs()) < 100;
+            boolean isEnded = getPlayer() != null
+                    && Math.abs(getPlayer().getDurationMs() - getPlayer().getPositionMs()) < 100;
             if (isEnded) {
                 Utils.postDelayed(mMetadataSync, 1_000);
             }
@@ -340,10 +350,10 @@ public class VideoLoaderController extends BasePlayerController {
         MediaItemService mediaItemManager = service.getMediaItemService();
         mFormatInfoAction = mediaItemManager.getFormatInfoObserve(video.videoId)
                 .subscribe(this::processFormatInfo,
-                           error -> {
-                               getPlayer().showProgressBar(false);
-                               runFormatErrorAction(error);
-                           });
+                        error -> {
+                            getPlayer().showProgressBar(false);
+                            runFormatErrorAction(error);
+                        });
     }
 
     private void processFormatInfo(MediaItemFormatInfo formatInfo) {
@@ -357,7 +367,8 @@ public class VideoLoaderController extends BasePlayerController {
 
         getVideo().sync(formatInfo);
 
-        // Fix stretched video for a couple milliseconds (before the onVideoSizeChanged gets called)
+        // Fix stretched video for a couple milliseconds (before the onVideoSizeChanged
+        // gets called)
         applyAspectRatio(formatInfo);
 
         if (formatInfo.getPaidContentText() != null && getContentBlockData().isPaidContentNotificationEnabled()) {
@@ -378,11 +389,12 @@ public class VideoLoaderController extends BasePlayerController {
             // 18+ video or the video is hidden/removed
             scheduleNextVideoTimer(5_000);
 
-            //if (formatInfo.isUnknownError()) { // the bot error or the video not available
-            //    scheduleRebootAppTimer(5_000);
-            //} else { // 18+ video or the video is hidden/removed
-            //    scheduleNextVideoTimer(5_000);
-            //}
+            // if (formatInfo.isUnknownError()) { // the bot error or the video not
+            // available
+            // scheduleRebootAppTimer(5_000);
+            // } else { // 18+ video or the video is hidden/removed
+            // scheduleNextVideoTimer(5_000);
+            // }
         } else if (acceptAdaptiveFormats(formatInfo) && formatInfo.containsDashFormats()) {
             Log.d(TAG, "Loading regular video in dash format...");
 
@@ -404,7 +416,8 @@ public class VideoLoaderController extends BasePlayerController {
             Log.d(TAG, "Loading url list video. This is always LQ...");
             player.openUrlList(applyFix(formatInfo.createUrlList()));
         } else {
-            Log.d(TAG, "Empty format info received. Seems future live translation. No video data to pass to the player.");
+            Log.d(TAG,
+                    "Empty format info received. Seems future live translation. No video data to pass to the player.");
             player.setTitle(formatInfo.getPlayabilityStatus());
             player.showProgressBar(false);
             mSuggestionsController.loadSuggestions(getVideo());
@@ -466,7 +479,7 @@ public class VideoLoaderController extends BasePlayerController {
             // NOTE: Next clicked: instant playback even a mix
             // NOTE: Bypass PIP fullscreen on next caused by startView
             getMainController().onNewVideo(item);
-            //getPlayer().showOverlay(true);
+            // getPlayer().showOverlay(true);
         } else {
             VideoActionPresenter.instance(getContext()).apply(item);
         }
@@ -512,9 +525,10 @@ public class VideoLoaderController extends BasePlayerController {
             scheduleReloadVideoTimer(1_000);
         }
     }
-    
+
     private void runEngineErrorAction(int type, int rendererIndex, Throwable error) {
-        // Hide begin errors in embed mode (e.g. wrong date/time: unable to connect to...)
+        // Hide begin errors in embed mode (e.g. wrong date/time: unable to connect
+        // to...)
         if (isEmbedPlayer() && getPlayer() != null && getPlayer().getPositionMs() == 0) {
             getPlayer().finish();
             return;
@@ -545,23 +559,27 @@ public class VideoLoaderController extends BasePlayerController {
         if (Helpers.startsWithAny(errorContent, "Unable to connect to")) {
             // No internet connection or WRONG DATE on the device
             restartEngine = false;
-        } else if (error instanceof OutOfMemoryError || (error != null && error.getCause() instanceof OutOfMemoryError)) {
+        } else if (error instanceof OutOfMemoryError
+                || (error != null && error.getCause() instanceof OutOfMemoryError)) {
             if (getPlayerTweaksData().getPlayerDataSource() == PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP) {
                 // OkHttp has memory leak problems
                 enableFasterDataSource();
-            } else if (getPlayerData().getVideoBufferType() == PlayerData.BUFFER_HIGH || getPlayerData().getVideoBufferType() == PlayerData.BUFFER_HIGHEST) {
+            } else if (getPlayerData().getVideoBufferType() == PlayerData.BUFFER_HIGH
+                    || getPlayerData().getVideoBufferType() == PlayerData.BUFFER_HIGHEST) {
                 getPlayerData().setVideoBufferType(PlayerData.BUFFER_MEDIUM);
             } else {
                 getPlayerTweaksData().setSectionPlaylistEnabled(false);
                 restartEngine = false;
             }
-        } else if (Helpers.containsAny(errorContent, "Exception in CronetUrlRequest", "Response code: 503") && !getPlayerTweaksData().isNetworkErrorFixingDisabled()) {
+        } else if (Helpers.containsAny(errorContent, "Exception in CronetUrlRequest", "Response code: 503")
+                && !getPlayerTweaksData().isNetworkErrorFixingDisabled()) {
             if (getVideo() != null && !getVideo().isLive) { // Finished live stream may provoke errors in Cronet
                 getPlayerTweaksData().setPlayerDataSource(PlayerTweaksData.PLAYER_DATA_SOURCE_DEFAULT);
             } else {
                 restartEngine = false;
             }
-        } else if (type == PlayerEventListener.ERROR_TYPE_SOURCE && rendererIndex == PlayerEventListener.RENDERER_INDEX_UNKNOWN) {
+        } else if (type == PlayerEventListener.ERROR_TYPE_SOURCE
+                && rendererIndex == PlayerEventListener.RENDERER_INDEX_UNKNOWN) {
             // NOTE: Starts with any (url deciphered incorrectly)
             // "Response code: 403" (poToken error, forbidden)
             // "Response code: 404" (not sure whether below helps)
@@ -574,7 +592,8 @@ public class VideoLoaderController extends BasePlayerController {
             // NOTE: All these errors have unknown renderer (-1)
             // "Unable to connect to", "Invalid NAL length", "Response code: 421",
             // "Response code: 404", "Response code: 429", "Invalid integer size",
-            // "Unexpected ArrayIndexOutOfBoundsException", "Unexpected IndexOutOfBoundsException"
+            // "Unexpected ArrayIndexOutOfBoundsException", "Unexpected
+            // IndexOutOfBoundsException"
             if (Helpers.startsWithAny(errorContent, "Response code: 403")) {
                 YouTubeServiceManager.instance().applyNoPlaybackFix();
             } else if (getPlayer() != null && !FormatItem.SUBTITLE_NONE.equals(getPlayer().getSubtitleFormat())) {
@@ -586,19 +605,22 @@ public class VideoLoaderController extends BasePlayerController {
             }
             restartEngine = false;
             showMessage = false;
-        } else if (type == PlayerEventListener.ERROR_TYPE_RENDERER && rendererIndex == PlayerEventListener.RENDERER_INDEX_SUBTITLE) {
+        } else if (type == PlayerEventListener.ERROR_TYPE_RENDERER
+                && rendererIndex == PlayerEventListener.RENDERER_INDEX_SUBTITLE) {
             // "Response code: 429" (subtitle error)
             // "Response code: 500" (subtitle error)
             disableSubtitles();
             restartEngine = false;
-        } else if (type == PlayerEventListener.ERROR_TYPE_RENDERER && rendererIndex == PlayerEventListener.RENDERER_INDEX_VIDEO) {
+        } else if (type == PlayerEventListener.ERROR_TYPE_RENDERER
+                && rendererIndex == PlayerEventListener.RENDERER_INDEX_VIDEO) {
             getPlayerData().setFormat(FormatItem.VIDEO_FHD_AVC_30);
             if (getPlayerTweaksData().isSWDecoderForced()) {
                 getPlayerTweaksData().setSWDecoderForced(false);
             } else {
                 restartEngine = false;
             }
-        } else if (type == PlayerEventListener.ERROR_TYPE_RENDERER && rendererIndex == PlayerEventListener.RENDERER_INDEX_AUDIO) {
+        } else if (type == PlayerEventListener.ERROR_TYPE_RENDERER
+                && rendererIndex == PlayerEventListener.RENDERER_INDEX_AUDIO) {
             getPlayerData().setFormat(FormatItem.AUDIO_HQ_MP4A);
             restartEngine = false;
         } else if (type == PlayerEventListener.ERROR_TYPE_UNEXPECTED) {
@@ -691,7 +713,8 @@ public class VideoLoaderController extends BasePlayerController {
         }
 
         Video video = getVideo();
-        // Fix simultaneous videos loading (e.g. when playback ends and user opens new video)
+        // Fix simultaneous videos loading (e.g. when playback ends and user opens new
+        // video)
         if (video == null || isActionsRunning()) {
             return;
         }
@@ -758,7 +781,7 @@ public class VideoLoaderController extends BasePlayerController {
         if (getPlayer() == null || getVideo() == null) {
             return;
         }
-        
+
         VideoGroup group = getVideo().getGroup(); // Get the VideoGroup (playlist)
 
         if (group != null && !group.isEmpty() && getVideo().belongsToSamePlaylistGroup()) {
@@ -786,7 +809,8 @@ public class VideoLoaderController extends BasePlayerController {
         }
 
         // Live dash url doesn't work with None buffer
-        //if (formatInfo.isLive() && (getPlayerTweaksData().isDashUrlStreamsForced() || getPlayerData().getVideoBufferType() == PlayerData.BUFFER_NONE)) {
+        // if (formatInfo.isLive() && (getPlayerTweaksData().isDashUrlStreamsForced() ||
+        // getPlayerData().getVideoBufferType() == PlayerData.BUFFER_NONE)) {
         if (formatInfo.isLive() && getPlayerTweaksData().isDashUrlStreamsForced() && formatInfo.containsDashUrl()) {
             return false;
         }
@@ -832,7 +856,8 @@ public class VideoLoaderController extends BasePlayerController {
         if (getVideo().playlistInfo.getSize() != -1) {
             Video video = new Video();
             video.playlistId = getVideo().playlistId;
-            video.playlistIndex = Utils.getRandomIndex(getVideo().playlistInfo.getCurrentIndex(), getVideo().playlistInfo.getSize());
+            video.playlistIndex = Utils.getRandomIndex(getVideo().playlistInfo.getCurrentIndex(),
+                    getVideo().playlistInfo.getSize());
             MediaServiceManager.instance().loadMetadata(video, randomMetadata -> {
                 if (randomMetadata.getNextVideo() == null) {
                     return;
@@ -858,7 +883,8 @@ public class VideoLoaderController extends BasePlayerController {
 
     private void loadRandomNext2() {
         if (getPlayer() == null || getPlayerData() == null || getVideo() == null || getVideo().isShuffled ||
-                getVideo().shuffleMediaItem == null || getPlayerData().getPlaybackMode() != PlayerConstants.PLAYBACK_MODE_SHUFFLE) {
+                getVideo().shuffleMediaItem == null
+                || getPlayerData().getPlaybackMode() != PlayerConstants.PLAYBACK_MODE_SHUFFLE) {
             return;
         }
 
@@ -907,14 +933,17 @@ public class VideoLoaderController extends BasePlayerController {
 
     private int getNextEngine() {
         int currentEngine = getPlayerTweaksData().getPlayerDataSource();
-        Integer[] engineList = Utils.skipCronet() ?
-                new Integer[] { PlayerTweaksData.PLAYER_DATA_SOURCE_DEFAULT, PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP } :
-                new Integer[] { PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET, PlayerTweaksData.PLAYER_DATA_SOURCE_DEFAULT, PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP };
+        Integer[] engineList = Utils.skipCronet()
+                ? new Integer[] { PlayerTweaksData.PLAYER_DATA_SOURCE_DEFAULT,
+                        PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP }
+                : new Integer[] { PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET,
+                        PlayerTweaksData.PLAYER_DATA_SOURCE_DEFAULT, PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP };
         return Helpers.getNextValue(engineList, currentEngine);
     }
 
     private static int getFasterDataSource() {
-        return Utils.skipCronet() ? PlayerTweaksData.PLAYER_DATA_SOURCE_DEFAULT : PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET;
+        return Utils.skipCronet() ? PlayerTweaksData.PLAYER_DATA_SOURCE_DEFAULT
+                : PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET;
     }
 
     /**
@@ -949,20 +978,23 @@ public class VideoLoaderController extends BasePlayerController {
     }
 
     /**
-     * Fix stretched video for a couple milliseconds (before the onVideoSizeChanged gets called)
+     * Fix stretched video for a couple milliseconds (before the onVideoSizeChanged
+     * gets called)
      */
     private void applyAspectRatio(MediaItemFormatInfo formatInfo) {
         if (getPlayer() == null) {
             return;
         }
 
-        // Fix stretched video for a couple milliseconds (before the onVideoSizeChanged gets called)
+        // Fix stretched video for a couple milliseconds (before the onVideoSizeChanged
+        // gets called)
         if (formatInfo.containsDashFormats()) {
             MediaFormat format = formatInfo.getAdaptiveFormats().get(0);
             int width = format.getWidth();
             int height = format.getHeight();
             boolean isShorts = width < height;
-            if (width > 0 && height > 0 && (getPlayerData().getAspectRatio() == PlayerData.ASPECT_RATIO_DEFAULT || isShorts)) {
+            if (width > 0 && height > 0
+                    && (getPlayerData().getAspectRatio() == PlayerData.ASPECT_RATIO_DEFAULT || isShorts)) {
                 getPlayer().setAspectRatio((float) width / height);
             } else {
                 getPlayer().setAspectRatio(getPlayerData().getAspectRatio());
@@ -970,21 +1002,33 @@ public class VideoLoaderController extends BasePlayerController {
         }
     }
 
+    // Prevent repeated preloading of the same video
+    private Video mLastPreloadedVideo;
+
     private void preloadNextVideoIfNeeded() {
         if (isEmbedPlayer() || getPlayer() == null || getVideo() == null || getVideo().isLive) {
             return;
         }
 
-        if (getPlayer().getDurationMs() - getPlayer().getPositionMs() < 50_000) {
-            MediaServiceManager.instance().loadFormatInfo(mSuggestionsController.getNext(), formatInfo -> {});
+        // Removed 50s limit to ensure next video is ALWAYS ready (responsive 2nd video)
+        // if (getPlayer().getDurationMs() - getPlayer().getPositionMs() < 50_000) {
+
+        Video next = mSuggestionsController.getNext();
+
+        // Deduplicate
+        if (next != null && next != mLastPreloadedVideo) {
+            mLastPreloadedVideo = next;
+            Log.d(TAG, "Preloading next video metadata: " + next.getTitle());
+            MediaServiceManager.instance().loadFormatInfo(next, formatInfo -> {
+            });
         }
     }
 
     private void disableSubtitles() {
-        //if (getVideo() != null) {
-        //    getPlayerData().disableSubtitlesPerChannel(getVideo().channelId);
-        //}
-        //getPlayerData().setSubtitlesPerChannelEnabled(false);
+        // if (getVideo() != null) {
+        // getPlayerData().disableSubtitlesPerChannel(getVideo().channelId);
+        // }
+        // getPlayerData().setSubtitlesPerChannelEnabled(false);
         getPlayerData().setFormat(FormatItem.SUBTITLE_NONE);
     }
 }

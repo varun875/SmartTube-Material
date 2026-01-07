@@ -3,19 +3,24 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.liskovsoft.smartyoutubetv2.common'
     // FIX: Default interface methods are only supported starting with Android N (--min-api 24)
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion project.properties.compileSdkVersion
-    buildToolsVersion project.properties.buildToolsVersion
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
     testOptions.unitTests.includeAndroidResources = true
 
     defaultConfig {
-        minSdkVersion project.properties.minSdkVersion
-        targetSdkVersion project.properties.targetSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
         versionCode 10
         versionName "1.0"
 
@@ -36,7 +41,7 @@ android {
 
     // gradle 4.6 migration: disable dimensions mechanism
     // more: https://proandroiddev.com/advanced-android-flavors-part-4-a-new-version-fc2ad80c01bb
-    flavorDimensions "default"
+    flavorDimensions = ["default"]
 
     productFlavors {
         stbeta {}
@@ -72,6 +77,7 @@ dependencies {
 
     // implementation 'com.google.android.exoplayer:exoplayer:' + exoplayerVersion
     // implementation 'com.google.android.exoplayer:extension-okhttp:' + exoplayerVersion
+    // implementation 'com.google.android.exoplayer:extension-cronet:' + exoplayerVersion
 
     // implementation 'com.github.amzn:exoplayer-amazon-port:' + amazonExoplayerJitpackVersion
 
@@ -87,7 +93,7 @@ dependencies {
     implementation 'androidx.browser:browser:' + browserXVersion
 
     implementation 'androidx.core:core-ktx:' + kotlinCoreXVersion
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + kotlinVersion
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:' + kotlinVersion
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + kotlinxVersion
 
     implementation 'com.jakewharton:process-phoenix:' + phoenixVersion

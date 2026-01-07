@@ -15,6 +15,7 @@ apply from: '../../constants.gradle'
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.google.android.exoplayer2.castdemo'
     compileSdkVersion project.ext.compileSdkVersion
 
     compileOptions {
@@ -43,7 +44,7 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         // The demo app isn't indexed and doesn't have translations.
         disable 'GoogleAppIndexingWarning','MissingTranslation'
     }
