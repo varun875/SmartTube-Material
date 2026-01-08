@@ -58,7 +58,7 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:' + robolectricVersion
 
     implementation project(':sharedutils')
-    implementation project(':fragment-1.1.0')
+    implementation 'androidx.fragment:fragment:' + fragmentVersion  // Upgraded from local 1.1.0
     implementation project(':mediaserviceinterfaces')
     implementation project(':youtubeapi')
     implementation project(':filepicker-lib')

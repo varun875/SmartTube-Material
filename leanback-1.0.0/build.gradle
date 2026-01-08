@@ -37,10 +37,10 @@ dependencies {
     implementation 'androidx.annotation:annotation:' + annotationXLibraryVersion
     implementation 'androidx.core:core:' + coreXLibraryVersion
     implementation 'androidx.recyclerview:recyclerview:' + recyclerviewXLibraryVersion
-    implementation 'androidx.fragment:fragment:' + annotationXLibraryVersion
+    implementation 'androidx.fragment:fragment:' + fragmentVersion
     implementation 'androidx.media:media:' + mediaXLibraryVersion
     implementation 'androidx.interpolator:interpolator:' + leanbackXLibraryVersion
 
-    implementation project(':fragment-1.1.0')
+    // implementation project(':fragment-1.1.0')
     implementation project(':sharedutils')
 }
