@@ -4,18 +4,16 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Build.VERSION;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.Format;
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.MergingMediaSource;
-import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import androidx.media3.common.C;
+import androidx.media3.common.Format;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.PlaybackParameters;
+import androidx.media3.common.Player;
+import androidx.media3.common.Tracks;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.source.MediaSource;
+import androidx.media3.exoplayer.source.MergingMediaSource;
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
 import com.liskovsoft.mediaserviceinterfaces.data.MediaItemFormatInfo;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.sharedutils.mylogger.Log;
@@ -40,7 +38,7 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class ExoPlayerController implements Player.EventListener {
+public class ExoPlayerController implements Player.Listener {
     private static final String TAG = ExoPlayerController.class.getSimpleName();
     private final Context mContext;
     private final ExoMediaSourceFactory mMediaSourceFactory;
@@ -50,7 +48,7 @@ public class ExoPlayerController implements Player.EventListener {
     private boolean mOnSourceChanged;
     private WeakReference<Video> mVideo;
     private final PlayerEventListener mEventListener;
-    private SimpleExoPlayer mPlayer;
+    private ExoPlayer mPlayer;
     private PlayerView mPlayerView;
     private VolumeBooster mVolumeBooster;
     private boolean mIsEnded;
@@ -67,7 +65,7 @@ public class ExoPlayerController implements Player.EventListener {
 
         mMediaSourceFactory.setTrackErrorFixer(mTrackErrorFixer);
         mEventListener = eventListener;
-        
+
         applyShield720pFix();
         VideoTrack.sIsNoFpsPresetsEnabled = playerTweaksData.isNoFpsPresetsEnabled();
         MediaTrack.preferAvcOverVp9(playerTweaksData.isAvcOverVp9Preferred());
@@ -80,9 +78,10 @@ public class ExoPlayerController implements Player.EventListener {
         mTrackSelectorManager.selectTrack(FormatItem.toMediaTrack(playerData.getFormat(FormatItem.TYPE_SUBTITLE)));
     }
 
+    @Deprecated // SABR disabled for Android TV - uses DASH instead
     public void openSabr(MediaItemFormatInfo formatInfo) {
-        MediaSource mediaSource = mMediaSourceFactory.fromSabrFormatInfo(formatInfo);
-        openMediaSource(mediaSource);
+        // SABR is Amazon Fire TV specific, redirect to DASH for Android TV
+        openDash(formatInfo);
     }
 
     public void openDash(MediaItemFormatInfo formatInfo) {
@@ -146,7 +145,8 @@ public class ExoPlayerController implements Player.EventListener {
      * (e.g. 302200 when duration is 302000).
      */
     public void setPositionMs(long positionMs) {
-        // Url list videos at load stage has undefined (-1) length. So, we need to remove length check.
+        // Url list videos at load stage has undefined (-1) length. So, we need to
+        // remove length check.
         if (mPlayer != null && positionMs >= 0 && positionMs <= getDurationMs()) {
             mPlayer.seekTo(positionMs);
         }
@@ -178,11 +178,11 @@ public class ExoPlayerController implements Player.EventListener {
     public boolean isPlaying() {
         return ExoUtils.isPlaying(mPlayer);
     }
-    
+
     public boolean isLoading() {
         return ExoUtils.isLoading(mPlayer);
     }
-    
+
     public boolean containsMedia() {
         if (mPlayer == null) {
             return false;
@@ -190,76 +190,78 @@ public class ExoPlayerController implements Player.EventListener {
 
         return mPlayer.getPlaybackState() != Player.STATE_IDLE;
     }
-    
+
     public void release() {
         mTrackSelectorManager.release();
         mMediaSourceFactory.release();
         releasePlayer();
         mPlayerView = null;
         // Don't destroy it (needed inside the bridge)!
-        //mEventListener = null;
+        // mEventListener = null;
     }
-    
-    public void setPlayer(SimpleExoPlayer player) {
+
+    public void setPlayer(ExoPlayer player) {
         mPlayer = player;
         player.addListener(this);
     }
 
-    //@Override
-    //public void setEventListener(PlayerEventListener eventListener) {
-    //    mEventListener = eventListener;
-    //}
-    
+    // @Override
+    // public void setEventListener(PlayerEventListener eventListener) {
+    // mEventListener = eventListener;
+    // }
+
     public void setPlayerView(PlayerView playerView) {
         mPlayerView = playerView;
     }
-    
+
     public void setTrackSelector(DefaultTrackSelector trackSelector) {
         mTrackSelectorManager.setTrackSelector(trackSelector);
 
-        if (mContext != null && trackSelector != null && PlayerTweaksData.instance(mContext).isTunneledPlaybackEnabled()) {
+        if (mContext != null && trackSelector != null
+                && PlayerTweaksData.instance(mContext).isTunneledPlaybackEnabled()) {
             // Enable tunneling if supported by the current media and device configuration.
             if (VERSION.SDK_INT >= 21) {
-                trackSelector.setParameters(trackSelector.buildUponParameters().setTunnelingAudioSessionId(C.generateAudioSessionIdV21(mContext)));
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(mContext)));
             }
         }
     }
-    
+
     public void setVideo(Video video) {
         mVideo = new WeakReference<>(video);
     }
-    
+
     public Video getVideo() {
         return mVideo != null ? mVideo.get() : null;
     }
-    
+
     public List<FormatItem> getVideoFormats() {
         return ExoFormatItem.from(mTrackSelectorManager.getVideoTracks());
     }
-    
+
     public List<FormatItem> getAudioFormats() {
         return ExoFormatItem.from(mTrackSelectorManager.getAudioTracks());
     }
-    
+
     public List<FormatItem> getSubtitleFormats() {
         return ExoFormatItem.from(mTrackSelectorManager.getSubtitleTracks());
     }
-    
+
     public void selectFormat(FormatItem formatItem) {
         if (formatItem != null) {
             mEventListener.onTrackSelected(formatItem);
             mTrackSelectorManager.selectTrack(FormatItem.toMediaTrack(formatItem));
         }
     }
-    
+
     public FormatItem getVideoFormat() {
         return ExoFormatItem.from(mTrackSelectorManager.getVideoTrack());
     }
-    
+
     public FormatItem getAudioFormat() {
         return ExoFormatItem.from(mTrackSelectorManager.getAudioTrack());
     }
-    
+
     public FormatItem getSubtitleFormat() {
         return ExoFormatItem.from(mTrackSelectorManager.getSubtitleTrack());
     }
@@ -269,7 +271,8 @@ public class ExoPlayerController implements Player.EventListener {
         Log.d(TAG, "onTracksChanged: start: groups length: " + trackGroups.length);
 
         if (trackGroups.length == 0) {
-            Log.i(TAG, "onTracksChanged: Hmm. Strange. Received empty groups, no selections. Why is this happens only on next/prev videos?");
+            Log.i(TAG,
+                    "onTracksChanged: Hmm. Strange. Received empty groups, no selections. Why is this happens only on next/prev videos?");
             return;
         }
 
@@ -278,7 +281,7 @@ public class ExoPlayerController implements Player.EventListener {
         for (TrackSelection selection : trackSelections.getAll()) {
             if (selection != null) {
                 // EXO: 2.12.1
-                //Format format = selection.getSelectedFormat();
+                // Format format = selection.getSelectedFormat();
 
                 // EXO: 2.13.1
                 Format format = selection.getFormat(0);
@@ -288,12 +291,13 @@ public class ExoPlayerController implements Player.EventListener {
                 mTrackFormatter.setFormat(format);
             }
         }
-        
+
         setQualityInfo(mTrackFormatter.getQualityLabel());
 
         // Manage audio focus. E.g. use Spotify when audio is disabled. (NOT NEEDED!!!)
-        //MediaTrack audioTrack = mTrackSelectorManager.getAudioTrack();
-        //ExoPlayerInitializer.enableAudioFocus(mPlayer, audioTrack != null && !audioTrack.isEmpty());
+        // MediaTrack audioTrack = mTrackSelectorManager.getAudioTrack();
+        // ExoPlayerInitializer.enableAudioFocus(mPlayer, audioTrack != null &&
+        // !audioTrack.isEmpty());
     }
 
     private void notifyOnVideoLoad() {
@@ -307,8 +311,9 @@ public class ExoPlayerController implements Player.EventListener {
             }
 
             // Produce thread sync problems
-            // Attempt to read from field 'java.util.TreeMap$Node java.util.TreeMap$Node.left' on a null object reference
-            //mTrackSelectorManager.fixTracksSelection();
+            // Attempt to read from field 'java.util.TreeMap$Node
+            // java.util.TreeMap$Node.left' on a null object reference
+            // mTrackSelectorManager.fixTracksSelection();
         }
     }
 
@@ -316,7 +321,8 @@ public class ExoPlayerController implements Player.EventListener {
     public void onPlayerError(ExoPlaybackException error) {
         Log.e(TAG, "onPlayerError: " + error);
 
-        // NOTE: Player is released at this point. So, there is no sense to restore the playback here.
+        // NOTE: Player is released at this point. So, there is no sense to restore the
+        // playback here.
 
         Throwable nested = error.getCause() != null ? error.getCause() : error;
 
@@ -370,7 +376,7 @@ public class ExoPlayerController implements Player.EventListener {
     public void onSeekProcessed() {
         mEventListener.onSeekEnd();
     }
-    
+
     public void setSpeed(float speed) {
         if (mPlayer != null && speed > 0 && !Helpers.floatEquals(speed, getSpeed())) {
             mPlayer.setPlaybackParameters(new PlaybackParameters(speed, mPlayer.getPlaybackParameters().pitch));
@@ -380,7 +386,7 @@ public class ExoPlayerController implements Player.EventListener {
             mEventListener.onSpeedChanged(speed);
         }
     }
-    
+
     public float getSpeed() {
         if (mPlayer != null) {
             return mPlayer.getPlaybackParameters().speed;
@@ -388,13 +394,13 @@ public class ExoPlayerController implements Player.EventListener {
             return -1;
         }
     }
-    
+
     public void setPitch(float pitch) {
         if (mPlayer != null && pitch > 0 && !Helpers.floatEquals(pitch, getPitch())) {
             mPlayer.setPlaybackParameters(new PlaybackParameters(mPlayer.getPlaybackParameters().speed, pitch));
         }
     }
-    
+
     public float getPitch() {
         if (mPlayer != null) {
             return mPlayer.getPlaybackParameters().pitch;
@@ -402,15 +408,15 @@ public class ExoPlayerController implements Player.EventListener {
             return -1;
         }
     }
-    
+
     public void setVolume(float volume) {
         if (mPlayer != null && volume >= 0) {
             mPlayer.setVolume(Math.min(volume, 1f));
 
-            //applyVolumeBoost(volume);
+            // applyVolumeBoost(volume);
         }
     }
-    
+
     public float getVolume() {
         if (mPlayer != null) {
             return mPlayer.getVolume();
@@ -429,7 +435,7 @@ public class ExoPlayerController implements Player.EventListener {
             mPlayer.stop(true);
         }
     }
-    
+
     public void setOnVideoLoaded(Runnable onVideoLoaded) {
         mOnVideoLoaded = onVideoLoaded;
     }
@@ -457,7 +463,7 @@ public class ExoPlayerController implements Player.EventListener {
             mPlayer.addAudioListener(mVolumeBooster);
         }
     }
-    
+
     private boolean contains51Audio() {
         if (mTrackSelectorManager == null || mTrackSelectorManager.getAudioTracks() == null) {
             return false;

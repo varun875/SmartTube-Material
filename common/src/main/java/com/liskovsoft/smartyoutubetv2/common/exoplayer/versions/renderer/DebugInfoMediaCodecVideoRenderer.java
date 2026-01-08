@@ -6,15 +6,15 @@ import android.os.Build.VERSION;
 import android.os.Handler;
 import android.view.Surface;
 import androidx.annotation.Nullable;
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.Format;
-import com.google.android.exoplayer2.drm.DrmSessionManager;
-import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
-import com.google.android.exoplayer2.mediacodec.MediaCodecInfo;
-import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
-import com.google.android.exoplayer2.video.MediaCodecVideoRenderer;
-import com.google.android.exoplayer2.video.VideoRendererEventListener;
+import androidx.media3.common.C;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.Format;
+import androidx.media3.exoplayer.drm.DrmSessionManager;
+import androidx.media3.exoplayer.drm.ExoMediaDrm;
+import androidx.media3.exoplayer.mediacodec.MediaCodecInfo;
+import androidx.media3.exoplayer.mediacodec.MediaCodecSelector;
+import androidx.media3.exoplayer.video.MediaCodecVideoRenderer;
+import androidx.media3.exoplayer.video.VideoRendererEventListener;
 import com.liskovsoft.sharedutils.mylogger.Log;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.versions.ExoUtils;
 
@@ -25,7 +25,7 @@ public class DebugInfoMediaCodecVideoRenderer extends MediaCodecVideoRenderer {
 
     // Exo 2.9
     //public DebugInfoMediaCodecVideoRenderer(Context context, MediaCodecSelector mediaCodecSelector, long allowedJoiningTimeMs,
-    //                                     @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys,
+    //                                     @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys,
     //                                     @Nullable Handler eventHandler, @Nullable VideoRendererEventListener eventListener,
     //                                     int maxDroppedFramesToNotify) {
     //    super(context, mediaCodecSelector, allowedJoiningTimeMs, drmSessionManager, playClearSamplesWithoutKeys, eventHandler, eventListener,
@@ -34,7 +34,7 @@ public class DebugInfoMediaCodecVideoRenderer extends MediaCodecVideoRenderer {
 
     // Exo 2.10, 2.11
     public DebugInfoMediaCodecVideoRenderer(Context context, MediaCodecSelector mediaCodecSelector, long allowedJoiningTimeMs,
-                                            @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys, boolean enableDecoderFallback, @Nullable Handler eventHandler, @Nullable VideoRendererEventListener eventListener, int maxDroppedFramesToNotify) {
+                                            @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys, boolean enableDecoderFallback, @Nullable Handler eventHandler, @Nullable VideoRendererEventListener eventListener, int maxDroppedFramesToNotify) {
         super(context, mediaCodecSelector, allowedJoiningTimeMs, drmSessionManager, playClearSamplesWithoutKeys, enableDecoderFallback, eventHandler, eventListener, maxDroppedFramesToNotify);
     }
 

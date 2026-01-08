@@ -15,17 +15,17 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.util.Pair;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayerLibraryInfo;
-import com.google.android.exoplayer2.Format;
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.decoder.DecoderCounters;
-import com.google.android.exoplayer2.mediacodec.MediaCodecInfo;
-import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.exoplayer.ExoPlayerLibraryInfo;
+import androidx.media3.common.Format;
+import androidx.media3.common.PlaybackParameters;
+import androidx.media3.common.Player;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.Timeline;
+import androidx.media3.decoder.DecoderCounters;
+import androidx.media3.exoplayer.mediacodec.MediaCodecInfo;
+// TrackGroupArray removed in Media3, use Tracks
+// TrackSelectionArray removed in Media3
 import com.liskovsoft.sharedutils.helpers.AppInfoHelpers;
 import com.liskovsoft.sharedutils.helpers.DeviceHelpers;
 import com.liskovsoft.sharedutils.helpers.FileHelpers;
@@ -53,15 +53,15 @@ import java.util.Locale;
 
 /**
  * A helper class for periodically updating a {@link TextView} with debug information obtained from
- * a {@link SimpleExoPlayer}.
+ * a {@link ExoPlayer}.
  */
-public final class DebugInfoManager implements Runnable, Player.EventListener {
+public final class DebugInfoManager implements Runnable, Player.Listener {
     private static final String TAG = DebugInfoManager.class.getSimpleName();
     private static final int REFRESH_INTERVAL_MS = 1000;
     private static final String NOT_AVAILABLE = "none";
     private final float mTextSize;
 
-    private final SimpleExoPlayer mPlayer;
+    private final ExoPlayer mPlayer;
     private final ViewGroup mDebugViewGroup;
     private final Activity mContext;
 
@@ -76,10 +76,10 @@ public final class DebugInfoManager implements Runnable, Player.EventListener {
 
     /**
      * @param activity context
-     * @param player   The {@link SimpleExoPlayer} from which debug information should be obtained.
+     * @param player   The {@link ExoPlayer} from which debug information should be obtained.
      * @param resLayoutId The {@link TextView} that should be updated to display the information.
      */
-    public DebugInfoManager(Activity activity, SimpleExoPlayer player, int resLayoutId) {
+    public DebugInfoManager(Activity activity, ExoPlayer player, int resLayoutId) {
         mPlayer = player;
         mDebugViewGroup = activity.findViewById(resLayoutId);
         mContext = activity;
@@ -140,7 +140,7 @@ public final class DebugInfoManager implements Runnable, Player.EventListener {
         mUhdHelper = null;
     }
 
-    // Player.EventListener implementation.
+    // Player.Listener implementation.
 
     @Override
     public void onLoadingChanged(boolean isLoading) {

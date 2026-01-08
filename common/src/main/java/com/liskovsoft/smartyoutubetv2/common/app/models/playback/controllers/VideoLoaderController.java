@@ -404,8 +404,10 @@ public class VideoLoaderController extends BasePlayerController {
                 player.openDash(formatInfo);
             }
         } else if (acceptAdaptiveFormats(formatInfo) && formatInfo.containsSabrFormats()) {
-            Log.d(TAG, "Loading video in sabr format...");
-            player.openSabr(formatInfo);
+            // SABR disabled for Android TV - using DASH instead
+            // SABR is Amazon Fire TV specific, not needed for standard Android TV
+            Log.d(TAG, "SABR format detected, converting to DASH for Android TV...");
+            player.openDash(formatInfo); // Use DASH instead of SABR
         } else if (acceptDashLive(formatInfo)) {
             Log.d(TAG, "Loading live video (current or past live stream) in dash format...");
             player.openDashUrl(formatInfo.getDashManifestUrl());

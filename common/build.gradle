@@ -66,22 +66,29 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion
     implementation 'io.reactivex.rxjava2:rxjava:' + rxJavaVersion
 
-    //////// BEGIN EXOPLAYER /////////
+    //////// BEGIN MEDIA3 (replaces ExoPlayer) /////////
 
-    implementation project(':exoplayer-library')
-    implementation project(':exoplayer-extension-okhttp')
-    implementation project(':exoplayer-extension-cronet')
+    // Media3 - Google's modern media playback library (successor to ExoPlayer)
+    implementation 'androidx.media3:media3-exoplayer:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer-dash:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer-hls:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer-smoothstreaming:' + media3Version
+    implementation 'androidx.media3:media3-datasource-okhttp:' + media3Version
+    implementation 'androidx.media3:media3-datasource-cronet:' + media3Version
+    implementation 'androidx.media3:media3-ui:' + media3Version
+    implementation 'androidx.media3:media3-common:' + media3Version
 
-    // implementation 'com.amazon.android:exoplayer:' + amazonExoplayerVersion
-    // implementation 'com.amazon.android:extension-okhttp:' + amazonExoplayerVersion
+    // OLD: Local ExoPlayer 2.10.6 (Amazon fork) - DISABLED
+    // implementation project(':exoplayer-library')
+    // implementation project(':exoplayer-extension-okhttp')
+    // implementation project(':exoplayer-extension-cronet')
 
+    // OLD: Maven ExoPlayer - DISABLED (replaced by Media3)
     // implementation 'com.google.android.exoplayer:exoplayer:' + exoplayerVersion
     // implementation 'com.google.android.exoplayer:extension-okhttp:' + exoplayerVersion
     // implementation 'com.google.android.exoplayer:extension-cronet:' + exoplayerVersion
 
-    // implementation 'com.github.amzn:exoplayer-amazon-port:' + amazonExoplayerJitpackVersion
-
-    //////// END EXOPLAYER //////////
+    //////// END MEDIA3 //////////
 
     implementation 'androidx.media:media:' + mediaXLibraryVersion // exoplayer fix
 

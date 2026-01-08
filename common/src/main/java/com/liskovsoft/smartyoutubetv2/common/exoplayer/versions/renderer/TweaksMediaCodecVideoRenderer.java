@@ -5,12 +5,12 @@ import android.content.Context;
 import android.media.MediaCodec;
 import android.os.Handler;
 import androidx.annotation.Nullable;
-import com.google.android.exoplayer2.Format;
-import com.google.android.exoplayer2.drm.DrmSessionManager;
-import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
-import com.google.android.exoplayer2.mediacodec.MediaCodecInfo;
-import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
-import com.google.android.exoplayer2.video.VideoRendererEventListener;
+import androidx.media3.common.Format;
+import androidx.media3.exoplayer.drm.DrmSessionManager;
+import androidx.media3.exoplayer.drm.ExoMediaDrm;
+import androidx.media3.exoplayer.mediacodec.MediaCodecInfo;
+import androidx.media3.exoplayer.mediacodec.MediaCodecSelector;
+import androidx.media3.exoplayer.video.VideoRendererEventListener;
 import com.liskovsoft.sharedutils.mylogger.Log;
 
 public class TweaksMediaCodecVideoRenderer extends DebugInfoMediaCodecVideoRenderer {
@@ -21,7 +21,7 @@ public class TweaksMediaCodecVideoRenderer extends DebugInfoMediaCodecVideoRende
 
     // Exo 2.9
     //public CustomMediaCodecVideoRenderer(Context context, MediaCodecSelector mediaCodecSelector, long allowedJoiningTimeMs,
-    //                                     @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys,
+    //                                     @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys,
     //                                     @Nullable Handler eventHandler, @Nullable VideoRendererEventListener eventListener,
     //                                     int maxDroppedFramesToNotify) {
     //    super(context, mediaCodecSelector, allowedJoiningTimeMs, drmSessionManager, playClearSamplesWithoutKeys, eventHandler, eventListener,
@@ -30,7 +30,7 @@ public class TweaksMediaCodecVideoRenderer extends DebugInfoMediaCodecVideoRende
 
     // Exo 2.10, 2.11
     public TweaksMediaCodecVideoRenderer(Context context, MediaCodecSelector mediaCodecSelector, long allowedJoiningTimeMs,
-                                         @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys, boolean enableDecoderFallback, @Nullable Handler eventHandler, @Nullable VideoRendererEventListener eventListener, int maxDroppedFramesToNotify) {
+                                         @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys, boolean enableDecoderFallback, @Nullable Handler eventHandler, @Nullable VideoRendererEventListener eventListener, int maxDroppedFramesToNotify) {
         super(context, mediaCodecSelector, allowedJoiningTimeMs, drmSessionManager, playClearSamplesWithoutKeys, enableDecoderFallback, eventHandler, eventListener, maxDroppedFramesToNotify);
     }
 

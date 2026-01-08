@@ -3,16 +3,16 @@ package com.liskovsoft.smartyoutubetv2.common.exoplayer.versions.renderer;
 import android.content.Context;
 import android.os.Handler;
 import androidx.annotation.Nullable;
-import com.google.android.exoplayer2.Renderer;
-import com.google.android.exoplayer2.audio.AudioCapabilities;
-import com.google.android.exoplayer2.audio.AudioProcessor;
-import com.google.android.exoplayer2.audio.AudioRendererEventListener;
-import com.google.android.exoplayer2.audio.DefaultAudioSink;
-import com.google.android.exoplayer2.drm.DrmSessionManager;
-import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
-import com.google.android.exoplayer2.mediacodec.MediaCodecSelector;
-import com.google.android.exoplayer2.util.AmazonQuirks;
-import com.google.android.exoplayer2.video.VideoRendererEventListener;
+import androidx.media3.exoplayer.Renderer;
+import androidx.media3.exoplayer.audio.AudioCapabilities;
+import androidx.media3.exoplayer.audio.AudioProcessor;
+import androidx.media3.exoplayer.audio.AudioRendererEventListener;
+import androidx.media3.exoplayer.audio.DefaultAudioSink;
+import androidx.media3.exoplayer.drm.DrmSessionManager;
+import androidx.media3.exoplayer.drm.ExoMediaDrm;
+import androidx.media3.exoplayer.mediacodec.MediaCodecSelector;
+import androidx.media3.common.util.AmazonQuirks;
+import androidx.media3.exoplayer.video.VideoRendererEventListener;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.versions.selector.BlacklistMediaCodecSelector;
 import com.liskovsoft.smartyoutubetv2.common.prefs.PlayerData;
 import com.liskovsoft.smartyoutubetv2.common.prefs.PlayerTweaksData;
@@ -76,7 +76,7 @@ public class CustomOverridesRenderersFactory extends CustomRenderersFactoryBase 
     // Exo 2.9
     //@Override
     //protected void buildAudioRenderers(Context context, int extensionRendererMode, MediaCodecSelector mediaCodecSelector,
-    //                                   @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys,
+    //                                   @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys,
     //                                   AudioProcessor[] audioProcessors, Handler eventHandler, AudioRendererEventListener eventListener,
     //                                   ArrayList<Renderer> out) {
     //    super.buildAudioRenderers(context, extensionRendererMode, mediaCodecSelector, drmSessionManager, playClearSamplesWithoutKeys,
@@ -98,7 +98,7 @@ public class CustomOverridesRenderersFactory extends CustomRenderersFactoryBase 
     // Exo 2.9
     //@Override
     //protected void buildVideoRenderers(Context context, int extensionRendererMode, MediaCodecSelector mediaCodecSelector,
-    //                                   @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys,
+    //                                   @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys,
     //                                   Handler eventHandler, VideoRendererEventListener eventListener, long allowedVideoJoiningTimeMs,
     //                                   ArrayList<Renderer> out) {
     //    super.buildVideoRenderers(context, extensionRendererMode, mediaCodecSelector, drmSessionManager, playClearSamplesWithoutKeys, eventHandler,
@@ -120,7 +120,7 @@ public class CustomOverridesRenderersFactory extends CustomRenderersFactoryBase 
     // 2.10, 2.11
     @Override
     protected void buildAudioRenderers(Context context, @ExtensionRendererMode int extensionRendererMode, MediaCodecSelector mediaCodecSelector,
-                                       @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys,
+                                       @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys,
                                        boolean enableDecoderFallback, AudioProcessor[] audioProcessors, Handler eventHandler,
                                        AudioRendererEventListener eventListener, ArrayList<Renderer> out) {
         super.buildAudioRenderers(context, extensionRendererMode, mediaCodecSelector, drmSessionManager, playClearSamplesWithoutKeys,
@@ -145,7 +145,7 @@ public class CustomOverridesRenderersFactory extends CustomRenderersFactoryBase 
     // 2.10, 2.11
     @Override
     protected void buildVideoRenderers(Context context, int extensionRendererMode, MediaCodecSelector mediaCodecSelector,
-                                       @Nullable DrmSessionManager<FrameworkMediaCrypto> drmSessionManager, boolean playClearSamplesWithoutKeys,
+                                       @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager, boolean playClearSamplesWithoutKeys,
                                        boolean enableDecoderFallback, Handler eventHandler, VideoRendererEventListener eventListener,
                                        long allowedVideoJoiningTimeMs, ArrayList<Renderer> out) {
         super.buildVideoRenderers(context, extensionRendererMode, mediaCodecSelector, drmSessionManager, playClearSamplesWithoutKeys,

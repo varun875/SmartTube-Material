@@ -3,9 +3,9 @@ package com.liskovsoft.smartyoutubetv2.tv.ui.playback.other;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import androidx.annotation.Nullable;
-import com.google.android.exoplayer2.ControlDispatcher;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector.QueueNavigator;
+import androidx.media3.exoplayer.ControlDispatcher;
+import androidx.media3.common.Player;
+import androidx.media3.session.MediaSessionConnector.QueueNavigator;
 
 public class BackboneQueueNavigator implements QueueNavigator {
     @Override

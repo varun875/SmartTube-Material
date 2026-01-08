@@ -160,23 +160,24 @@ dependencies {
     implementation 'com.github.zjupure:webpdecoder:' + webpDecoderVersion
     implementation 'androidx.multidex:multidex:' + multiDexVersion
 
-    //////// BEGIN EXOPLAYER /////////
+    //////// BEGIN MEDIA3 (replaces ExoPlayer) /////////
 
-    implementation project(':exoplayer-library')
-    implementation project(':exoplayer-extension-leanback')
-    implementation project(':exoplayer-extension-mediasession')
+    // Media3 - Google's modern media playback library
+    implementation 'androidx.media3:media3-exoplayer:' + media3Version
+    implementation 'androidx.media3:media3-ui-leanback:' + media3Version
+    implementation 'androidx.media3:media3-session:' + media3Version
 
-    // implementation 'com.amazon.android:exoplayer:' + amazonExoplayerVersion
-    // implementation 'com.amazon.android:extension-leanback:' + amazonExoplayerVersion
-    // implementation 'com.amazon.android:extension-mediasession:' + amazonExoplayerVersion
+    // OLD: Local ExoPlayer 2.10.6 (Amazon fork) - DISABLED
+    // implementation project(':exoplayer-library')
+    // implementation project(':exoplayer-extension-leanback')
+    // implementation project(':exoplayer-extension-mediasession')
 
+    // OLD: Maven ExoPlayer - DISABLED (replaced by Media3)
     // implementation 'com.google.android.exoplayer:exoplayer:' + exoplayerVersion
     // implementation 'com.google.android.exoplayer:extension-leanback:' + exoplayerVersion
     // implementation 'com.google.android.exoplayer:extension-mediasession:' + exoplayerVersion
 
-    // implementation 'com.github.amzn:exoplayer-amazon-port:' + amazonExoplayerJitpackVersion
-
-    //////// END EXOPLAYER //////////
+    //////// END MEDIA3 //////////
 
     testImplementation 'junit:junit:' + junitVersion
     testImplementation 'org.robolectric:robolectric:' + robolectricVersion
