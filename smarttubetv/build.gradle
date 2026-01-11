@@ -13,12 +13,12 @@ buildscript {
 
         // Check that you have the Google Services Gradle plugin v4.3.2 or later
         // (if not, add it).
-        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.gms:google-services:4.4.2'
 
         // Add the Crashlytics Gradle plugin.
         // https://firebase.google.com/docs/crashlytics/get-started?platform=android
         // https://firebase.google.com/docs/android/setup
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.2'
     }
 }
 
@@ -41,8 +41,8 @@ android {
     namespace 'com.liskovsoft.smartyoutubetv2.tv'
     // FIX: Default interface methods are only supported starting with Android N (--min-api 24)
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     compileSdkVersion project.ext.compileSdkVersion
@@ -149,7 +149,7 @@ dependencies {
 
     implementation 'androidx.leanback:leanback:' + leanbackXLibraryVersion
     implementation 'androidx.leanback:leanback-preference:' + leanbackXLibraryVersion
-    implementation 'androidx.recommendation:recommendation:' + leanbackXLibraryVersion
+    implementation 'androidx.recommendation:recommendation:1.0.0'
     implementation 'androidx.annotation:annotation:' + annotationXLibraryVersion
     implementation 'androidx.recyclerview:recyclerview:' + recyclerviewXLibraryVersion // exoplayer 2.12.1 fix
     implementation 'androidx.media:media:' + mediaXLibraryVersion // exoplayer fix
@@ -164,8 +164,28 @@ dependencies {
 
     // Media3 - Google's modern media playback library
     implementation 'androidx.media3:media3-exoplayer:' + media3Version
+    implementation 'androidx.media3:media3-ui:' + media3Version
     implementation 'androidx.media3:media3-ui-leanback:' + media3Version
     implementation 'androidx.media3:media3-session:' + media3Version
+
+    dependencies {
+    // ... your existing lines ...
+
+    // 🚀 CRITICAL FOR PERFORMANCE (You mentioned you have the latest Cronet)
+    // Without this, Media3 ignores your Cronet library and uses slow HTTP/1.1
+    implementation "androidx.media3:media3-datasource-cronet:$media3Version"
+
+    // 📺 REQUIRED FOR YOUTUBE (DASH & VP9)
+    // The core 'media3-exoplayer' handles basic files, but for adaptive streaming
+    // you must explicitly include these modules.
+    implementation "androidx.media3:media3-exoplayer-dash:$media3Version"
+    implementation "androidx.media3:media3-exoplayer-hls:$media3Version" // Good for live streams
+
+    // 🛠 CORE LEANBACK (The UI Widgets)
+    // 'media3-ui-leanback' only gives you the PlayerAdapter.
+    // You still need the actual Android TV UI library for the rest of the app.
+    implementation "androidx.leanback:leanback:1.2.0"
+}
 
     // OLD: Local ExoPlayer 2.10.6 (Amazon fork) - DISABLED
     // implementation project(':exoplayer-library')

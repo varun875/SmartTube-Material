@@ -3,7 +3,7 @@ package com.liskovsoft.smartyoutubetv2.common.exoplayer.selector;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.media3.common.Format;
-import androidx.media3.common.util.MimeTypes;
+import androidx.media3.common.MimeTypes;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.track.MediaTrack;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.track.SubtitleTrack;
@@ -100,7 +100,8 @@ public class ExoFormatItem implements FormatItem {
     private static int getType(Format format) {
         String sampleMimeType = format.sampleMimeType;
 
-        return MimeTypes.isVideo(sampleMimeType) ? TYPE_VIDEO : MimeTypes.isAudio(sampleMimeType) ? TYPE_AUDIO : TYPE_SUBTITLE;
+        return MimeTypes.isVideo(sampleMimeType) ? TYPE_VIDEO
+                : MimeTypes.isAudio(sampleMimeType) ? TYPE_AUDIO : TYPE_SUBTITLE;
     }
 
     @NonNull
@@ -128,7 +129,8 @@ public class ExoFormatItem implements FormatItem {
             bitrate = mTrack.format.bitrate;
         }
 
-        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s", mType, rendererIndex, id, codecs, width, height, frameRate, language, isPreset, bitrate);
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s", mType, rendererIndex, id, codecs, width, height,
+                frameRate, language, isPreset, bitrate);
     }
 
     @Override
@@ -161,7 +163,7 @@ public class ExoFormatItem implements FormatItem {
     }
 
     public static ExoFormatItem from(int type, int rendererIndex, String id, String codecs,
-                                     int width, int height, float frameRate, String language, boolean isPreset, int bitrate) {
+            int width, int height, float frameRate, String language, boolean isPreset, int bitrate) {
         MediaTrack mediaTrack = MediaTrack.forRendererIndex(rendererIndex);
 
         if (mediaTrack == null) {
@@ -173,18 +175,29 @@ public class ExoFormatItem implements FormatItem {
         switch (type) {
             case TYPE_VIDEO:
                 // Fake format. It's used in app internal comparison routine.
-                mediaTrack.format = Format.createVideoSampleFormat(
-                        id, null, codecs, -1, -1, width, height, frameRate, null, null);
+                mediaTrack.format = new Format.Builder()
+                        .setId(id)
+                        .setSampleMimeType(codecs)
+                        .setWidth(width)
+                        .setHeight(height)
+                        .setFrameRate(frameRate)
+                        .build();
                 break;
             case TYPE_AUDIO:
                 // Fake format. It's used in app internal comparison routine.
-                mediaTrack.format = Format.createAudioSampleFormat(
-                        id, null, codecs, bitrate, -1,0, 0, null, null, 0, language);
+                mediaTrack.format = new Format.Builder()
+                        .setId(id)
+                        .setSampleMimeType(codecs)
+                        .setAverageBitrate(bitrate)
+                        .setLanguage(language)
+                        .build();
                 break;
             case TYPE_SUBTITLE:
                 // Fake format. It's used in app internal comparison routine.
-                mediaTrack.format = Format.createTextSampleFormat(
-                        id, null, -1, language);
+                mediaTrack.format = new Format.Builder()
+                        .setId(id)
+                        .setLanguage(language)
+                        .build();
                 break;
         }
 
@@ -199,7 +212,7 @@ public class ExoFormatItem implements FormatItem {
         String[] split = spec.split(",");
 
         if (split.length == 9) {
-            split = Helpers.appendArray(split, new String[]{"-1"});
+            split = Helpers.appendArray(split, new String[] { "-1" });
         }
 
         if (split.length != 10) {
@@ -239,7 +252,8 @@ public class ExoFormatItem implements FormatItem {
         float frameRate = Helpers.parseFloat(split[2]);
         String codec = split[3];
 
-        return from(TYPE_VIDEO, TrackSelectorManager.RENDERER_INDEX_VIDEO, null, codec, width, height, frameRate,null, isPreset, -1);
+        return from(TYPE_VIDEO, TrackSelectorManager.RENDERER_INDEX_VIDEO, null, codec, width, height, frameRate, null,
+                isPreset, -1);
     }
 
     public static FormatItem fromVideoParams(int resolution, int format, int frameRate) {
@@ -285,8 +299,12 @@ public class ExoFormatItem implements FormatItem {
         }
 
         // Fake format. It's used in app internal comparison routine.
-        mediaTrack.format = Format.createVideoSampleFormat(
-                null, null, codec, -1, -1, width, height, fps, null, null);
+        mediaTrack.format = new Format.Builder()
+                .setSampleMimeType(codec)
+                .setWidth(width)
+                .setHeight(height)
+                .setFrameRate(fps)
+                .build();
 
         return formatItem;
     }
@@ -307,14 +325,16 @@ public class ExoFormatItem implements FormatItem {
         }
 
         // Fake format. It's used in app internal comparison routine.
-        mediaTrack.format = Format.createAudioSampleFormat(
-                null, null, codec, -1, -1,0, 0, null, null, 0, null);
+        mediaTrack.format = new Format.Builder()
+                .setSampleMimeType(codec)
+                .build();
 
         return formatItem;
     }
 
     /**
      * Codec and language (lower case) delimited by comma
+     * 
      * @param spec codec, language
      */
     public static ExoFormatItem fromAudioSpecs(String spec) {
@@ -348,7 +368,7 @@ public class ExoFormatItem implements FormatItem {
         formatItem.mLanguage = langCode;
         formatItem.mIsDefault = langCode == null;
 
-        mediaTrack.format = Format.createTextSampleFormat(null, null, -1, langCode);
+        mediaTrack.format = new Format.Builder().setLanguage(langCode).build();
 
         return formatItem;
     }

@@ -1,0 +1,1231 @@
+.\gradlew : C:\Users\Varun\Documents\GitHub\SmartTube-Material\\.gradle\8.7\
+checksums\checksums.lock - The process cannot access the file because it is 
+being used by another process.
+At line:1 char:56
++ ... e-Material; .\gradlew :smarttubetv:assembleStbetaDebug > build_output 
+...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Varun\...nother proce 
+   ss.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\\.gradle\8.7\fileHashes\f
+ileHashes.bin - The process cannot access the file because it is being used 
+by another process.
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\\.gradle\8.7\fileHashes\f
+ileHashes.lock - The process cannot access the file because it is being 
+used by another process.
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\\.gradle\buildOutputClean
+up\buildOutputCleanup.lock - The process cannot access the file because it 
+is being used by another process.
+
+> Configure project :appupdatechecker2
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 9.0 of the Android Gradle plugin.
+To keep using this feature, add the following to your module-level build.gradle files:
+    android.buildFeatures.buildConfig = true
+or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+WARNING: The option setting 'android.jetifier.ignorelist=bcprov' is experimental.
+WARNING: We recommend using a newer Android Gradle plugin to use compileSdk = 36
+
+This Android Gradle plugin (8.6.0) was tested up to compileSdk = 35.
+
+You are strongly encouraged to update your project to use a newer
+Android Gradle plugin that has been tested with compileSdk = 36.
+
+If you are already using the latest version of the Android Gradle plugin,
+you may need to wait until a newer version with support for compileSdk = 36 is available.
+
+For more information refer to the compatibility table:
+https://d.android.com/r/tools/api-level-support
+
+To suppress this warning, add/update
+    android.suppressUnsupportedCompileSdk=34,36
+to this project's gradle.properties.
+
+> Task :smarttubetv:preBuild UP-TO-DATE
+> Task :smarttubetv:preStbetaDebugBuild UP-TO-DATE
+> Task :smarttubetv:mergeStbetaDebugNativeDebugMetadata NO-SOURCE
+> Task :chatkit:preBuild UP-TO-DATE
+> Task :chatkit:preDebugBuild UP-TO-DATE
+> Task :chatkit:generateDebugBuildConfig
+> Task :chatkit:generateDebugResValues
+> Task :chatkit:generateDebugResources
+> Task :chatkit:packageDebugResources
+> Task :commons-io-2.8.0:preBuild UP-TO-DATE
+> Task :commons-io-2.8.0:preDebugBuild UP-TO-DATE
+> Task :commons-io-2.8.0:generateDebugResValues
+> Task :commons-io-2.8.0:generateDebugResources
+> Task :commons-io-2.8.0:packageDebugResources
+> Task :sharedutils:preBuild UP-TO-DATE
+> Task :sharedutils:preDebugBuild UP-TO-DATE
+> Task :sharedutils:generateDebugResValues
+> Task :sharedutils:generateDebugResources
+> Task :sharedutils:packageDebugResources
+> Task :commons-io-2.8.0:generateDebugBuildConfig
+> Task :sharedutils:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :sharedutils:generateDebugBuildConfig
+> Task :appupdatechecker2:preBuild UP-TO-DATE
+> Task :appupdatechecker2:preStbetaDebugBuild UP-TO-DATE
+> Task :commons-io-2.8.0:javaPreCompileDebug
+> Task :sharedutils:javaPreCompileDebug
+> Task :chatkit:javaPreCompileDebug
+> Task :appupdatechecker2:generateStbetaDebugBuildConfig
+> Task :appupdatechecker2:generateStbetaDebugResValues
+> Task :appupdatechecker2:generateStbetaDebugResources
+> Task :commons-io-2.8.0:parseDebugLocalResources
+> Task :sharedutils:parseDebugLocalResources
+> Task :appupdatechecker2:packageStbetaDebugResources
+> Task :chatkit:parseDebugLocalResources
+> Task :appupdatechecker2:parseStbetaDebugLocalResources
+> Task :common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :common:preBuild UP-TO-DATE
+> Task :common:preStbetaDebugBuild UP-TO-DATE
+> Task :appupdatechecker2:javaPreCompileStbetaDebug
+> Task :common:generateStbetaDebugBuildConfig
+> Task :common:generateStbetaDebugResValues
+> Task :common:generateStbetaDebugResources
+> Task :commons-io-2.8.0:generateDebugRFile
+> Task :common:packageStbetaDebugResources
+> Task :sharedutils:generateDebugRFile
+
+> Task :commons-io-2.8.0:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+3 warnings
+
+> Task :filepicker-lib:preBuild UP-TO-DATE
+> Task :filepicker-lib:preDebugBuild UP-TO-DATE
+> Task :filepicker-lib:generateDebugResValues
+> Task :filepicker-lib:generateDebugResources
+> Task :commons-io-2.8.0:bundleLibCompileToJarDebug
+> Task :appupdatechecker2:generateStbetaDebugRFile
+> Task :chatkit:generateDebugRFile
+> Task :common:parseStbetaDebugLocalResources
+> Task :filepicker-lib:packageDebugResources
+> Task :sharedutils:compileDebugKotlin
+> Task :leanback-1.0.0:preBuild UP-TO-DATE
+> Task :leanback-1.0.0:preDebugBuild UP-TO-DATE
+> Task :leanback-1.0.0:generateDebugResValues
+> Task :leanback-1.0.0:generateDebugResources
+> Task :filepicker-lib:parseDebugLocalResources
+> Task :leanback-1.0.0:packageDebugResources
+> Task :leanbackassistant:preBuild UP-TO-DATE
+> Task :leanbackassistant:preStbetaDebugBuild UP-TO-DATE
+> Task :leanbackassistant:generateStbetaDebugResValues
+> Task :filepicker-lib:generateDebugRFile
+> Task :leanbackassistant:generateStbetaDebugResources
+> Task :leanbackassistant:packageStbetaDebugResources
+> Task :mediaserviceinterfaces:preBuild UP-TO-DATE
+> Task :mediaserviceinterfaces:preDebugBuild UP-TO-DATE
+> Task :mediaserviceinterfaces:generateDebugResValues
+> Task :leanbackassistant:parseStbetaDebugLocalResources
+> Task :mediaserviceinterfaces:generateDebugResources
+> Task :mediaserviceinterfaces:packageDebugResources
+> Task :j2v8:preBuild UP-TO-DATE
+> Task :j2v8:preDebugBuild UP-TO-DATE
+> Task :j2v8:generateDebugResValues
+> Task :mediaserviceinterfaces:parseDebugLocalResources
+> Task :leanback-1.0.0:parseDebugLocalResources
+> Task :j2v8:generateDebugResources
+> Task :j2v8:packageDebugResources
+> Task :youtubeapi:preBuild UP-TO-DATE
+> Task :youtubeapi:preStbetaDebugBuild UP-TO-DATE
+> Task :j2v8:parseDebugLocalResources
+> Task :youtubeapi:generateStbetaDebugResValues
+> Task :mediaserviceinterfaces:generateDebugRFile
+> Task :j2v8:generateDebugRFile
+> Task :youtubeapi:generateStbetaDebugResources
+> Task :leanback-1.0.0:generateDebugRFile
+> Task :youtubeapi:packageStbetaDebugResources
+> Task :youtubeapi:parseStbetaDebugLocalResources
+> Task :filepicker-lib:generateDebugBuildConfig
+> Task :filepicker-lib:javaPreCompileDebug
+> Task :leanback-1.0.0:generateDebugBuildConfig
+> Task :youtubeapi:generateStbetaDebugRFile
+
+> Task :sharedutils:compileDebugKotlin
+e: Failed connecting to the daemon in 4 retries
+e: Daemon compilation failed: Could not connect to Kotlin compile daemon
+java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWith
+Daemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWith
+DaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleK
+otlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$Grad
+leKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerSer
+ver.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolat
+ionWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolat
+ionWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(Cl
+assLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(
+NoIsolationWorkerFactory.java:62)
+	at 
+org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at 
+org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuild
+OperationWorker.execute(DefaultBuildOperationRunner.java:200)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuild
+OperationWorker.execute(DefaultBuildOperationRunner.java:195)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(Def
+aultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(Def
+aultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Defau
+ltBuildOperationRunner.java:157)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Defau
+ltBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultB
+uildOperationRunner.java:53)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(Defaul
+tBuildOperationExecutor.java:73)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperatio
+n(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolati
+onWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(De
+faultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.runExecution(DefaultConditionalExecutionQueue.java:187)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.access$700(DefaultConditionalExecutionQueue.java:120)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r$1.run(DefaultConditionalExecutionQueue.java:162)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWork
+erLeaseService.java:264)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(Def
+aultWorkerLeaseService.java:128)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(Def
+aultWorkerLeaseService.java:133)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.runBatch(DefaultConditionalExecutionQueue.java:157)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.run(DefaultConditionalExecutionQueue.java:126)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.
+java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onE
+xecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractMan
+agedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolEx
+ecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolE
+xecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+Failed to compile with Kotlin daemon: java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:200)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:195)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:187)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:120)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:162)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:133)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:157)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:126)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Using fallback strategy: Compile without Kotlin daemon
+Try ./gradlew --stop if this issue persists
+If it does not look related to your configuration, please file an issue with logs to https://kotl.in/issue
+
+> Task :filepicker-lib:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :leanback-1.0.0:javaPreCompileDebug
+> Task :filepicker-lib:bundleLibCompileToJarDebug
+> Task :leanbackassistant:generateStbetaDebugBuildConfig
+> Task :leanbackassistant:javaPreCompileStbetaDebug
+> Task :mediaserviceinterfaces:generateDebugBuildConfig
+> Task :mediaserviceinterfaces:javaPreCompileDebug
+> Task :j2v8:generateDebugBuildConfig
+> Task :youtubeapi:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :j2v8:javaPreCompileDebug
+> Task :leanbackassistant:generateStbetaDebugRFile
+> Task :youtubeapi:generateStbetaDebugBuildConfig
+> Task :common:generateStbetaDebugRFile
+
+> Task :j2v8:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\j2v8\
+src\main\java\com\eclipsesource\v8\utils\V8ObjectUtils.java uses or 
+overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :youtubeapi:javaPreCompileStbetaDebug
+> Task :common:javaPreCompileStbetaDebug
+> Task :smarttubetv:generateStbetaDebugBuildConfig
+> Task :smarttubetv:javaPreCompileStbetaDebug
+> Task :j2v8:bundleLibCompileToJarDebug
+> Task :appupdatechecker2:compileStbetaDebugLibraryResources
+> Task :chatkit:compileDebugLibraryResources
+> Task :commons-io-2.8.0:compileDebugLibraryResources
+> Task :common:compileStbetaDebugLibraryResources
+> Task :j2v8:compileDebugLibraryResources
+> Task :filepicker-lib:compileDebugLibraryResources
+> Task :mediaserviceinterfaces:compileDebugLibraryResources
+> Task :common:writeStbetaDebugAarMetadata
+> Task :appupdatechecker2:writeStbetaDebugAarMetadata
+> Task :commons-io-2.8.0:writeDebugAarMetadata
+> Task :chatkit:writeDebugAarMetadata
+> Task :smarttubetv:generateStbetaDebugResValues
+> Task :filepicker-lib:writeDebugAarMetadata
+> Task :j2v8:writeDebugAarMetadata
+> Task :mediaserviceinterfaces:writeDebugAarMetadata
+> Task :youtubeapi:writeStbetaDebugAarMetadata
+> Task :sharedutils:writeDebugAarMetadata
+> Task :leanback-1.0.0:writeDebugAarMetadata
+> Task :leanbackassistant:writeStbetaDebugAarMetadata
+> Task :leanbackassistant:compileStbetaDebugLibraryResources
+
+> Task :smarttubetv:mapStbetaDebugSourceSetPaths
+WARNING: [Processor] Library 'C:\Users\Varun\.gradle\caches\modules-2\files-2.1\androidx.media3\media3-session\1.6.0\3da7cdcfcec74636c385bdc5837faec5c5f78fda\media3-session-1.6.0.aar' contains references to both AndroidX and old support library. This seems like the library is partially migrated. Jetifier will try to rewrite the library anyway.
+ Example of androidX reference: 'androidx/media3/session/legacy/LegacyParcelableUtil'
+ Example of support library reference: 'android/support/v4/media/MediaDescriptionCompat'
+
+> Task :sharedutils:compileDebugLibraryResources
+> Task :leanback-1.0.0:compileDebugLibraryResources
+> Task :smarttubetv:checkStbetaDebugAarMetadata
+> Task :smarttubetv:generateStbetaDebugResources
+> Task :smarttubetv:mergeStbetaDebugResources
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hr\values-hr.xml:54:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hi\values-hi.xml:56:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh\values-zh.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh\values-zh.xml:482:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh\values-zh.xml:483:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh\values-zh.xml:484:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hu\values-hu.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hu\values-hu.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hu\values-hu.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hu\values-hu.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hr\values-hr.xml:333:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hr\values-hr.xml:334:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hr\values-hr.xml:335:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hi\values-hi.xml:382:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hi\values-hi.xml:383:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-hi\values-hi.xml:384:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ja\values-ja.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ja\values-ja.xml:483:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ja\values-ja.xml:484:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ja\values-ja.xml:485:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values\values.xml:311:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rBR\values-pt-rBR.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rBR\values-pt-rBR.xml:483:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rBR\values-pt-rBR.xml:484:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rBR\values-pt-rBR.xml:485:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-iw\values-iw.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values\values.xml:739:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values\values.xml:740:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values\values.xml:741:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-iw\values-iw.xml:476:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-iw\values-iw.xml:477:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-iw\values-iw.xml:478:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-it\values-it.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-it\values-it.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-it\values-it.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-it\values-it.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fa-rIR\values-fa-rIR.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ro\values-ro.xml:63:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fa-rIR\values-fa-rIR.xml:476:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fa-rIR\values-fa-rIR.xml:477:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fa-rIR\values-fa-rIR.xml:478:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ro\values-ro.xml:457:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ro\values-ro.xml:458:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ro\values-ro.xml:459:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ar\values-ar.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ar\values-ar.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ar\values-ar.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ar\values-ar.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-tr\values-tr.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-tr\values-tr.xml:484:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-tr\values-tr.xml:485:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-tr\values-tr.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sv\values-sv.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rPT\values-pt-rPT.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sv\values-sv.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sv\values-sv.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sv\values-sv.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rPT\values-pt-rPT.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rPT\values-pt-rPT.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pt-rPT\values-pt-rPT.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sk\values-sk.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sk\values-sk.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sk\values-sk.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sk\values-sk.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-bg\values-bg.xml:58:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ru\values-ru.xml:62:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ru\values-ru.xml:476:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ru\values-ru.xml:477:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ru\values-ru.xml:478:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-az\values-az.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-az\values-az.xml:472:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-az\values-az.xml:473:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-az\values-az.xml:474:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ko\values-ko.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-bg\values-bg.xml:399:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-bg\values-bg.xml:400:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-bg\values-bg.xml:401:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ko\values-ko.xml:485:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ko\values-ko.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ko\values-ko.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nl\values-nl.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-el\values-el.xml:64:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-el\values-el.xml:463:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-el\values-el.xml:464:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-el\values-el.xml:465:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nl\values-nl.xml:473:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nl\values-nl.xml:474:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nl\values-nl.xml:475:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sr\values-sr.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sr\values-sr.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sr\values-sr.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sr\values-sr.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sq\values-sq.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-lt\values-lt.xml:49:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-lt\values-lt.xml:282:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-lt\values-lt.xml:283:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-lt\values-lt.xml:284:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sq\values-sq.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sq\values-sq.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sq\values-sq.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-de\values-de.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-de\values-de.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-de\values-de.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-de\values-de.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fi\values-fi.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fi\values-fi.xml:485:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fi\values-fi.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fi\values-fi.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-cs\values-cs.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh-rTW\values-zh-rTW.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-cs\values-cs.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-cs\values-cs.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-cs\values-cs.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh-rTW\values-zh-rTW.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh-rTW\values-zh-rTW.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-zh-rTW\values-zh-rTW.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-es\values-es.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-es\values-es.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-es\values-es.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-es\values-es.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ca\values-ca.xml:54:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ca\values-ca.xml:332:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ca\values-ca.xml:333:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-ca\values-ca.xml:334:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-gl-rES\values-gl-rES.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-gl-rES\values-gl-rES.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-gl-rES\values-gl-rES.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-gl-rES\values-gl-rES.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-et\values-et.xml:59:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-th\values-th.xml:37:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-he\values-he.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-he\values-he.xml:476:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-he\values-he.xml:477:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-he\values-he.xml:478:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-et\values-et.xml:420:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-et\values-et.xml:421:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-et\values-et.xml:422:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fr\values-fr.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pl\values-pl.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fr\values-fr.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fr\values-fr.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-fr\values-fr.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pl\values-pl.xml:485:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pl\values-pl.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-pl\values-pl.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-sl\values-sl.xml:37:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-da\values-da.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-da\values-da.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-da\values-da.xml:488:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-da\values-da.xml:489:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-te\values-te.xml:13:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nb\values-nb.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nb\values-nb.xml:485:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nb\values-nb.xml:486:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-nb\values-nb.xml:487:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-uk\values-uk.xml:62:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-uk\values-uk.xml:474:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-uk\values-uk.xml:475:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-uk\values-uk.xml:476:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-vi\values-vi.xml:65:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-vi\values-vi.xml:482:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_error. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-vi\values-vi.xml:483:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_start. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-vi\values-vi.xml:484:4: Multiple substitutions specified in non-positional format of string resource string/proxy_test_status. Did you mean to add the formatted="false" attribute?
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\build\intermediates\packaged_res\stbetaDebug\packageStbetaDebugResources\values-in\values-in.xml:64:4: Multiple substitutions specified in non-positional format of string resource string/auto_frame_rate_applying. Did you mean to add the formatted="false" attribute?
+
+> Task :sharedutils:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :smarttubetv:createStbetaDebugCompatibleScreenManifests
+> Task :appupdatechecker2:extractDeepLinksStbetaDebug
+> Task :chatkit:extractDeepLinksDebug
+> Task :common:extractDeepLinksStbetaDebug
+> Task :commons-io-2.8.0:extractDeepLinksDebug
+> Task :filepicker-lib:extractDeepLinksDebug
+> Task :j2v8:extractDeepLinksDebug
+> Task :leanback-1.0.0:extractDeepLinksDebug
+> Task :leanbackassistant:extractDeepLinksStbetaDebug
+> Task :mediaserviceinterfaces:extractDeepLinksDebug
+> Task :sharedutils:extractDeepLinksDebug
+> Task :smarttubetv:extractDeepLinksStbetaDebug
+> Task :youtubeapi:extractDeepLinksStbetaDebug
+> Task :sharedutils:bundleLibCompileToJarDebug
+
+> Task :chatkit:processDebugManifest
+package="com.stfalcon.chatkit" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\chatkit\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.stfalcon.chatkit" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\chatkit\src\main\AndroidManifest.xml.
+
+> Task :leanback-1.0.0:processDebugManifest
+package="androidx.leanback" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\leanback-1.0.0\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="androidx.leanback" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\leanback-1.0.0\src\main\AndroidManifest.xml.
+
+> Task :filepicker-lib:processDebugManifest
+package="arte.programar.materialfile" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\filepicker-lib\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="arte.programar.materialfile" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\filepicker-lib\src\main\AndroidManifest.xml.
+
+> Task :j2v8:processDebugManifest
+package="com.eclipsesource.v8" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\j2v8\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.eclipsesource.v8" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\j2v8\src\main\AndroidManifest.xml.
+
+> Task :sharedutils:processDebugManifest
+package="com.liskovsoft.sharedutils" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\sharedutils\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.liskovsoft.sharedutils" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\sharedutils\src\main\AndroidManifest.xml.
+
+> Task :leanbackassistant:processStbetaDebugManifest
+package="com.liskovsoft.leanbackassistant" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\leanbackassistant\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.liskovsoft.leanbackassistant" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\leanbackassistant\src\main\AndroidManifest.xml.
+
+> Task :common:processStbetaDebugManifest
+package="com.liskovsoft.smartyoutubetv2.common" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.liskovsoft.smartyoutubetv2.common" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\common\src\main\AndroidManifest.xml.
+
+> Task :commons-io-2.8.0:processDebugManifest
+package="org.apache.commons.commonsio" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\commons-io-2.8.0\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="org.apache.commons.commonsio" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\commons-io-2.8.0\src\main\AndroidManifest.xml.
+
+> Task :appupdatechecker2:processStbetaDebugManifest
+package="edu.mit.mobile.android.appupdater" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\appupdatechecker2\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="edu.mit.mobile.android.appupdater" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\appupdatechecker2\src\main\AndroidManifest.xml.
+
+> Task :mediaserviceinterfaces:processDebugManifest
+package="com.liskovsoft.mediaserviceinterfaces" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\MediaServiceCore\mediaserviceinterfaces\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.liskovsoft.mediaserviceinterfaces" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\MediaServiceCore\mediaserviceinterfaces\src\main\AndroidManifest.xml.
+
+> Task :youtubeapi:processStbetaDebugManifest
+package="com.liskovsoft.youtubeapi" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\MediaServiceCore\youtubeapi\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.liskovsoft.youtubeapi" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\MediaServiceCore\youtubeapi\src\main\AndroidManifest.xml.
+
+> Task :chatkit:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 warnings
+
+> Task :chatkit:bundleLibCompileToJarDebug
+
+> Task :appupdatechecker2:compileStbetaDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :appupdatechecker2:bundleLibCompileToJarStbetaDebug
+
+> Task :leanback-1.0.0:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 warnings
+
+> Task :leanback-1.0.0:bundleLibCompileToJarDebug
+
+> Task :mediaserviceinterfaces:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+3 warnings
+
+> Task :mediaserviceinterfaces:bundleLibCompileToJarDebug
+
+> Task :smarttubetv:processStbetaDebugMainManifest
+package="com.liskovsoft.smartyoutubetv2.tv" found in source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.liskovsoft.smartyoutubetv2.tv" from the source AndroidManifest.xml: C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\AndroidManifest.xml.
+[org.chromium.net:cronet-embedded:119.6045.31] C:\Users\Varun\.gradle\caches\transforms-4\989c403dabcff33b58f1133c27aa8a2a\transformed\jetified-cronet-embedded-119.6045.31\AndroidManifest.xml Warning:
+	Namespace 'org.chromium.net' is used in multiple modules and/or libraries: org.chromium.net:cronet-embedded:119.6045.31, org.chromium.net:cronet-common:119.6045.31, org.chromium.net:cronet-api:119.6045.31. Please ensure that all modules and libraries have a unique namespace. For more information, See https://developer.android.com/studio/build/configure-app-module#set-namespace
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\AndroidManifest.xml Warning:
+	provider#com.liskovsoft.leanbackassistant.search.VideoContentProvider was tagged at AndroidManifest.xml:0 to replace another declaration but no other declaration present
+
+> Task :youtubeapi:compileStbetaDebugKotlin
+> Task :smarttubetv:processStbetaDebugManifest
+> Task :youtubeapi:compileStbetaDebugLibraryResources
+> Task :appupdatechecker2:mergeStbetaDebugShaders
+> Task :appupdatechecker2:compileStbetaDebugShaders NO-SOURCE
+> Task :appupdatechecker2:generateStbetaDebugAssets UP-TO-DATE
+> Task :appupdatechecker2:packageStbetaDebugAssets
+> Task :chatkit:mergeDebugShaders
+> Task :chatkit:compileDebugShaders NO-SOURCE
+> Task :chatkit:generateDebugAssets UP-TO-DATE
+> Task :chatkit:packageDebugAssets
+> Task :common:mergeStbetaDebugShaders
+> Task :common:compileStbetaDebugShaders NO-SOURCE
+> Task :common:generateStbetaDebugAssets UP-TO-DATE
+> Task :common:packageStbetaDebugAssets
+> Task :commons-io-2.8.0:mergeDebugShaders
+> Task :commons-io-2.8.0:compileDebugShaders NO-SOURCE
+> Task :commons-io-2.8.0:generateDebugAssets UP-TO-DATE
+> Task :commons-io-2.8.0:packageDebugAssets
+> Task :filepicker-lib:mergeDebugShaders
+> Task :filepicker-lib:compileDebugShaders NO-SOURCE
+> Task :filepicker-lib:generateDebugAssets UP-TO-DATE
+> Task :filepicker-lib:packageDebugAssets
+> Task :j2v8:mergeDebugShaders
+> Task :j2v8:compileDebugShaders NO-SOURCE
+> Task :j2v8:generateDebugAssets UP-TO-DATE
+> Task :j2v8:packageDebugAssets
+> Task :leanback-1.0.0:mergeDebugShaders
+> Task :leanback-1.0.0:compileDebugShaders NO-SOURCE
+> Task :leanback-1.0.0:generateDebugAssets UP-TO-DATE
+> Task :leanback-1.0.0:packageDebugAssets
+> Task :leanbackassistant:mergeStbetaDebugShaders
+> Task :leanbackassistant:compileStbetaDebugShaders NO-SOURCE
+> Task :leanbackassistant:generateStbetaDebugAssets UP-TO-DATE
+> Task :leanbackassistant:packageStbetaDebugAssets
+> Task :mediaserviceinterfaces:mergeDebugShaders
+> Task :mediaserviceinterfaces:compileDebugShaders NO-SOURCE
+> Task :mediaserviceinterfaces:generateDebugAssets UP-TO-DATE
+> Task :mediaserviceinterfaces:packageDebugAssets
+> Task :sharedutils:mergeDebugShaders
+> Task :sharedutils:compileDebugShaders NO-SOURCE
+> Task :smarttubetv:processStbetaDebugManifestForPackage
+> Task :smarttubetv:processStbetaDebugResources
+
+AAPT2 aapt2-8.6.0-11315950-windows Daemon #3 Failed to shutdown within 
+timeout
+java.util.concurrent.TimeoutException: AAPT2 aapt2-8.6.0-11315950-windows 
+Daemon #3: Failed to shut down within 30 seconds. Forcing shutdown
+	at com.android.builder.internal.aapt.v2.Aapt2DaemonImpl.stopProcess(Aapt2Da
+emonImpl.kt:249)
+	at com.android.builder.internal.aapt.v2.Aapt2Daemon.shutDown(Aapt2Daemon.kt
+:171)
+	at com.android.builder.internal.aapt.v2.Aapt2DaemonManager$LeasableAaptDaem
+on.shutdown(Aapt2DaemonManager.kt:66)
+	at com.android.builder.internal.aapt.v2.Aapt2DaemonManager.maintain(Aapt2Da
+emonManager.kt:89)
+	at com.android.build.gradle.internal.services.Aapt2DaemonManagerMaintainer$
+firstDaemonStarted$1.run(Aapt2DaemonBuildService.kt:244)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.
+java:572)
+	at 
+java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutu
+reTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolEx
+ecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolE
+xecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+> Task :youtubeapi:compileStbetaDebugKotlin
+e: Failed connecting to the daemon in 4 retries
+e: Daemon compilation failed: Could not connect to Kotlin compile daemon
+java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWith
+Daemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWith
+DaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleK
+otlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$Grad
+leKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerSer
+ver.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolat
+ionWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolat
+ionWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(Cl
+assLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(
+NoIsolationWorkerFactory.java:62)
+	at 
+org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at 
+org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuild
+OperationWorker.execute(DefaultBuildOperationRunner.java:200)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuild
+OperationWorker.execute(DefaultBuildOperationRunner.java:195)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(Def
+aultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(Def
+aultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Defau
+ltBuildOperationRunner.java:157)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(Defau
+ltBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultB
+uildOperationRunner.java:53)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(Defaul
+tBuildOperationExecutor.java:73)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperatio
+n(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolati
+onWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(De
+faultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.runExecution(DefaultConditionalExecutionQueue.java:187)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.access$700(DefaultConditionalExecutionQueue.java:120)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r$1.run(DefaultConditionalExecutionQueue.java:162)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWork
+erLeaseService.java:264)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(Def
+aultWorkerLeaseService.java:128)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(Def
+aultWorkerLeaseService.java:133)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.runBatch(DefaultConditionalExecutionQueue.java:157)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunne
+r.run(DefaultConditionalExecutionQueue.java:126)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.
+java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onE
+xecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractMan
+agedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolEx
+ecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolE
+xecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+Failed to compile with Kotlin daemon: java.lang.RuntimeException: Could not connect to Kotlin compile daemon
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:214)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:200)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:195)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:187)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:120)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:162)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:133)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:157)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:126)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Using fallback strategy: Compile without Kotlin daemon
+Try ./gradlew --stop if this issue persists
+If it does not look related to your configuration, please file an issue with logs to https://kotl.in/issue
+
+> Task :sharedutils:generateDebugAssets UP-TO-DATE
+> Task :sharedutils:packageDebugAssets
+> Task :smarttubetv:mergeStbetaDebugShaders
+> Task :smarttubetv:compileStbetaDebugShaders NO-SOURCE
+> Task :smarttubetv:generateStbetaDebugAssets UP-TO-DATE
+> Task :youtubeapi:mergeStbetaDebugShaders
+> Task :youtubeapi:compileStbetaDebugShaders NO-SOURCE
+> Task :youtubeapi:generateStbetaDebugAssets UP-TO-DATE
+> Task :youtubeapi:packageStbetaDebugAssets
+> Task :smarttubetv:mergeStbetaDebugAssets
+> Task :smarttubetv:compressStbetaDebugAssets
+> Task :smarttubetv:checkStbetaDebugDuplicateClasses
+> Task :appupdatechecker2:processStbetaDebugJavaRes NO-SOURCE
+> Task :chatkit:processDebugJavaRes NO-SOURCE
+> Task :commons-io-2.8.0:processDebugJavaRes NO-SOURCE
+> Task :filepicker-lib:processDebugJavaRes NO-SOURCE
+> Task :mediaserviceinterfaces:bundleLibRuntimeToJarDebug
+> Task :filepicker-lib:bundleLibRuntimeToJarDebug
+> Task :j2v8:processDebugJavaRes
+> Task :appupdatechecker2:bundleLibRuntimeToJarStbetaDebug
+> Task :j2v8:bundleLibRuntimeToJarDebug
+> Task :chatkit:bundleLibRuntimeToJarDebug
+> Task :leanback-1.0.0:processDebugJavaRes NO-SOURCE
+> Task :leanbackassistant:processStbetaDebugJavaRes NO-SOURCE
+> Task :mediaserviceinterfaces:processDebugJavaRes NO-SOURCE
+> Task :sharedutils:bundleLibRuntimeToJarDebug
+> Task :sharedutils:processDebugJavaRes
+> Task :commons-io-2.8.0:bundleLibRuntimeToJarDebug
+> Task :appupdatechecker2:mergeStbetaDebugJniLibFolders
+> Task :appupdatechecker2:mergeStbetaDebugNativeLibs NO-SOURCE
+> Task :chatkit:mergeDebugJniLibFolders
+> Task :appupdatechecker2:copyStbetaDebugJniLibsProjectOnly
+> Task :chatkit:mergeDebugNativeLibs NO-SOURCE
+> Task :chatkit:copyDebugJniLibsProjectOnly
+> Task :common:mergeStbetaDebugJniLibFolders
+> Task :common:mergeStbetaDebugNativeLibs NO-SOURCE
+> Task :common:copyStbetaDebugJniLibsProjectOnly
+> Task :commons-io-2.8.0:mergeDebugJniLibFolders
+> Task :commons-io-2.8.0:mergeDebugNativeLibs NO-SOURCE
+> Task :commons-io-2.8.0:copyDebugJniLibsProjectOnly
+> Task :filepicker-lib:mergeDebugJniLibFolders
+> Task :filepicker-lib:mergeDebugNativeLibs NO-SOURCE
+> Task :filepicker-lib:copyDebugJniLibsProjectOnly
+> Task :leanback-1.0.0:bundleLibRuntimeToJarDebug
+> Task :j2v8:mergeDebugJniLibFolders
+> Task :leanback-1.0.0:mergeDebugJniLibFolders
+> Task :leanback-1.0.0:mergeDebugNativeLibs NO-SOURCE
+> Task :leanback-1.0.0:copyDebugJniLibsProjectOnly
+> Task :leanbackassistant:mergeStbetaDebugJniLibFolders
+> Task :leanbackassistant:mergeStbetaDebugNativeLibs NO-SOURCE
+> Task :leanbackassistant:copyStbetaDebugJniLibsProjectOnly
+> Task :mediaserviceinterfaces:mergeDebugJniLibFolders
+> Task :mediaserviceinterfaces:mergeDebugNativeLibs NO-SOURCE
+> Task :mediaserviceinterfaces:copyDebugJniLibsProjectOnly
+> Task :sharedutils:mergeDebugJniLibFolders
+> Task :sharedutils:mergeDebugNativeLibs NO-SOURCE
+> Task :sharedutils:copyDebugJniLibsProjectOnly
+> Task :smarttubetv:mergeStbetaDebugJniLibFolders
+> Task :youtubeapi:mergeStbetaDebugJniLibFolders
+> Task :youtubeapi:mergeStbetaDebugNativeLibs NO-SOURCE
+> Task :youtubeapi:copyStbetaDebugJniLibsProjectOnly
+> Task :smarttubetv:validateSigningStbetaDebug
+> Task :smarttubetv:writeStbetaDebugAppMetadata
+> Task :smarttubetv:writeStbetaDebugSigningConfigVersions
+> Task :smarttubetv:desugarStbetaDebugFileDependencies
+> Task :j2v8:mergeDebugNativeLibs
+> Task :j2v8:copyDebugJniLibsProjectOnly
+> Task :smarttubetv:mergeExtDexStbetaDebug
+
+warn: removing resource org.smarttube.beta:string/dialog_remove_device without required default value.
+warn: removing resource org.smarttube.beta:string/option_background_playback_all without required default value.
+
+warn: removing resource org.smarttube.beta:string/dialog_remove_device without required default value.
+warn: removing resource org.smarttube.beta:string/option_background_playback_all without required default value.
+
+warn: removing resource org.smarttube.beta:string/dialog_remove_device without required default value.
+warn: removing resource org.smarttube.beta:string/option_background_playback_all without required default value.
+
+
+> Task :smarttubetv:mergeStbetaDebugNativeLibs
+
+> Task :smarttubetv:stripStbetaDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libcronet.119.0.6045.31.so, libglide-webp.so, libj2v8.so.
+
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+> Task :youtubeapi:compileStbetaDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :youtubeapi:processStbetaDebugJavaRes
+> Task :youtubeapi:bundleLibCompileToJarStbetaDebug
+> Task :youtubeapi:bundleLibRuntimeToJarStbetaDebug
+
+> Task :leanbackassistant:compileStbetaDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: C:\Users\Varun\Documents\GitHub\SmartTube-Material\leanbackassistant\s
+rc\main\java\com\liskovsoft\leanbackassistant\channels\UpdateChannelsJobServ
+ice.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :leanbackassistant:bundleLibCompileToJarStbetaDebug
+> Task :leanbackassistant:bundleLibRuntimeToJarStbetaDebug
+> Task :common:compileStbetaDebugKotlin NO-SOURCE
+
+> Task :common:compileStbetaDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :common:processStbetaDebugJavaRes NO-SOURCE
+> Task :common:bundleLibRuntimeToJarStbetaDebug
+> Task :common:bundleLibCompileToJarStbetaDebug
+
+> Task :smarttubetv:compileStbetaDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: [1] Wrote GeneratedAppGlideModule with: 
+[com.bumptech.glide.integration.webp.WebpGlideLibraryModule]
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\widgets\embedplayer\EmbedPlayerView.ja
+va:12: error: cannot find symbol
+import androidx.media3.ui.AspectRatioFrameLayout;
+                         ^
+  symbol:   class AspectRatioFrameLayout
+  location: package androidx.media3.ui
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\widgets\embedplayer\EmbedPlayerView.ja
+va:13: error: cannot find symbol
+import androidx.media3.ui.PlayerView;
+                         ^
+  symbol:   class PlayerView
+  location: package androidx.media3.ui
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\widgets\embedplayer\EmbedPlayerView.ja
+va:36: error: cannot find symbol
+public class EmbedPlayerView extends PlayerView implements PlaybackView {
+                                     ^
+  symbol: class PlayerView
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\mod\surface\SurfacePlaybackFr
+agment.java:12: error: cannot find symbol
+import androidx.media3.ui.AspectRatioFrameLayout;
+                         ^
+  symbol:   class AspectRatioFrameLayout
+  location: package androidx.media3.ui
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\mod\surface\SurfacePlaybackFr
+agment.java:13: error: package androidx.media3.ui.AspectRatioFrameLayout 
+does not exist
+import androidx.media3.ui.AspectRatioFrameLayout.ResizeMode;
+                                                ^
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\mod\surface\SurfacePlaybackFr
+agment.java:26: error: cannot find symbol
+    private AspectRatioFrameLayout mVideoSurfaceRoot;
+            ^
+  symbol:   class AspectRatioFrameLayout
+  location: class SurfacePlaybackFragment
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\other\BackboneQueueNavigator.
+java:6: error: cannot find symbol
+import androidx.media3.exoplayer.ControlDispatcher;
+                                ^
+  symbol:   class ControlDispatcher
+  location: package androidx.media3.exoplayer
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\other\BackboneQueueNavigator.
+java:8: error: package androidx.media3.session.MediaSessionConnector does 
+not exist
+import androidx.media3.session.MediaSessionConnector.QueueNavigator;
+                                                    ^
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\other\BackboneQueueNavigator.
+java:10: error: cannot find symbol
+public class BackboneQueueNavigator implements QueueNavigator {
+                                               ^
+  symbol: class QueueNavigator
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\other\BackboneQueueNavigator.
+java:32: error: cannot find symbol
+    public void onSkipToPrevious(Player player, ControlDispatcher 
+controlDispatcher) {
+                                                ^
+  symbol:   class ControlDispatcher
+  location: class BackboneQueueNavigator
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\other\BackboneQueueNavigator.
+java:37: error: cannot find symbol
+    public void onSkipToQueueItem(Player player, ControlDispatcher 
+controlDispatcher, long id) {
+                                                 ^
+  symbol:   class ControlDispatcher
+  location: class BackboneQueueNavigator
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\other\BackboneQueueNavigator.
+java:42: error: cannot find symbol
+    public void onSkipToNext(Player player, ControlDispatcher 
+controlDispatcher) {
+                                            ^
+  symbol:   class ControlDispatcher
+  location: class BackboneQueueNavigator
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\other\BackboneQueueNavigator.
+java:47: error: cannot find symbol
+    public boolean onCommand(Player player, ControlDispatcher 
+controlDispatcher, String command, Bundle extras, ResultReceiver cb) {
+                                            ^
+  symbol:   class ControlDispatcher
+  location: class BackboneQueueNavigator
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\PlaybackFragment.java:34: 
+error: cannot find symbol
+import androidx.media3.exoplayer.ControlDispatcher;
+                                ^
+  symbol:   class ControlDispatcher
+  location: package androidx.media3.exoplayer
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\PlaybackFragment.java:35: 
+error: cannot find symbol
+import androidx.media3.exoplayer.DefaultControlDispatcher;
+                                ^
+  symbol:   class DefaultControlDispatcher
+  location: package androidx.media3.exoplayer
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\PlaybackFragment.java:40: 
+error: cannot find symbol
+import androidx.media3.session.MediaSessionConnector;
+                              ^
+  symbol:   class MediaSessionConnector
+  location: package androidx.media3.session
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\PlaybackFragment.java:117: 
+error: cannot find symbol
+    private MediaSessionConnector mMediaSessionConnector;
+            ^
+  symbol:   class MediaSessionConnector
+  location: class PlaybackFragment
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\mod\surface\SurfacePlaybackFr
+agment.java:75: error: cannot find symbol
+    protected @ResizeMode int getResize() {
+               ^
+  symbol:   class ResizeMode
+  location: class SurfacePlaybackFragment
+C:\Users\Varun\Documents\GitHub\SmartTube-Material\smarttubetv\src\main\java
+\com\liskovsoft\smartyoutubetv2\tv\ui\playback\mod\surface\SurfacePlaybackFr
+agment.java:84: error: cannot find symbol
+    protected void setResize(@ResizeMode int resizeMode) {
+                              ^
+  symbol:   class ResizeMode
+  location: class SurfacePlaybackFragment
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+19 errors
+3 warnings
+
+> Task :smarttubetv:compileStbetaDebugJavaWithJavac FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':smarttubetv:compileStbetaDebugJavaWithJavac'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --info option to get more log output.
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.7/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 13m 51s
+230 actionable tasks: 230 executed

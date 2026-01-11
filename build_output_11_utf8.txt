@@ -1,0 +1,370 @@
+
+> Configure project :appupdatechecker2
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 9.0 of the Android Gradle plugin.
+You can resolve this warning in Android Studio via `Refactor` > `Migrate BuildConfig to Gradle Build Files`
+WARNING: The option setting 'android.jetifier.ignorelist=bcprov' is experimental.
+WARNING: We recommend using a newer Android Gradle plugin to use compileSdk = 36
+
+This Android Gradle plugin (8.5.2) was tested up to compileSdk = 34.
+
+You are strongly encouraged to update your project to use a newer
+Android Gradle plugin that has been tested with compileSdk = 36.
+
+If you are already using the latest version of the Android Gradle plugin,
+you may need to wait until a newer version with support for compileSdk = 36 is available.
+
+For more information refer to the compatibility table:
+https://d.android.com/r/tools/api-level-support
+
+To suppress this warning, add/update
+    android.suppressUnsupportedCompileSdk=34,36
+to this project's gradle.properties.
+
+> Task :smarttubetv:preBuild UP-TO-DATE
+> Task :smarttubetv:preStbetaDebugBuild UP-TO-DATE
+> Task :smarttubetv:mergeStbetaDebugNativeDebugMetadata NO-SOURCE
+> Task :chatkit:preBuild UP-TO-DATE
+> Task :chatkit:preDebugBuild UP-TO-DATE
+> Task :chatkit:generateDebugBuildConfig
+> Task :chatkit:generateDebugResValues
+> Task :chatkit:generateDebugResources
+> Task :chatkit:packageDebugResources
+> Task :commons-io-2.8.0:preBuild UP-TO-DATE
+> Task :commons-io-2.8.0:preDebugBuild UP-TO-DATE
+> Task :commons-io-2.8.0:generateDebugResValues
+> Task :chatkit:parseDebugLocalResources
+> Task :commons-io-2.8.0:generateDebugResources
+> Task :commons-io-2.8.0:packageDebugResources
+> Task :sharedutils:preBuild UP-TO-DATE
+> Task :sharedutils:preDebugBuild UP-TO-DATE
+> Task :commons-io-2.8.0:parseDebugLocalResources
+> Task :sharedutils:generateDebugResValues
+> Task :commons-io-2.8.0:generateDebugRFile
+> Task :sharedutils:generateDebugResources
+> Task :sharedutils:packageDebugResources
+> Task :sharedutils:parseDebugLocalResources
+> Task :chatkit:javaPreCompileDebug
+> Task :commons-io-2.8.0:generateDebugBuildConfig
+> Task :sharedutils:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :commons-io-2.8.0:javaPreCompileDebug
+> Task :sharedutils:generateDebugBuildConfig
+> Task :sharedutils:generateDebugRFile
+
+> Task :commons-io-2.8.0:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+.\gradlew : warning: [options] source value 8 is obsolete and will be 
+removed in a future release
+At line:1 char:56
++ ... e-Material; .\gradlew :smarttubetv:assembleStbetaDebug > build_output 
+...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: [optio... future rele 
+   ase:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+3 warnings
+
+> Task :appupdatechecker2:preBuild UP-TO-DATE
+> Task :appupdatechecker2:preStbetaDebugBuild UP-TO-DATE
+> Task :sharedutils:javaPreCompileDebug
+> Task :appupdatechecker2:generateStbetaDebugBuildConfig
+> Task :commons-io-2.8.0:bundleLibCompileToJarDebug
+> Task :appupdatechecker2:generateStbetaDebugResValues
+> Task :chatkit:generateDebugRFile
+> Task :appupdatechecker2:generateStbetaDebugResources
+> Task :appupdatechecker2:packageStbetaDebugResources
+> Task :appupdatechecker2:parseStbetaDebugLocalResources
+> Task :appupdatechecker2:javaPreCompileStbetaDebug
+> Task :common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :common:preBuild UP-TO-DATE
+> Task :common:preStbetaDebugBuild UP-TO-DATE
+> Task :common:generateStbetaDebugBuildConfig
+> Task :common:generateStbetaDebugResValues
+> Task :appupdatechecker2:generateStbetaDebugRFile
+> Task :common:generateStbetaDebugResources
+> Task :common:packageStbetaDebugResources
+> Task :filepicker-lib:preBuild UP-TO-DATE
+> Task :filepicker-lib:preDebugBuild UP-TO-DATE
+> Task :filepicker-lib:generateDebugResValues
+> Task :common:parseStbetaDebugLocalResources
+> Task :filepicker-lib:generateDebugResources
+> Task :sharedutils:compileDebugKotlin
+> Task :filepicker-lib:packageDebugResources
+
+> Task :sharedutils:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :leanback-1.0.0:preBuild UP-TO-DATE
+> Task :leanback-1.0.0:preDebugBuild UP-TO-DATE
+> Task :sharedutils:bundleLibCompileToJarDebug
+> Task :leanback-1.0.0:generateDebugResValues
+> Task :filepicker-lib:parseDebugLocalResources
+
+> Task :chatkit:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 warnings
+
+> Task :chatkit:bundleLibCompileToJarDebug
+
+> Task :appupdatechecker2:compileStbetaDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :appupdatechecker2:bundleLibCompileToJarStbetaDebug
+> Task :filepicker-lib:generateDebugRFile
+> Task :leanback-1.0.0:generateDebugResources
+> Task :leanback-1.0.0:packageDebugResources
+> Task :leanbackassistant:preBuild UP-TO-DATE
+> Task :leanbackassistant:preStbetaDebugBuild UP-TO-DATE
+> Task :leanbackassistant:generateStbetaDebugResValues
+> Task :leanbackassistant:generateStbetaDebugResources
+> Task :leanback-1.0.0:parseDebugLocalResources
+> Task :leanbackassistant:packageStbetaDebugResources
+> Task :leanbackassistant:parseStbetaDebugLocalResources
+> Task :mediaserviceinterfaces:preBuild UP-TO-DATE
+> Task :mediaserviceinterfaces:preDebugBuild UP-TO-DATE
+> Task :leanback-1.0.0:generateDebugRFile
+> Task :mediaserviceinterfaces:generateDebugResValues
+> Task :mediaserviceinterfaces:generateDebugResources
+> Task :mediaserviceinterfaces:packageDebugResources
+> Task :j2v8:preBuild UP-TO-DATE
+> Task :j2v8:preDebugBuild UP-TO-DATE
+> Task :mediaserviceinterfaces:parseDebugLocalResources
+> Task :j2v8:generateDebugResValues
+> Task :j2v8:generateDebugResources
+> Task :mediaserviceinterfaces:generateDebugRFile
+> Task :j2v8:packageDebugResources
+> Task :youtubeapi:preBuild UP-TO-DATE
+> Task :youtubeapi:preStbetaDebugBuild UP-TO-DATE
+> Task :youtubeapi:generateStbetaDebugResValues
+> Task :j2v8:parseDebugLocalResources
+> Task :youtubeapi:generateStbetaDebugResources
+> Task :j2v8:generateDebugRFile
+> Task :youtubeapi:packageStbetaDebugResources
+> Task :filepicker-lib:generateDebugBuildConfig
+> Task :youtubeapi:parseStbetaDebugLocalResources
+> Task :filepicker-lib:javaPreCompileDebug
+> Task :youtubeapi:generateStbetaDebugRFile
+
+> Task :filepicker-lib:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :filepicker-lib:bundleLibCompileToJarDebug
+> Task :leanback-1.0.0:generateDebugBuildConfig
+> Task :leanbackassistant:generateStbetaDebugRFile
+> Task :leanback-1.0.0:javaPreCompileDebug
+> Task :leanbackassistant:generateStbetaDebugBuildConfig
+> Task :common:generateStbetaDebugRFile
+
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+> Task :leanback-1.0.0:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 warnings
+
+> Task :leanbackassistant:javaPreCompileStbetaDebug
+> Task :mediaserviceinterfaces:generateDebugBuildConfig
+> Task :mediaserviceinterfaces:javaPreCompileDebug
+> Task :j2v8:generateDebugBuildConfig
+> Task :leanback-1.0.0:bundleLibCompileToJarDebug
+
+> Task :mediaserviceinterfaces:compileDebugJavaWithJavac
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+3 warnings
+
+> Task :youtubeapi:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :j2v8:javaPreCompileDebug
+> Task :mediaserviceinterfaces:bundleLibCompileToJarDebug
+> Task :youtubeapi:generateStbetaDebugBuildConfig
+
+> Task :j2v8:compileDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a 
+future release
+warning: [options] target value 8 is obsolete and will be removed in a 
+future release
+warning: [options] To suppress warnings about obsolete options, use 
+-Xlint:-options.
+Note: C:\Users\Varun\Documents\GitHub\SmartTube-Material\SharedModules\j2v8\
+src\main\java\com\eclipsesource\v8\utils\V8ObjectUtils.java uses or 
+overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :youtubeapi:javaPreCompileStbetaDebug
+> Task :common:javaPreCompileStbetaDebug
+> Task :j2v8:bundleLibCompileToJarDebug
+> Task :smarttubetv:generateStbetaDebugBuildConfig
+> Task :smarttubetv:javaPreCompileStbetaDebug
+> Task :j2v8:compileDebugLibraryResources
+> Task :commons-io-2.8.0:compileDebugLibraryResources
+> Task :appupdatechecker2:compileStbetaDebugLibraryResources
+> Task :chatkit:compileDebugLibraryResources
+> Task :mediaserviceinterfaces:compileDebugLibraryResources
+> Task :leanbackassistant:compileStbetaDebugLibraryResources
+> Task :appupdatechecker2:writeStbetaDebugAarMetadata
+> Task :common:writeStbetaDebugAarMetadata
+> Task :filepicker-lib:writeDebugAarMetadata
+> Task :commons-io-2.8.0:writeDebugAarMetadata
+> Task :chatkit:writeDebugAarMetadata
+> Task :j2v8:writeDebugAarMetadata
+> Task :leanback-1.0.0:writeDebugAarMetadata
+> Task :youtubeapi:writeStbetaDebugAarMetadata
+> Task :smarttubetv:generateStbetaDebugResValues
+> Task :sharedutils:writeDebugAarMetadata
+> Task :mediaserviceinterfaces:writeDebugAarMetadata
+> Task :leanbackassistant:writeStbetaDebugAarMetadata
+> Task :smarttubetv:mapStbetaDebugSourceSetPaths FAILED
+> Task :common:compileStbetaDebugLibraryResources
+> Task :filepicker-lib:compileDebugLibraryResources
+> Task :sharedutils:compileDebugLibraryResources
+> Task :leanback-1.0.0:compileDebugLibraryResources
+
+> Task :youtubeapi:compileStbetaDebugKotlin
+w: file:///C:/Users/Varun/Documents/GitHub/SmartTube-Material/MediaServiceCore/youtubeapi/src/main/java/com/liskovsoft/youtubeapi/app/potokennp2/PoTokenWebView.kt:321:13 Condition is always 'false'.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':smarttubetv:mapStbetaDebugSourceSetPaths'.
+> Could not resolve all files for configuration 
+':smarttubetv:stbetaDebugRuntimeClasspath'.
+   > Could not find androidx.recommendation:recommendation:1.2.0.
+     Searched in the following locations:
+       - https://dl.google.com/dl/android/maven2/androidx/recommendation/rec
+ommendation/1.2.0/recommendation-1.2.0.pom
+       - https://repo.maven.apache.org/maven2/androidx/recommendation/recomm
+endation/1.2.0/recommendation-1.2.0.pom
+       - https://jitpack.io/androidx/recommendation/recommendation/1.2.0/rec
+ommendation-1.2.0.pom
+     Required by:
+         project :smarttubetv
+   > Could not find androidx.recommendation:recommendation:1.2.0.
+     Searched in the following locations:
+       - https://dl.google.com/dl/android/maven2/androidx/recommendation/rec
+ommendation/1.2.0/recommendation-1.2.0.pom
+       - https://repo.maven.apache.org/maven2/androidx/recommendation/recomm
+endation/1.2.0/recommendation-1.2.0.pom
+       - https://jitpack.io/androidx/recommendation/recommendation/1.2.0/rec
+ommendation-1.2.0.pom
+     Required by:
+         project :smarttubetv > project :common > project :leanbackassistant
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+
+BUILD FAILED in 44s
+For more on this, please refer to https://docs.gradle.org/8.7/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+120 actionable tasks: 120 executed

@@ -3,10 +3,13 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'androidx.leanback'
+    buildFeatures {
+        buildConfig = true
+    }
     // FIX: Default interface methods are only supported starting with Android N (--min-api 24)
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     compileSdkVersion project.ext.compileSdkVersion
@@ -39,7 +42,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:' + recyclerviewXLibraryVersion
     implementation 'androidx.fragment:fragment:' + fragmentVersion
     implementation 'androidx.media:media:' + mediaXLibraryVersion
-    implementation 'androidx.interpolator:interpolator:' + leanbackXLibraryVersion
+    implementation 'androidx.interpolator:interpolator:1.0.0'
 
     // implementation project(':fragment-1.1.0')
     implementation project(':sharedutils')

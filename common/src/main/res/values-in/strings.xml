@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="header_home">Beranda</string>
     <string name="title_search">Pencarian</string>
@@ -82,7 +82,7 @@
     <string name="player_only_pause">Jeda saja</string>
     <string name="check_for_updates">Periksa pembaruan</string>
     <string name="update_not_found">Kamu menggunakan versi terbaru</string>
-    <string name="update_in_progress">Harap tunggu sebentar…</string>
+    <string name="update_in_progress">Harap tunggu sebentarâ€¦</string>
     <string name="player_ui_hide_behavior">Sembunyikan UI otomatis</string>
     <string name="option_never">Tidak pernah</string>
     <string name="side_panel_sections">Bagian bilah sisi</string>
@@ -163,9 +163,9 @@
     <string name="share_link">Membagikan tautan</string>
     <string name="share_qr_link">Membagikan tautan (QR code)</string>
     <string name="subscribe_to_channel">Berlangganan channel</string>
-    <string name="wait_data_loading">Harap tunggu sementara data sedang dimuat…</string>
+    <string name="wait_data_loading">Harap tunggu sementara data sedang dimuatâ€¦</string>
     <string name="auto_frame_rate_pause">Jeda kecepatan bingkai otomatis</string>
-    <string name="auto_frame_rate_applying">Menerapkan frekuensi gambar otomatis %sx%s\@%s</string>
+    <string name="auto_frame_rate_applying">Menerapkan frekuensi gambar otomatis %1$sx%2$s\@%3$s</string>
     <string name="audio_shift">Pergeseran suara</string>
     <string name="player_remember_speed">Ingat kecepatan</string>
     <string name="mark_channel_as_watched">Tandai sebagai telah diawasi</string>
@@ -178,7 +178,7 @@
     <string name="settings_ui_scale">Skala UI</string>
     <string name="msg_restart_app">Silakan mulai ulang aplikasi untuk menerapkan pengaturan ini</string>
     <string name="settings_block">Pemblokiran konten</string>
-    <string name="msg_applying">Menerapkan %s…</string>
+    <string name="msg_applying">Menerapkan %sâ€¦</string>
     <string name="msg_done">Selesai</string>
     <string name="settings_general">Umum</string>
     <string name="settings_video">Vidio</string>
@@ -191,7 +191,7 @@
     <string name="content_block_music_off_topic">Bagian non-musik dari klip</string>
     <string name="confirm_segment_skip">Lewati segmen \"%s\"\?</string>
     <string name="cancel_segment_skip">Batalkan melewatkan segmen</string>
-    <string name="msg_skipping_segment">Melewati segmen \"%s\"…</string>
+    <string name="msg_skipping_segment">Melewati segmen \"%s\"â€¦</string>
     <string name="content_block_notification_type">Jenis pemberitahuan</string>
     <string name="content_block_notify_none">Tanpa pemberitahuan</string>
     <string name="content_block_notify_toast">Pop Up</string>
@@ -202,7 +202,7 @@
     <string name="player_low_video_quality">Kualitas vidio rendah</string>
     <string name="remote_session_closed">Sesi jarak jauh telah ditutup</string>
     <string name="msg_mode_switch_error">Tidak dapat mengganti mode tampilan ke \"%s\"</string>
-    <string name="msg_player_error">Terjadi kesalahan player %s. Memulai ulang pemutaran…</string>
+    <string name="msg_player_error">Terjadi kesalahan player %s. Memulai ulang pemutaranâ€¦</string>
     <string name="video_preset_disabled">Tanpa prasetel</string>
     <string name="video_preset_enabled">Format vidio selanjutnya akan diatur sesuai prasetel</string>
     <string name="player_sleep_timer">Pengatur waktu tidur</string>
@@ -452,9 +452,9 @@
     <string name="unset_stream_reminder">Pengingat stream yang tidak disetel</string>
     <string name="set_stream_reminder">Setel pengingat stream</string>
     <string name="playback_starts_shortly">Pemutaran akan dimulai secara otomatis saat streaming sudah siap</string>
-    <string name="starting_stream">Memulai stream…</string>
+    <string name="starting_stream">Memulai streamâ€¦</string>
     <string name="action_playlist_remove">Hapus dari daftar putar</string>
-    <string name="signin_view_title">Kode Pengguna sedang dimuat…</string>
+    <string name="signin_view_title">Kode Pengguna sedang dimuatâ€¦</string>
     <string name="signin_view_description">Untuk masuk, masukkan kode ini di halaman %s\nCatatan: Hanya berfungsi dengan browser Firefox atau Chrome.</string>
     <string name="signin_view_action_text">Selesai</string>
     <string name="require_checked">Memerlukan \"%s\"</string>
@@ -527,7 +527,7 @@
     <string name="video_duration_any">Apa saja</string>
     <string name="video_duration">Durasi</string>
     <string name="video_duration_under_4">Dibawah 4 menit</string>
-    <string name="video_duration_between_4_20">4–20 menit</string>
+    <string name="video_duration_between_4_20">4â€“20 menit</string>
     <string name="video_duration_over_20">Lebih 20 menit</string>
     <string name="content_type">Tipe</string>
     <string name="content_type_any">Apa saja</string>
@@ -658,7 +658,7 @@
     <string name="calm_msg">Kami sedang memperbaiki masalah ini. Periksa pembaruan dari waktu ke waktu</string>
     <string name="without_picture">Tanpa gambar</string>
     <string name="video_disabled">Vidio dinonaktifkan</string>
-    <string name="applying_fix">Jangan tutup pemutar. Menerapkan perbaikan…</string>
+    <string name="applying_fix">Jangan tutup pemutar. Menerapkan perbaikanâ€¦</string>
     <string name="hide_mixes">Sembunyikan Campuran</string>
     <string name="player_global_focus_desc">Fitur ini memengaruhi tombol pemutar mana yang akan menerima fokus ketika menavigasi di antara barisan tombol pemutar</string>
     <string name="disable_network_error_fixing">Menonaktifkan perbaikan kesalahan jaringan otomatis</string>

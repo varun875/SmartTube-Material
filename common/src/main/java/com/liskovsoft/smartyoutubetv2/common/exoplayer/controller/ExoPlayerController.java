@@ -8,6 +8,7 @@ import androidx.media3.common.C;
 import androidx.media3.common.Format;
 import androidx.media3.common.PlaybackException;
 import androidx.media3.common.PlaybackParameters;
+import androidx.media3.exoplayer.ExoPlaybackException;
 import androidx.media3.common.Player;
 import androidx.media3.common.Tracks;
 import androidx.media3.exoplayer.ExoPlayer;
@@ -222,7 +223,7 @@ public class ExoPlayerController implements Player.Listener {
             // Enable tunneling if supported by the current media and device configuration.
             if (VERSION.SDK_INT >= 21) {
                 trackSelector.setParameters(trackSelector.buildUponParameters()
-                        .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(mContext)));
+                        .setTunnelingEnabled(true));
             }
         }
     }
@@ -267,10 +268,10 @@ public class ExoPlayerController implements Player.Listener {
     }
 
     @Override
-    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-        Log.d(TAG, "onTracksChanged: start: groups length: " + trackGroups.length);
+    public void onTracksChanged(Tracks tracks) {
+        Log.d(TAG, "onTracksChanged: start");
 
-        if (trackGroups.length == 0) {
+        if (tracks.getGroups().isEmpty()) {
             Log.i(TAG,
                     "onTracksChanged: Hmm. Strange. Received empty groups, no selections. Why is this happens only on next/prev videos?");
             return;
@@ -278,17 +279,15 @@ public class ExoPlayerController implements Player.Listener {
 
         notifyOnVideoLoad();
 
-        for (TrackSelection selection : trackSelections.getAll()) {
-            if (selection != null) {
-                // EXO: 2.12.1
-                // Format format = selection.getSelectedFormat();
+        for (Tracks.Group group : tracks.getGroups()) {
+            for (int i = 0; i < group.length; i++) {
+                if (group.isTrackSelected(i)) {
+                    Format format = group.getTrackFormat(i);
 
-                // EXO: 2.13.1
-                Format format = selection.getFormat(0);
+                    mEventListener.onTrackChanged(ExoFormatItem.from(format));
 
-                mEventListener.onTrackChanged(ExoFormatItem.from(format));
-
-                mTrackFormatter.setFormat(format);
+                    mTrackFormatter.setFormat(format);
+                }
             }
         }
 
@@ -318,7 +317,7 @@ public class ExoPlayerController implements Player.Listener {
     }
 
     @Override
-    public void onPlayerError(ExoPlaybackException error) {
+    public void onPlayerError(PlaybackException error) {
         Log.e(TAG, "onPlayerError: " + error);
 
         // NOTE: Player is released at this point. So, there is no sense to restore the
@@ -326,7 +325,13 @@ public class ExoPlayerController implements Player.Listener {
 
         Throwable nested = error.getCause() != null ? error.getCause() : error;
 
-        mEventListener.onEngineError(error.type, error.rendererIndex, nested);
+        if (error instanceof ExoPlaybackException) {
+            ExoPlaybackException exoError = (ExoPlaybackException) error;
+            mEventListener.onEngineError(exoError.type, exoError.rendererIndex, nested);
+        } else {
+            mEventListener.onEngineError(PlaybackException.ERROR_CODE_UNSPECIFIED,
+                    TrackSelectorManager.RENDERER_INDEX_UNKNOWN, nested);
+        }
     }
 
     @Override
@@ -362,17 +367,13 @@ public class ExoPlayerController implements Player.Listener {
     }
 
     @Override
-    public void onPositionDiscontinuity(int reason) {
-        Log.e(TAG, "onPositionDiscontinuity");
-
-        // Fix video loop on 480p with legacy codes enabled
-        if (reason == Player.DISCONTINUITY_REASON_PERIOD_TRANSITION) {
+    public void onPositionDiscontinuity(Player.PositionInfo oldPosition, Player.PositionInfo newPosition, int reason) {
+        if (reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
             mPlayer.stop();
             mEventListener.onPlayEnd();
         }
     }
 
-    @Override
     public void onSeekProcessed() {
         mEventListener.onSeekEnd();
     }
@@ -432,7 +433,7 @@ public class ExoPlayerController implements Player.Listener {
      */
     public void resetPlayerState() {
         if (containsMedia()) {
-            mPlayer.stop(true);
+            mPlayer.stop();
         }
     }
 
@@ -452,7 +453,7 @@ public class ExoPlayerController implements Player.Listener {
         }
 
         if (mVolumeBooster != null) {
-            mPlayer.removeAudioListener(mVolumeBooster);
+            mPlayer.removeListener(mVolumeBooster);
             mVolumeBooster = null;
         }
 
@@ -460,7 +461,7 @@ public class ExoPlayerController implements Player.Listener {
         // also, other 2.0 tracks in 5.1 group is already too loud. so cancel them too.
         if (volume > 1f && !contains51Audio() && Build.VERSION.SDK_INT >= 19) {
             mVolumeBooster = new VolumeBooster(true, volume, null);
-            mPlayer.addAudioListener(mVolumeBooster);
+            mPlayer.addListener(mVolumeBooster);
         }
     }
 
@@ -485,7 +486,7 @@ public class ExoPlayerController implements Player.Listener {
 
         try {
             mPlayer.removeListener(this);
-            mPlayer.stop(true); // Cause input lags due to high cpu load?
+            mPlayer.stop(); // Cause input lags due to high cpu load?
             mPlayer.clearVideoSurface();
             mPlayer.release();
             mPlayer = null;

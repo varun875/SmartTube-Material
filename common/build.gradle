@@ -4,14 +4,17 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'com.liskovsoft.smartyoutubetv2.common'
+    buildFeatures {
+        buildConfig = true
+    }
     // FIX: Default interface methods are only supported starting with Android N (--min-api 24)
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     compileSdkVersion project.ext.compileSdkVersion

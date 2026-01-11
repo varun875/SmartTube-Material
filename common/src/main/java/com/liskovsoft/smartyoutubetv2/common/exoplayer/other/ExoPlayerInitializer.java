@@ -4,13 +4,14 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import androidx.annotation.Nullable;
+import androidx.media3.common.AudioAttributes;
+import androidx.media3.exoplayer.drm.FrameworkMediaDrm;
 import androidx.media3.common.C;
 import androidx.media3.exoplayer.DefaultLoadControl;
 import androidx.media3.exoplayer.DefaultRenderersFactory;
 import androidx.media3.exoplayer.ExoPlayer.Builder;
 import androidx.media3.exoplayer.SeekParameters;
 import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.exoplayer.audio.AudioAttributes;
 import androidx.media3.exoplayer.drm.DefaultDrmSessionManager;
 import androidx.media3.exoplayer.drm.DrmSessionManager;
 import androidx.media3.exoplayer.drm.ExoMediaDrm.KeyRequest;
@@ -19,7 +20,7 @@ import androidx.media3.exoplayer.drm.ExoMediaDrm;
 import androidx.media3.exoplayer.drm.MediaDrmCallback;
 import androidx.media3.exoplayer.drm.UnsupportedDrmException;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
-import androidx.media3.datasource.BandwidthMeter;
+import androidx.media3.exoplayer.upstream.BandwidthMeter;
 import androidx.media3.datasource.TransferListener;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.smartyoutubetv2.common.prefs.PlayerData;
@@ -56,16 +57,12 @@ public class ExoPlayerInitializer {
         // HDR fix?
         // trackSelector.setParameters(trackSelector.buildUponParameters().setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
 
-        // Old initializer
-        ExoPlayer player = ExoPlayer.Builder.newSimpleInstance(context, renderersFactory, trackSelector,
-                loadControl);
-
-        // New initializer
-        // ExoPlayer player = ExoPlayer.Builder.newSimpleInstance(
-        // context, renderersFactory, trackSelector, loadControl,
-        // null, new DummyBandwidthMeter(), new AnalyticsCollector.Factory(),
-        // Util.getLooper()
-        // );
+        // Media3 initializer
+        ExoPlayer player = new ExoPlayer.Builder(context)
+                .setRenderersFactory(renderersFactory)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadControl)
+                .build();
 
         // enableAudioFocus(player);
 
@@ -144,7 +141,7 @@ public class ExoPlayerInitializer {
         baseBuilder
                 .setBufferDurationsMs(minBufferMs, maxBufferMs, bufferForPlaybackMs, bufferForPlaybackAfterRebufferMs);
 
-        return baseBuilder.createDefaultLoadControl();
+        return baseBuilder.build();
     }
 
     private void setupVolumeBoost(ExoPlayer player) {
@@ -153,7 +150,7 @@ public class ExoPlayerInitializer {
         float volume = mPlayerTweaksData.isPlayerAutoVolumeEnabled() ? 2.0f : mPlayerData.getPlayerVolume();
         if (volume > 1f && Build.VERSION.SDK_INT >= 19) {
             VolumeBooster mVolumeBooster = new VolumeBooster(true, volume, player);
-            player.addAudioListener(mVolumeBooster);
+            player.addListener(mVolumeBooster);
         }
     }
 
@@ -186,24 +183,21 @@ public class ExoPlayerInitializer {
         }
     }
 
-    private DrmSessionManager<ExoMediaDrm> createDrmManager() {
-        try {
-            return DefaultDrmSessionManager.newWidevineInstance(new MediaDrmCallback() {
-                @Override
-                public byte[] executeProvisionRequest(UUID uuid, ProvisionRequest request) {
-                    return new byte[0];
-                }
+    private DrmSessionManager createDrmManager() {
+        return new DefaultDrmSessionManager.Builder()
+                .setUuidAndExoMediaDrmProvider(C.WIDEVINE_UUID, FrameworkMediaDrm.DEFAULT_PROVIDER)
+                .build(new MediaDrmCallback() {
+                    @Override
+                    public byte[] executeProvisionRequest(UUID uuid, ProvisionRequest request) {
+                        return new byte[0];
+                    }
 
-                @Override
-                public byte[] executeKeyRequest(UUID uuid, KeyRequest request) {
-                    return new byte[0];
-                }
-            }, null);
-        } catch (UnsupportedDrmException e) {
-            e.printStackTrace();
-        }
+                    @Override
+                    public byte[] executeKeyRequest(UUID uuid, KeyRequest request) {
+                        return new byte[0];
+                    }
+                });
 
-        return null;
     }
 
     private static final class DummyBandwidthMeter implements BandwidthMeter {
@@ -226,6 +220,11 @@ public class ExoPlayerInitializer {
         @Override
         public void removeEventListener(EventListener eventListener) {
             // Do nothing.
+        }
+
+        @Override
+        public long getTimeToFirstByteEstimateUs() {
+            return C.TIME_UNSET;
         }
     }
 }

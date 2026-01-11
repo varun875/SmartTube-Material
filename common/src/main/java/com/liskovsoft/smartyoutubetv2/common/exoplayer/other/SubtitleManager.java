@@ -12,9 +12,9 @@ import android.view.accessibility.CaptioningManager.CaptionStyle;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
-import androidx.media3.common.text.CaptionStyleCompat;
+import androidx.media3.common.Player;
+import androidx.media3.ui.CaptionStyleCompat;
 import androidx.media3.common.text.Cue;
-import androidx.media3.common.text.TextOutput;
 import androidx.media3.ui.SubtitleView;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.smartyoutubetv2.common.R;
@@ -25,7 +25,7 @@ import com.liskovsoft.smartyoutubetv2.common.prefs.PlayerData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubtitleManager implements TextOutput, OnDataChange {
+public class SubtitleManager implements Player.Listener, OnDataChange {
     private static final String TAG = SubtitleManager.class.getSimpleName();
     private final SubtitleView mSubtitleView;
     private final Context mContext;
@@ -105,7 +105,8 @@ public class SubtitleManager implements TextOutput, OnDataChange {
             if (Helpers.endsWithAny(textStr, "\n", " ")) { // vtt subs format
                 subsBuffer = textStr;
             } else if (textStr.contains("\n")) { // ttml subs format
-                //CharSequence text = subsBuffer != null ? textStr.replace(subsBuffer, "").replace("\n", "") : textStr;
+                // CharSequence text = subsBuffer != null ? textStr.replace(subsBuffer,
+                // "").replace("\n", "") : textStr;
 
                 CharSequence text;
 
@@ -115,13 +116,13 @@ public class SubtitleManager implements TextOutput, OnDataChange {
                     text = textStr;
                 }
 
-                result.add(new Cue(text)); // sub centered by default
+                result.add(new Cue.Builder().setText(text).build()); // sub centered by default
 
                 String[] split = textStr.split("\n");
                 subsBuffer = split.length == 2 ? split[1] : textStr;
             } else {
                 CharSequence text = subsBuffer != null ? textStr.replace(subsBuffer, "") : textStr;
-                result.add(new Cue(text)); // sub centered by default
+                result.add(new Cue.Builder().setText(text).build()); // sub centered by default
                 subsBuffer = text;
             }
         }
@@ -153,11 +154,10 @@ public class SubtitleManager implements TextOutput, OnDataChange {
         int outlineColor = ContextCompat.getColor(mContext, R.color.black);
         int backgroundColor = ContextCompat.getColor(mContext, subtitleStyle.backgroundColorResId);
 
-        CaptionStyleCompat style =
-                new CaptionStyleCompat(textColor,
-                        backgroundColor, Color.TRANSPARENT,
-                        subtitleStyle.captionStyle,
-                        outlineColor, Typeface.DEFAULT_BOLD);
+        CaptionStyleCompat style = new CaptionStyleCompat(textColor,
+                backgroundColor, Color.TRANSPARENT,
+                subtitleStyle.captionStyle,
+                outlineColor, Typeface.DEFAULT_BOLD);
         mSubtitleView.setStyle(style);
 
         float textSize = getTextSizePx();
@@ -166,17 +166,15 @@ public class SubtitleManager implements TextOutput, OnDataChange {
 
     @RequiresApi(19)
     private void applySystemStyle() {
-        CaptioningManager captioningManager =
-                (CaptioningManager) mContext.getSystemService(Context.CAPTIONING_SERVICE);
+        CaptioningManager captioningManager = (CaptioningManager) mContext.getSystemService(Context.CAPTIONING_SERVICE);
 
         if (captioningManager != null) {
             CaptionStyle userStyle = captioningManager.getUserStyle();
 
-            CaptionStyleCompat style =
-                    new CaptionStyleCompat(userStyle.foregroundColor,
-                            userStyle.backgroundColor, VERSION.SDK_INT >= 21 ? userStyle.windowColor : Color.TRANSPARENT,
-                            userStyle.edgeType,
-                            userStyle.edgeColor, userStyle.getTypeface());
+            CaptionStyleCompat style = new CaptionStyleCompat(userStyle.foregroundColor,
+                    userStyle.backgroundColor, VERSION.SDK_INT >= 21 ? userStyle.windowColor : Color.TRANSPARENT,
+                    userStyle.edgeType,
+                    userStyle.edgeColor, userStyle.getTypeface());
             mSubtitleView.setStyle(style);
 
             float textSizePx = getTextSizePx();

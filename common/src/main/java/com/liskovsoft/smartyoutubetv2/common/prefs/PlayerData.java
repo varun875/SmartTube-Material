@@ -7,7 +7,7 @@ import android.os.Build.VERSION;
 
 import androidx.annotation.NonNull;
 
-import androidx.media3.common.text.CaptionStyleCompat;
+import androidx.media3.ui.CaptionStyleCompat;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.sharedutils.locale.LocaleUtility;
 import com.liskovsoft.smartyoutubetv2.common.R;
@@ -376,7 +376,8 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
     }
 
     public void setFormat(FormatItem format) {
-        //if (format == null || Helpers.equalsAny(format, mVideoFormat, mAudioFormat, mSubtitleFormat)) {
+        // if (format == null || Helpers.equalsAny(format, mVideoFormat, mAudioFormat,
+        // mSubtitleFormat)) {
         if (format == null) {
             return;
         }
@@ -393,7 +394,7 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
                 mSubtitleFormat = format;
                 break;
         }
-        
+
         persistState();
     }
 
@@ -699,9 +700,11 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
     }
 
     public FormatItem getDefaultAudioFormat() {
-        // Android 4 (probably some others) doesn't support opus (ac3 will be reverted to opus)
+        // Android 4 (probably some others) doesn't support opus (ac3 will be reverted
+        // to opus)
         // Note, 5.1 mp4a doesn't work in 5.1 mode
-        // Use opus (ac3 fallback) on modern devices. vp9 and opus should be supported at the same time?
+        // Use opus (ac3 fallback) on modern devices. vp9 and opus should be supported
+        // at the same time?
         return Helpers.isVP9ResolutionSupported(2160) ? FormatItem.AUDIO_51_AC3 : FormatItem.AUDIO_HQ_MP4A;
     }
 
@@ -745,12 +748,18 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
     }
 
     private void initSubtitleStyles() {
-        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_white_transparent, R.color.light_grey, R.color.transparent, CaptionStyleCompat.EDGE_TYPE_DROP_SHADOW));
-        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_white_semi_transparent, R.color.light_grey, R.color.semi_transparent, CaptionStyleCompat.EDGE_TYPE_OUTLINE));
-        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_white_black, R.color.light_grey, R.color.black, CaptionStyleCompat.EDGE_TYPE_OUTLINE));
-        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_yellow_transparent, R.color.yellow, R.color.transparent, CaptionStyleCompat.EDGE_TYPE_DROP_SHADOW));
-        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_yellow_semi_transparent, R.color.yellow, R.color.semi_transparent, CaptionStyleCompat.EDGE_TYPE_OUTLINE));
-        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_yellow_black, R.color.yellow, R.color.black, CaptionStyleCompat.EDGE_TYPE_OUTLINE));
+        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_white_transparent, R.color.light_grey,
+                R.color.transparent, CaptionStyleCompat.EDGE_TYPE_DROP_SHADOW));
+        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_white_semi_transparent, R.color.light_grey,
+                R.color.semi_transparent, CaptionStyleCompat.EDGE_TYPE_OUTLINE));
+        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_white_black, R.color.light_grey, R.color.black,
+                CaptionStyleCompat.EDGE_TYPE_OUTLINE));
+        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_yellow_transparent, R.color.yellow, R.color.transparent,
+                CaptionStyleCompat.EDGE_TYPE_DROP_SHADOW));
+        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_yellow_semi_transparent, R.color.yellow,
+                R.color.semi_transparent, CaptionStyleCompat.EDGE_TYPE_OUTLINE));
+        mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_yellow_black, R.color.yellow, R.color.black,
+                CaptionStyleCompat.EDGE_TYPE_OUTLINE));
 
         if (VERSION.SDK_INT >= 19) {
             mSubtitleStyles.add(new SubtitleStyle(R.string.subtitle_system));
@@ -783,7 +792,8 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
         // afrData was there
         mVideoFormat = Helpers.firstNonNull(ExoFormatItem.from(Helpers.parseStr(split, 9)), getDefaultVideoFormat());
         mAudioFormat = Helpers.firstNonNull(ExoFormatItem.from(Helpers.parseStr(split, 10)), getDefaultAudioFormat());
-        mSubtitleFormat = Helpers.firstNonNull(ExoFormatItem.from(Helpers.parseStr(split, 11)), getDefaultSubtitleFormat());
+        mSubtitleFormat = Helpers.firstNonNull(ExoFormatItem.from(Helpers.parseStr(split, 11)),
+                getDefaultSubtitleFormat());
         mVideoBufferType = Helpers.parseInt(split, 12, PlayerEngine.BUFFER_MEDIUM);
         mSubtitleStyleIndex = Helpers.parseInt(split, 13, 4); // yellow on semi bg
         mResizeMode = Helpers.parseInt(split, 14, PlayerEngine.RESIZE_MODE_DEFAULT);
@@ -857,14 +867,20 @@ public class PlayerData extends DataChangeBase implements PlayerConstants, Profi
                 mIsClockEnabled, mIsRemainingTimeEnabled, mBackgroundMode, null, // afrData was there
                 mVideoFormat, mAudioFormat, mSubtitleFormat,
                 mVideoBufferType, mSubtitleStyleIndex, mResizeMode, mSpeed,
-                mIsAfrEnabled, mIsAfrFpsCorrectionEnabled, mIsAfrResSwitchEnabled, null, mAudioDelayMs, mIsAllSpeedEnabled, null, null,
+                mIsAfrEnabled, mIsAfrFpsCorrectionEnabled, mIsAfrResSwitchEnabled, null, mAudioDelayMs,
+                mIsAllSpeedEnabled, null, null,
                 mIsLegacyCodecsForced, mIsSleepTimerEnabled, null, null, // old player tweaks
-                mIsQualityInfoEnabled, mIsSpeedPerVideoEnabled, mAspectRatio, mIsGlobalClockEnabled, mIsTimeCorrectionEnabled,
-                mIsGlobalEndingTimeEnabled, mIsEndingTimeEnabled, mIsDoubleRefreshRateEnabled, mIsSeekConfirmPlayEnabled,
-                mStartSeekIncrementMs, null, mSubtitleScale, mPlayerVolume, mIsTooltipsEnabled, mSubtitlePosition, mIsNumberKeySeekEnabled,
-                mIsSkip24RateEnabled, mAfrPauseMs, mIsLiveChatEnabled, mLastSubtitleFormats, mLastSpeed, mRotationAngle, mZoomPercents, mPlaybackMode, mAudioLanguage, mSubtitleLanguage, mEnabledSubtitlesPerChannel, mIsSubtitlesPerChannelEnabled,
-                mIsSpeedPerChannelEnabled, Helpers.mergeArray(mSpeeds.values().toArray()), mPitch, mIsSkipShortsEnabled, mLastAudioLanguages, mIsVideoFlipEnabled
-        ));
+                mIsQualityInfoEnabled, mIsSpeedPerVideoEnabled, mAspectRatio, mIsGlobalClockEnabled,
+                mIsTimeCorrectionEnabled,
+                mIsGlobalEndingTimeEnabled, mIsEndingTimeEnabled, mIsDoubleRefreshRateEnabled,
+                mIsSeekConfirmPlayEnabled,
+                mStartSeekIncrementMs, null, mSubtitleScale, mPlayerVolume, mIsTooltipsEnabled, mSubtitlePosition,
+                mIsNumberKeySeekEnabled,
+                mIsSkip24RateEnabled, mAfrPauseMs, mIsLiveChatEnabled, mLastSubtitleFormats, mLastSpeed, mRotationAngle,
+                mZoomPercents, mPlaybackMode, mAudioLanguage, mSubtitleLanguage, mEnabledSubtitlesPerChannel,
+                mIsSubtitlesPerChannelEnabled,
+                mIsSpeedPerChannelEnabled, Helpers.mergeArray(mSpeeds.values().toArray()), mPitch, mIsSkipShortsEnabled,
+                mLastAudioLanguages, mIsVideoFlipEnabled));
     }
 
     @Override

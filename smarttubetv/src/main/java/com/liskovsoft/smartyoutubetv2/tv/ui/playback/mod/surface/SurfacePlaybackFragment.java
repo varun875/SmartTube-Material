@@ -18,7 +18,8 @@ import com.liskovsoft.smartyoutubetv2.common.prefs.PlayerTweaksData;
 import com.liskovsoft.smartyoutubetv2.tv.util.ViewUtil;
 
 /**
- * Subclass of {@link PlaybackSupportFragment} that is responsible for providing a {@link SurfaceView}
+ * Subclass of {@link PlaybackSupportFragment} that is responsible for providing
+ * a {@link SurfaceView}
  * and rendering video.
  */
 public class SurfacePlaybackFragment extends PlaybackSupportFragment {
@@ -34,11 +35,12 @@ public class SurfacePlaybackFragment extends PlaybackSupportFragment {
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) super.onCreateView(inflater, container, savedInstanceState);
         mVideoSurfaceWrapper = (PlayerTweaksData.instance(getContext()).isTextureViewEnabled() ||
-                PlayerData.instance(getContext()).getRotationAngle() != 0) ?
-                new TextureViewWrapper(getContext(), root) : new SurfaceViewWrapper(getContext(), root);
+                PlayerData.instance(getContext()).getRotationAngle() != 0) ? new TextureViewWrapper(getContext(), root)
+                        : new SurfaceViewWrapper(getContext(), root);
         mVideoSurfaceRoot = root.findViewById(com.liskovsoft.smartyoutubetv2.tv.R.id.surface_root);
         mVideoSurfaceRoot.addView(mVideoSurfaceWrapper.getSurfaceView(), 0);
-        mVideoSurfaceRoot.setAspectRatioListener((targetAspectRatio, naturalAspectRatio, aspectRatioMismatch) -> scaleIfNeeded());
+        mVideoSurfaceRoot.setAspectRatioListener(
+                (targetAspectRatio, naturalAspectRatio, aspectRatioMismatch) -> scaleIfNeeded());
         setBackgroundType(PlaybackSupportFragment.BG_LIGHT);
         return root;
     }
@@ -86,7 +88,7 @@ public class SurfacePlaybackFragment extends PlaybackSupportFragment {
     }
 
     protected void setZoom(int percents) {
-        mVideoSurfaceRoot.setZoom(percents);
+        // mVideoSurfaceRoot.setZoom(percents);
     }
 
     protected void setAspect(float aspectRatio) {
@@ -168,6 +170,7 @@ public class SurfacePlaybackFragment extends PlaybackSupportFragment {
 
     /**
      * Setup player's background used when controls are showed.
+     * 
      * @param resId background
      */
     protected void setBackgroundResource(int resId) {

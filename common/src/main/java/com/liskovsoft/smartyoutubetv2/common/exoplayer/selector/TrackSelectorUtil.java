@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 import androidx.media3.common.Format;
 import androidx.media3.common.Player;
-import androidx.media3.common.util.MimeTypes;
+import androidx.media3.common.MimeTypes;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.track.SubtitleTrack;
 
@@ -51,15 +51,20 @@ public class TrackSelectorUtil {
     public static CharSequence buildTrackNameShort(Format format) {
         String trackName;
         if (MimeTypes.isVideo(format.sampleMimeType)) {
-            trackName = joinWithSeparator(joinWithSeparator(joinWithSeparator(joinWithSeparator(joinWithSeparator(buildResolutionShortString(format),
-                    buildFPSString(format)), buildBitrateString(format)), extractCodec(format)), buildHDRString(format)), buildHighBitrateMark(format));
+            trackName = joinWithSeparator(joinWithSeparator(
+                    joinWithSeparator(joinWithSeparator(joinWithSeparator(buildResolutionShortString(format),
+                            buildFPSString(format)), buildBitrateString(format)), extractCodec(format)),
+                    buildHDRString(format)), buildHighBitrateMark(format));
         } else if (MimeTypes.isAudio(format.sampleMimeType)) {
-            trackName = joinWithSeparator(joinWithSeparator(joinWithSeparator(joinWithSeparator(joinWithSeparator(buildLanguageString(format),
-                    buildAudioPropertyString(format)), buildBitrateString(format)), extractCodec(format)), buildChannels(format)), buildDrcMark(format));
+            trackName = joinWithSeparator(joinWithSeparator(
+                    joinWithSeparator(joinWithSeparator(joinWithSeparator(buildLanguageString(format),
+                            buildAudioPropertyString(format)), buildBitrateString(format)), extractCodec(format)),
+                    buildChannels(format)), buildDrcMark(format));
         } else if (MimeTypes.isText(format.sampleMimeType)) {
             trackName = buildLanguageString(format);
         } else {
-            trackName = joinWithSeparator(joinWithSeparator(buildLanguageString(format), buildBitrateString(format)), extractCodec(format));
+            trackName = joinWithSeparator(joinWithSeparator(buildLanguageString(format), buildBitrateString(format)),
+                    extractCodec(format));
         }
         return trackName.length() == 0 ? "unknown" : trackName;
     }
@@ -101,17 +106,19 @@ public class TrackSelectorUtil {
     }
 
     private static String buildAudioPropertyString(Format format) {
-        return format.channelCount == Format.NO_VALUE || format.sampleRate == Format.NO_VALUE ? "" :
-                format.channelCount + "ch, " + format.sampleRate + "Hz";
+        return format.channelCount == Format.NO_VALUE || format.sampleRate == Format.NO_VALUE ? ""
+                : format.channelCount + "ch, " + format.sampleRate + "Hz";
     }
 
     private static String buildLanguageString(Format format) {
-        return TextUtils.isEmpty(format.language) || "und".equals(format.language) ? "" : SubtitleTrack.trimIfAuto(format.language);
+        return TextUtils.isEmpty(format.language) || "und".equals(format.language) ? ""
+                : SubtitleTrack.trimIfAuto(format.language);
     }
 
     private static String buildBitrateString(Format format) {
         double bitrateMB = Helpers.round(format.bitrate / 1_000_000f, 2);
-        return format.bitrate == Format.NO_VALUE || bitrateMB == 0 ? "" : String.format("%sMbps", Helpers.formatFloat(bitrateMB));
+        return format.bitrate == Format.NO_VALUE || bitrateMB == 0 ? ""
+                : String.format("%sMbps", Helpers.formatFloat(bitrateMB));
     }
 
     private static String joinWithSeparator(String first, String second) {
@@ -142,7 +149,8 @@ public class TrackSelectorUtil {
             return false;
         }
 
-        return codec.equals(CODEC_PREFIX_VP9_HDR) || Helpers.endsWithAny(codec, CODEC_SUFFIX_AV1_HDR, CODEC_SUFFIX_AV1_HDR2, HDR_PROFILE_ENDING);
+        return codec.equals(CODEC_PREFIX_VP9_HDR)
+                || Helpers.endsWithAny(codec, CODEC_SUFFIX_AV1_HDR, CODEC_SUFFIX_AV1_HDR2, HDR_PROFILE_ENDING);
     }
 
     private static boolean isHdrFormat(String id) {
@@ -155,7 +163,7 @@ public class TrackSelectorUtil {
 
         int parsed = Helpers.parseInt(id);
 
-        return (parsed >= 330 && parsed <= 337) || (parsed >= 694 && parsed <=701);
+        return (parsed >= 330 && parsed <= 337) || (parsed >= 694 && parsed <= 701);
     }
 
     public static String extractCodec(Format format) {
@@ -178,7 +186,8 @@ public class TrackSelectorUtil {
 
         String codec = codecNameFull.toLowerCase();
 
-        String[] codecNames = {CODEC_PREFIX_AV1, CODEC_PREFIX_AVC, CODEC_PREFIX_VP9, CODEC_PREFIX_VP09, CODEC_PREFIX_MP4A, CODEC_PREFIX_VORBIS};
+        String[] codecNames = { CODEC_PREFIX_AV1, CODEC_PREFIX_AVC, CODEC_PREFIX_VP9, CODEC_PREFIX_VP09,
+                CODEC_PREFIX_MP4A, CODEC_PREFIX_VORBIS };
 
         for (String codecName : codecNames) {
             if (codec.contains(codecName)) {
@@ -213,7 +222,8 @@ public class TrackSelectorUtil {
     }
 
     public static boolean isDrc(Format format) {
-        return format != null && (Helpers.endsWithAny(format.id, "drc") || format.isDrc);
+        // format.isDrc is removed in Media3
+        return format != null && Helpers.endsWithAny(format.id, "drc");
     }
 
     public static boolean is51Audio(Format format) {
@@ -241,10 +251,9 @@ public class TrackSelectorUtil {
     }
 
     public static String stateToString(int playbackState) {
-        return playbackState == Player.STATE_BUFFERING ? "STATE_BUFFERING" :
-                playbackState == Player.STATE_READY ? "STATE_READY" :
-                playbackState == Player.STATE_IDLE ? "STATE_IDLE" :
-                "STATE_ENDED";
+        return playbackState == Player.STATE_BUFFERING ? "STATE_BUFFERING"
+                : playbackState == Player.STATE_READY ? "STATE_READY"
+                        : playbackState == Player.STATE_IDLE ? "STATE_IDLE" : "STATE_ENDED";
     }
 
     /**
@@ -307,7 +316,7 @@ public class TrackSelectorUtil {
 
         // Non-regular examples
         // Мастерская Синдиката - Мы собрали суперкар КУВАЛДОЙ! - 2560x1182
-        // [AMATORY] ALL STARS: LIVE IN MOSCOW 2021 - 2560x1088 
+        // [AMATORY] ALL STARS: LIVE IN MOSCOW 2021 - 2560x1088
 
         if (height < 160) { // 256x144
             originHeight = 144;
@@ -373,12 +382,13 @@ public class TrackSelectorUtil {
             return -1;
         }
 
-        // Make resolution calculation of the vertical videos more closer to the official app.
-        boolean isUltraWide = (float) width/height >= 2.1; // maybe 2.3???
+        // Make resolution calculation of the vertical videos more closer to the
+        // official app.
+        boolean isUltraWide = (float) width / height >= 2.1; // maybe 2.3???
         int originHeight = isUltraWide ? getHeightByWidth(width) : getOriginHeight(Math.min(height, width));
 
         // Ignore vertical videos completely. Only height matters.
-        //int originHeight = getOriginHeight(height);
+        // int originHeight = getOriginHeight(height);
 
         return originHeight;
     }

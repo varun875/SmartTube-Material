@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="header_home">Home</string>
     <string name="title_search">Search</string>
@@ -83,7 +83,7 @@
     <string name="player_only_pause">Only pause</string>
     <string name="check_for_updates">Check for updates</string>
     <string name="update_not_found">You\'re using the latest version</string>
-    <string name="update_in_progress">Wait…</string>
+    <string name="update_in_progress">Waitâ€¦</string>
     <string name="player_ui_hide_behavior">Auto-hide UI</string>
     <string name="option_never">Never</string>
     <string name="side_panel_sections">Set-up sections</string>
@@ -165,9 +165,9 @@
     <string name="share_link">Share link</string>
     <string name="share_qr_link">Share link (QR code)</string>
     <string name="subscribe_to_channel">Subscribe to the channel</string>
-    <string name="wait_data_loading">Please wait while data is loading…</string>
+    <string name="wait_data_loading">Please wait while data is loadingâ€¦</string>
     <string name="auto_frame_rate_pause">Auto Frame Rate (pause when switching)</string>
-    <string name="auto_frame_rate_applying">Applying auto frame rate %sx%s\@%s</string>
+    <string name="auto_frame_rate_applying">Applying auto frame rate %1$sx%2$s\@%3$s</string>
     <string name="audio_shift">Audio shift</string>
     <string name="player_remember_speed">Remember speed</string>
     <string name="mark_channel_as_watched">Mark as watched</string>
@@ -180,7 +180,7 @@
     <string name="settings_ui_scale">UI scale</string>
     <string name="msg_restart_app">Please restart the app to apply these settings</string>
     <string name="settings_block">Content blocking</string>
-    <string name="msg_applying">Applying %s…</string>
+    <string name="msg_applying">Applying %sâ€¦</string>
     <string name="msg_done">Done</string>
     <string name="settings_general">General</string>
     <string name="settings_video">Video</string>
@@ -194,7 +194,7 @@
     <string name="content_block_music_off_topic">Non-music section of clip</string>
     <string name="confirm_segment_skip">Skip segment \"%s\"\?</string>
     <string name="cancel_segment_skip">Cancel segment skip</string>
-    <string name="msg_skipping_segment">Skipping segment \"%s\"…</string>
+    <string name="msg_skipping_segment">Skipping segment \"%s\"â€¦</string>
     <string name="content_block_notification_type">Notification type</string>
     <string name="content_block_notify_none">Without notification</string>
     <string name="content_block_notify_toast">Toast</string>
@@ -205,7 +205,7 @@
     <string name="player_low_video_quality">Low video quality</string>
     <string name="remote_session_closed">Remote session has been closed</string>
     <string name="msg_mode_switch_error">Can\'t switch display mode to \"%s\"</string>
-    <string name="msg_player_error">Player error occurred %s. Restarting playback…</string>
+    <string name="msg_player_error">Player error occurred %s. Restarting playbackâ€¦</string>
     <string name="video_preset_disabled">Without preset</string>
     <string name="video_preset_enabled">Format of the next video will be set according to preset</string>
     <string name="player_sleep_timer">Sleep timer</string>
@@ -376,9 +376,9 @@
     <string name="proxy_credentials_invalid">Invalid username or password.</string>
     <string name="proxy_test_aborted">Test aborted, please fix proxy settings first.</string>
     <string name="proxy_application_aborted">Please correct proxy settings first.</string>
-    <string name="proxy_test_start">Test #%d: %s …</string>
-    <string name="proxy_test_error">Error #%d: %s</string>
-    <string name="proxy_test_status">Status #%d: %s %d %s</string>
+    <string name="proxy_test_start">Test #%1$d: %2$s â€¦</string>
+    <string name="proxy_test_error">Error #%1$d: %2$s</string>
+    <string name="proxy_test_status">Status #%1$d: %1$s %1$d %1$s</string>
     <string name="openvpn_config_address_hint">Config file address (*.ovpn)</string>
     <string name="enable_openvpn">Use OpenVPN</string>
     <string name="openvpn_settings_title">OpenVPN Settings</string>
@@ -465,9 +465,9 @@
     <string name="unset_stream_reminder">Unset stream reminder</string>
     <string name="set_stream_reminder">Set stream reminder</string>
     <string name="playback_starts_shortly">Playback will start automatically when the stream will be ready</string>
-    <string name="starting_stream">Starting the stream…</string>
+    <string name="starting_stream">Starting the streamâ€¦</string>
     <string name="action_playlist_remove">Remove from playlist</string>
-    <string name="signin_view_title">User Code is loading…</string>
+    <string name="signin_view_title">User Code is loadingâ€¦</string>
     <string name="signin_view_description">To sign-in enter this code on page %s\nNOTE. Works only with Firefox or Chrome browsers.</string>
     <string name="signin_view_action_text">Done</string>
     <string name="require_checked">Requires \"%s\"</string>
@@ -536,7 +536,7 @@
     <string name="chapters">Chapters</string>
     <string name="card_multiline_subtitle">Multiline subtitles</string>
     <string name="auto_frame_rate_modes">Supported modes</string>
-    <string name="loading">Loading…</string>
+    <string name="loading">Loadingâ€¦</string>
     <string name="hide_streams">Hide streams from Subscriptions</string>
     <string name="video_rotate">Rotate</string>
     <string name="video_flip">Flip (mirror)</string>
@@ -544,7 +544,7 @@
     <string name="video_duration_any">Any</string>
     <string name="video_duration">Duration</string>
     <string name="video_duration_under_4">Under 4 minutes</string>
-    <string name="video_duration_between_4_20">4–20 minutes</string>
+    <string name="video_duration_between_4_20">4â€“20 minutes</string>
     <string name="video_duration_over_20">Over 20 minutes</string>
     <string name="content_type">Type</string>
     <string name="content_type_any">Any</string>
@@ -682,7 +682,7 @@
     <string name="calm_msg">We are fixing the issue. Check for updates from time to time</string>
     <string name="without_picture">Without picture</string>
     <string name="video_disabled">Video disabled</string>
-    <string name="applying_fix">Don\'t close the player. Applying the fix…</string>
+    <string name="applying_fix">Don\'t close the player. Applying the fixâ€¦</string>
     <string name="hide_mixes">Hide Mixes</string>
     <string name="player_global_focus_desc">This feature affects which player button will receive focus when navigating between player button rows</string>
     <string name="disable_network_error_fixing">Disable automatic network error fixing</string>

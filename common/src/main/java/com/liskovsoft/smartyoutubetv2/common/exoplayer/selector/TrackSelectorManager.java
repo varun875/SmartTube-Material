@@ -7,13 +7,15 @@ import android.util.Pair;
 
 import androidx.media3.common.Format;
 import androidx.media3.common.TrackGroup;
-// TrackGroupArray removed in Media3, use Tracks
+import androidx.media3.common.Tracks;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector.Parameters;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector.SelectionOverride;
 import androidx.media3.exoplayer.trackselection.MappingTrackSelector.MappedTrackInfo;
+import androidx.media3.exoplayer.source.TrackGroupArray;
+import androidx.media3.exoplayer.trackselection.ExoTrackSelection;
+import androidx.media3.exoplayer.trackselection.ExoTrackSelection.Definition;
 import androidx.media3.exoplayer.trackselection.TrackSelection;
-import androidx.media3.exoplayer.trackselection.TrackSelection.Definition;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.sharedutils.mylogger.Log;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.track.AudioTrack;
@@ -61,8 +63,11 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
     /**
      * Shows the selection dialog for a given renderer.
+     * 
      * @param rendererIndex The index of the renderer. <br/>
-     *                      One of the {@link #RENDERER_INDEX_VIDEO}, {@link #RENDERER_INDEX_AUDIO}, {@link #RENDERER_INDEX_SUBTITLE}
+     *                      One of the {@link #RENDERER_INDEX_VIDEO},
+     *                      {@link #RENDERER_INDEX_AUDIO},
+     *                      {@link #RENDERER_INDEX_SUBTITLE}
      */
     private Set<MediaTrack> getAvailableTracks(int rendererIndex) {
         initRenderer(rendererIndex);
@@ -76,8 +81,11 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
     /**
      * Creates renderer structure.
+     * 
      * @param rendererIndex The index of the renderer. <br/>
-     *                      One of the {@link #RENDERER_INDEX_VIDEO}, {@link #RENDERER_INDEX_AUDIO}, {@link #RENDERER_INDEX_SUBTITLE}
+     *                      One of the {@link #RENDERER_INDEX_VIDEO},
+     *                      {@link #RENDERER_INDEX_AUDIO},
+     *                      {@link #RENDERER_INDEX_SUBTITLE}
      */
     private void initRenderer(int rendererIndex) {
         if (mRenderers[rendererIndex] != null && mRenderers[rendererIndex].mediaTracks != null) {
@@ -95,10 +103,13 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
     /**
      * Creates renderer structure.
+     * 
      * @param rendererIndex The index of the renderer. <br/>
-     *                      One of the {@link #RENDERER_INDEX_VIDEO}, {@link #RENDERER_INDEX_AUDIO}, {@link #RENDERER_INDEX_SUBTITLE}
-     * @param trackInfo supplied externally from {@link RestoreTrackSelector}
-     * @param parameters supplied externally from {@link RestoreTrackSelector}
+     *                      One of the {@link #RENDERER_INDEX_VIDEO},
+     *                      {@link #RENDERER_INDEX_AUDIO},
+     *                      {@link #RENDERER_INDEX_SUBTITLE}
+     * @param trackInfo     supplied externally from {@link RestoreTrackSelector}
+     * @param parameters    supplied externally from {@link RestoreTrackSelector}
      */
     private void initRenderer(int rendererIndex, MappedTrackInfo trackInfo, Parameters parameters) {
         if (mRenderers[rendererIndex] != null && mRenderers[rendererIndex].mediaTracks != null) {
@@ -111,17 +122,20 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
     /**
      * Creates renderer structure.
+     * 
      * @param rendererIndex The index of the renderer. <br/>
-     *                      One of the {@link #RENDERER_INDEX_VIDEO}, {@link #RENDERER_INDEX_AUDIO}, {@link #RENDERER_INDEX_SUBTITLE}
-     * @param groups supplied externally from {@link RestoreTrackSelector}
-     * @param parameters supplied externally from {@link RestoreTrackSelector}
+     *                      One of the {@link #RENDERER_INDEX_VIDEO},
+     *                      {@link #RENDERER_INDEX_AUDIO},
+     *                      {@link #RENDERER_INDEX_SUBTITLE}
+     * @param groups        supplied externally from {@link RestoreTrackSelector}
+     * @param parameters    supplied externally from {@link RestoreTrackSelector}
      */
     private void initRenderer(int rendererIndex, TrackGroupArray groups, Parameters parameters) {
         if (mRenderers[rendererIndex] != null && mRenderers[rendererIndex].mediaTracks != null) {
             return;
         }
 
-        initTrackGroups(rendererIndex, groups, parameters);
+        initTrackGroupsInternal(rendererIndex, groups, parameters);
         initMediaTracks(rendererIndex);
     }
 
@@ -138,10 +152,10 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
         TrackGroupArray trackGroups = trackInfo.getTrackGroups(rendererIndex);
 
-        initTrackGroups(rendererIndex, trackGroups, parameters);
+        initTrackGroupsInternal(rendererIndex, trackGroups, parameters);
     }
 
-    private void initTrackGroups(int rendererIndex, TrackGroupArray trackGroups, Parameters parameters) {
+    private void initTrackGroupsInternal(int rendererIndex, TrackGroupArray trackGroups, Parameters parameters) {
         Renderer renderer = new Renderer();
         mRenderers[rendererIndex] = renderer;
 
@@ -157,8 +171,10 @@ public class TrackSelectorManager implements TrackSelectorCallback {
         Renderer renderer = mRenderers[rendererIndex];
         renderer.mediaTracks = new MediaTrack[renderer.trackGroups.length][];
         // Fix for java.util.ConcurrentModificationException inside of:
-        // com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.ExoFormatItem.from (ExoFormatItem.java:44)
-        // Won't help: renderer.sortedTracks = Collections.synchronizedSortedSet(new TreeSet<>(new MediaTrackFormatComparator()));
+        // com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.ExoFormatItem.from
+        // (ExoFormatItem.java:44)
+        // Won't help: renderer.sortedTracks = Collections.synchronizedSortedSet(new
+        // TreeSet<>(new MediaTrackFormatComparator()));
         SortedSet<MediaTrack> sortedTracks = new TreeSet<>(new MediaTrackFormatComparator());
 
         // AUTO OPTION: add disable track option
@@ -169,25 +185,25 @@ public class TrackSelectorManager implements TrackSelectorCallback {
         sortedTracks.add(noMediaTrack);
         renderer.selectedTrack = noMediaTrack;
 
-        //if (rendererIndex == RENDERER_INDEX_SUBTITLE) {
-        //    // AUTO OPTION: add disable subs option
-        //    MediaTrack noSubsTrack = MediaTrack.forRendererIndex(rendererIndex);
-        //    // Temporal selection.
-        //    // Real selection will be override later on setSelection() routine.
-        //    noSubsTrack.isSelected = true;
-        //    sortedTracks.add(noSubsTrack);
-        //    renderer.selectedTrack = noSubsTrack;
-        //} else if (rendererIndex == RENDERER_INDEX_AUDIO) {
-        //    MediaTrack noAudioTrack = MediaTrack.forRendererIndex(rendererIndex);
-        //    noAudioTrack.isSelected = true;
-        //    sortedTracks.add(noAudioTrack);
-        //    renderer.selectedTrack = noAudioTrack;
-        //} else if (rendererIndex == RENDERER_INDEX_VIDEO) {
-        //    MediaTrack noVideoTrack = MediaTrack.forRendererIndex(rendererIndex);
-        //    noVideoTrack.isSelected = true;
-        //    sortedTracks.add(noVideoTrack);
-        //    renderer.selectedTrack = noVideoTrack;
-        //}
+        // if (rendererIndex == RENDERER_INDEX_SUBTITLE) {
+        // // AUTO OPTION: add disable subs option
+        // MediaTrack noSubsTrack = MediaTrack.forRendererIndex(rendererIndex);
+        // // Temporal selection.
+        // // Real selection will be override later on setSelection() routine.
+        // noSubsTrack.isSelected = true;
+        // sortedTracks.add(noSubsTrack);
+        // renderer.selectedTrack = noSubsTrack;
+        // } else if (rendererIndex == RENDERER_INDEX_AUDIO) {
+        // MediaTrack noAudioTrack = MediaTrack.forRendererIndex(rendererIndex);
+        // noAudioTrack.isSelected = true;
+        // sortedTracks.add(noAudioTrack);
+        // renderer.selectedTrack = noAudioTrack;
+        // } else if (rendererIndex == RENDERER_INDEX_VIDEO) {
+        // MediaTrack noVideoTrack = MediaTrack.forRendererIndex(rendererIndex);
+        // noVideoTrack.isSelected = true;
+        // sortedTracks.add(noVideoTrack);
+        // renderer.selectedTrack = noVideoTrack;
+        // }
 
         for (int groupIndex = 0; groupIndex < renderer.trackGroups.length; groupIndex++) {
             TrackGroup group = renderer.trackGroups.get(groupIndex);
@@ -209,7 +225,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
                     continue;
                 }
 
-                if (!PlayerTweaksData.instance(mContext).isAllFormatsUnlocked() && !Utils.isFormatSupported(mediaTrack)) {
+                if (!PlayerTweaksData.instance(mContext).isAllFormatsUnlocked()
+                        && !Utils.isFormatSupported(mediaTrack)) {
                     continue;
                 }
 
@@ -234,7 +251,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
             return;
         }
 
-        // Adaptive selection should be disabled in RestoreTrackSelector (e.g trackIndexes.length == 1)
+        // Adaptive selection should be disabled in RestoreTrackSelector (e.g
+        // trackIndexes.length == 1)
 
         // We need to circle through the tracks to remove previously selected marks.
 
@@ -254,7 +272,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
                     continue;
                 }
 
-                mediaTrack.isSelected = groupIndex == trackGroupIndex && Helpers.equalsAny(trackIndex, trackIndexes) && !renderer.isDisabled;
+                mediaTrack.isSelected = groupIndex == trackGroupIndex && Helpers.equalsAny(trackIndex, trackIndexes)
+                        && !renderer.isDisabled;
 
                 if (mediaTrack.isSelected) {
                     renderer.selectedTrack = mediaTrack;
@@ -269,21 +288,24 @@ public class TrackSelectorManager implements TrackSelectorCallback {
         renderer.selectedTrack = renderer.selectedTrack == null ? noMediaTrack : renderer.selectedTrack;
 
         //// Special handling for tracks with auto option
-        //if (rendererIndex == RENDERER_INDEX_SUBTITLE && renderer.selectedTrack == null) { // no subs selected
-        //    MediaTrack noSubsTrack = renderer.sortedTracks.first();
-        //    noSubsTrack.isSelected = true;
-        //    renderer.selectedTrack = noSubsTrack;
-        //} else if (rendererIndex == RENDERER_INDEX_AUDIO && renderer.selectedTrack == null) { // no audio selected
-        //    MediaTrack noAudioTrack = renderer.sortedTracks.first();
-        //    noAudioTrack.isSelected = true;
-        //    renderer.selectedTrack = noAudioTrack;
-        //    renderer.isDisabled = true;
-        //} else if (rendererIndex == RENDERER_INDEX_VIDEO && renderer.selectedTrack == null) { // no video selected
-        //    MediaTrack noVideoTrack = renderer.sortedTracks.first();
-        //    noVideoTrack.isSelected = true;
-        //    renderer.selectedTrack = noVideoTrack;
-        //    renderer.isDisabled = true;
-        //}
+        // if (rendererIndex == RENDERER_INDEX_SUBTITLE && renderer.selectedTrack ==
+        //// null) { // no subs selected
+        // MediaTrack noSubsTrack = renderer.sortedTracks.first();
+        // noSubsTrack.isSelected = true;
+        // renderer.selectedTrack = noSubsTrack;
+        // } else if (rendererIndex == RENDERER_INDEX_AUDIO && renderer.selectedTrack ==
+        //// null) { // no audio selected
+        // MediaTrack noAudioTrack = renderer.sortedTracks.first();
+        // noAudioTrack.isSelected = true;
+        // renderer.selectedTrack = noAudioTrack;
+        // renderer.isDisabled = true;
+        // } else if (rendererIndex == RENDERER_INDEX_VIDEO && renderer.selectedTrack ==
+        //// null) { // no video selected
+        // MediaTrack noVideoTrack = renderer.sortedTracks.first();
+        // noVideoTrack.isSelected = true;
+        // renderer.selectedTrack = noVideoTrack;
+        // renderer.isDisabled = true;
+        // }
     }
 
     private void enableAutoSelection(int rendererIndex) {
@@ -329,7 +351,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
         return definitionPair;
     }
 
-    private Pair<Definition, MediaTrack> createRendererSelection(int rendererIndex, TrackGroupArray groups, Parameters params) {
+    private Pair<Definition, MediaTrack> createRendererSelection(int rendererIndex, TrackGroupArray groups,
+            Parameters params) {
         if (mSelectedTracks[rendererIndex] == null || params.hasSelectionOverride(rendererIndex, groups)) {
             return null;
         }
@@ -338,61 +361,67 @@ public class TrackSelectorManager implements TrackSelectorCallback {
         return createSelection(groups, mSelectedTracks[rendererIndex]);
     }
 
-    private void updateRendererSelection(int rendererIndex, TrackGroupArray groups, Parameters params, Definition definition) {
+    private void updateRendererSelection(int rendererIndex, TrackGroupArray groups, Parameters params,
+            Definition definition) {
         initRenderer(rendererIndex, groups, params);
 
         definition = getOverride(rendererIndex, groups, params, definition);
-        
+
         setSelection(rendererIndex, groups.indexOf(definition.group), definition.tracks);
     }
 
-    private Definition getOverride(int rendererIndex, TrackGroupArray rendererTrackGroups, Parameters params, Definition original) {
+    private Definition getOverride(int rendererIndex, TrackGroupArray rendererTrackGroups, Parameters params,
+            Definition original) {
         Definition definition = original;
 
         if (params.hasSelectionOverride(rendererIndex, rendererTrackGroups)) {
             SelectionOverride override = params.getSelectionOverride(rendererIndex, rendererTrackGroups);
 
             if (override != null) {
-                definition = new TrackSelection.Definition(
-                                rendererTrackGroups.get(override.groupIndex),
-                                override.tracks,
-                                override.reason,
-                                override.data);
+                definition = new ExoTrackSelection.Definition(
+                        rendererTrackGroups.get(override.groupIndex),
+                        override.tracks);
             }
         }
 
         return definition;
     }
 
-    @Override
-    public Pair<Definition, MediaTrack> onSelectVideoTrack(TrackGroupArray groups, Parameters params) {
-        return createRendererSelection(RENDERER_INDEX_VIDEO, groups, params);
-    }
-
-    @Override
-    public Pair<Definition, MediaTrack> onSelectAudioTrack(TrackGroupArray groups, Parameters params) {
-        return createRendererSelection(RENDERER_INDEX_AUDIO, groups, params);
-    }
-
-    @Override
-    public Pair<Definition, MediaTrack> onSelectSubtitleTrack(TrackGroupArray groups, Parameters params) {
-        return createRendererSelection(RENDERER_INDEX_SUBTITLE, groups, params);
-    }
-
-    @Override
-    public void updateVideoTrackSelection(TrackGroupArray groups, Parameters params, Definition definition) {
-        updateRendererSelection(RENDERER_INDEX_VIDEO, groups, params, definition);
-    }
-
-    @Override
-    public void updateAudioTrackSelection(TrackGroupArray groups, Parameters params, Definition definition) {
-        updateRendererSelection(RENDERER_INDEX_AUDIO, groups, params, definition);
-    }
-
-    @Override
-    public void updateSubtitleTrackSelection(TrackGroupArray groups, Parameters params, Definition definition) {
-        updateRendererSelection(RENDERER_INDEX_SUBTITLE, groups, params, definition);
-    }
+    // @Override
+    // public Pair<Definition, MediaTrack> onSelectVideoTrack(TrackGroupArray
+    // groups, Parameters params) {
+    // return createRendererSelection(RENDERER_INDEX_VIDEO, groups, params);
+    // }
+    //
+    // @Override
+    // public Pair<Definition, MediaTrack> onSelectAudioTrack(TrackGroupArray
+    // groups, Parameters params) {
+    // return createRendererSelection(RENDERER_INDEX_AUDIO, groups, params);
+    // }
+    //
+    // @Override
+    // public Pair<Definition, MediaTrack> onSelectSubtitleTrack(TrackGroupArray
+    // groups, Parameters params) {
+    // return createRendererSelection(RENDERER_INDEX_SUBTITLE, groups, params);
+    // }
+    //
+    // @Override
+    // public void updateVideoTrackSelection(TrackGroupArray groups, Parameters
+    // params, Definition definition) {
+    // updateRendererSelection(RENDERER_INDEX_VIDEO, groups, params, definition);
+    // }
+    //
+    // @Override
+    // public void updateAudioTrackSelection(TrackGroupArray groups, Parameters
+    // params, Definition definition) {
+    // updateRendererSelection(RENDERER_INDEX_AUDIO, groups, params, definition);
+    // }
+    //
+    // @Override
+    // public void updateSubtitleTrackSelection(TrackGroupArray groups, Parameters
+    // params, Definition definition) {
+    // updateRendererSelection(RENDERER_INDEX_SUBTITLE, groups, params, definition);
+    // }
 
     public void selectTrack(MediaTrack track) {
         if (track == null) {
@@ -405,7 +434,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
         mSelectedTracks[rendererIndex] = track;
 
-        if (mRenderers[rendererIndex] == null || mRenderers[rendererIndex].mediaTracks == null || mRenderers[rendererIndex].sortedTracks == null) {
+        if (mRenderers[rendererIndex] == null || mRenderers[rendererIndex].mediaTracks == null
+                || mRenderers[rendererIndex].sortedTracks == null) {
             Log.e(TAG, "Renderer isn't initialized. Waiting for later selection...");
             return;
         }
@@ -414,7 +444,7 @@ public class TrackSelectorManager implements TrackSelectorCallback {
         mRenderers[rendererIndex].isDisabled = false;
 
         MediaTrack matchedTrack = findBestMatch(track);
-        
+
         setSelection(matchedTrack.rendererIndex, matchedTrack.groupIndex, matchedTrack.trackIndex);
 
         // save immediately
@@ -434,8 +464,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
     }
 
     /**
-     *  Video/audio tracks should be selected at this point.<br/>
-     *  Reselect if not done yet.
+     * Video/audio tracks should be selected at this point.<br/>
+     * Reselect if not done yet.
      */
     public void fixTracksSelection() {
         for (MediaTrack track : mSelectedTracks) {
@@ -488,8 +518,7 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
             MediaTrack[][] mediaTracks = filterByLanguage(renderer.mediaTracks, originTrack);
 
-            outerloop:
-            for (int groupIndex = 0; groupIndex < mediaTracks.length; groupIndex++) {
+            outerloop: for (int groupIndex = 0; groupIndex < mediaTracks.length; groupIndex++) {
                 prevResult = result;
 
                 // Very rare NPE fix
@@ -512,7 +541,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
                     int bounds = originTrack.inBounds(mediaTrack);
 
-                    // Multiple ru track fix (same id!) Example: https://www.youtube.com/watch?v=l3htINlc2ic
+                    // Multiple ru track fix (same id!) Example:
+                    // https://www.youtube.com/watch?v=l3htINlc2ic
                     if (bounds == 0 && MediaTrack.bitrateEquals(originTrack, mediaTrack)) {
                         result = mediaTrack;
                         break outerloop;
@@ -521,15 +551,15 @@ public class TrackSelectorManager implements TrackSelectorCallback {
                     if (bounds >= 0) {
                         int compare = mediaTrack.compare(result);
 
-                        //if (compare == 0) {
-                        //    if (MediaTrack.codecEquals(mediaTrack, originTrack)) {
-                        //        result = mediaTrack;
-                        //    }
-                        //} else if (compare > 0) {
-                        //    if (!MediaTrack.preferByCodec(result, mediaTrack)) {
-                        //        result = mediaTrack;
-                        //    }
-                        //}
+                        // if (compare == 0) {
+                        // if (MediaTrack.codecEquals(mediaTrack, originTrack)) {
+                        // result = mediaTrack;
+                        // }
+                        // } else if (compare > 0) {
+                        // if (!MediaTrack.preferByCodec(result, mediaTrack)) {
+                        // result = mediaTrack;
+                        // }
+                        // }
 
                         if (compare == 0 && MediaTrack.preferByDrc(originTrack, result, mediaTrack)) {
                             if (MediaTrack.codecEquals(mediaTrack, originTrack)) {
@@ -562,7 +592,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
             }
 
             // Fix muted audio/video on stream with higher bitrate than the target
-            if ((result instanceof AudioTrack || result instanceof VideoTrack) && result.isEmpty() && tmpResult != null) {
+            if ((result instanceof AudioTrack || result instanceof VideoTrack) && result.isEmpty()
+                    && tmpResult != null) {
                 result = tmpResult;
             }
         }
@@ -579,19 +610,24 @@ public class TrackSelectorManager implements TrackSelectorCallback {
             return;
         }
 
-        mTrackSelector.setParameters(mTrackSelector.buildUponParameters().setRendererDisabled(rendererIndex, renderer.isDisabled));
+        mTrackSelector.setParameters(
+                mTrackSelector.buildUponParameters().setRendererDisabled(rendererIndex, renderer.isDisabled));
 
         MediaTrack selectedTrack = renderer.selectedTrack;
 
         if (selectedTrack != null && selectedTrack.groupIndex != -1) {
-            Log.d(TAG, "Setting override for renderer %s, group %s, track %s...", rendererIndex, selectedTrack.groupIndex, selectedTrack.trackIndex);
+            Log.d(TAG, "Setting override for renderer %s, group %s, track %s...", rendererIndex,
+                    selectedTrack.groupIndex, selectedTrack.trackIndex);
 
             mTrackSelector.setParameters(mTrackSelector.buildUponParameters().setSelectionOverride(
-                    rendererIndex, renderer.trackGroups, new SelectionOverride(selectedTrack.groupIndex, selectedTrack.trackIndex)
-            ));
+                    rendererIndex, renderer.trackGroups,
+                    new SelectionOverride(selectedTrack.groupIndex, selectedTrack.trackIndex)));
         } else {
             Log.e(TAG, "Something went wrong. Selected track not found");
-            mTrackSelector.setParameters(mTrackSelector.buildUponParameters().clearSelectionOverrides(rendererIndex)); // Auto quality button selected
+            mTrackSelector.setParameters(mTrackSelector.buildUponParameters().clearSelectionOverrides(rendererIndex)); // Auto
+                                                                                                                       // quality
+                                                                                                                       // button
+                                                                                                                       // selected
         }
     }
 
@@ -607,7 +643,8 @@ public class TrackSelectorManager implements TrackSelectorCallback {
      * Trying to filter languages preferred by the user
      */
     private MediaTrack[][] filterByLanguage(MediaTrack[][] trackGroupList, MediaTrack originTrack) {
-        if (!(originTrack instanceof AudioTrack) || trackGroupList.length <= 2) { // non-translated list has max 2 groups
+        if (!(originTrack instanceof AudioTrack) || trackGroupList.length <= 2) { // non-translated list has max 2
+                                                                                  // groups
             return trackGroupList;
         }
 
@@ -655,7 +692,9 @@ public class TrackSelectorManager implements TrackSelectorCallback {
                         }
 
                         originTracks.add(trackGroup);
-                    } else if (Helpers.contains(mediaTrack.format.language, DEFAULT_LANGUAGE)) { // original, descriptive, dubbed, secondary
+                    } else if (Helpers.contains(mediaTrack.format.language, DEFAULT_LANGUAGE)) { // original,
+                                                                                                 // descriptive, dubbed,
+                                                                                                 // secondary
                         if (resultTracksFallback == null) {
                             resultTracksFallback = new ArrayList<>();
                         }
@@ -681,10 +720,12 @@ public class TrackSelectorManager implements TrackSelectorCallback {
         return trackGroupList;
     }
 
-    //private void setOverride(int rendererIndex, int group, int[] tracks, boolean enableRandomAdaptation) {
-    //    TrackSelection.Factory factory = tracks.length == 1 ? FIXED_FACTORY : (enableRandomAdaptation ? RANDOM_FACTORY : mTrackSelectionFactory);
-    //    mRenderers[rendererIndex].override = new SelectionOverride(group, tracks);
-    //}
+    // private void setOverride(int rendererIndex, int group, int[] tracks, boolean
+    // enableRandomAdaptation) {
+    // TrackSelection.Factory factory = tracks.length == 1 ? FIXED_FACTORY :
+    // (enableRandomAdaptation ? RANDOM_FACTORY : mTrackSelectionFactory);
+    // mRenderers[rendererIndex].override = new SelectionOverride(group, tracks);
+    // }
 
     // Track array manipulation.
     private static int[] getTracksAdding(SelectionOverride override, int addedTrack) {
@@ -708,9 +749,13 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
     /**
      * Get the number of tracks with the same resolution.
-     * <p>I assume that the tracks already have been sorted in descendants order. <br/>
-     * <p>Details: {@code com.liskovsoft.smartyoutubetv.flavors.exoplayer.youtubeinfoparser.mpdbuilder.MyMPDBuilder}
-     * @param group the group
+     * <p>
+     * I assume that the tracks already have been sorted in descendants order. <br/>
+     * <p>
+     * Details:
+     * {@code com.liskovsoft.smartyoutubetv.flavors.exoplayer.youtubeinfoparser.mpdbuilder.MyMPDBuilder}
+     * 
+     * @param group      the group
      * @param trackIndex current track in group
      * @return
      */
@@ -787,16 +832,19 @@ public class TrackSelectorManager implements TrackSelectorCallback {
 
         String hdrTag = TrackSelectorUtil.isHdrFormat(format) ? "hdr" : "";
 
-        String formatId = format.width + format.height + format.frameRate + format.sampleMimeType + hdrTag + format.language;
+        String formatId = format.width + format.height + format.frameRate + format.sampleMimeType + hdrTag
+                + format.language;
 
         Integer bitrate = mBlacklist.get(formatId);
 
-        //if (bitrate == null || (bitrate < format.bitrate || mediaTrack instanceof AudioTrack)) {
-        //  mBlacklist.put(formatId, format.bitrate + 500_000);
-        //  return true;
-        //}
+        // if (bitrate == null || (bitrate < format.bitrate || mediaTrack instanceof
+        // AudioTrack)) {
+        // mBlacklist.put(formatId, format.bitrate + 500_000);
+        // return true;
+        // }
 
-        if (bitrate == null || bitrate < format.bitrate || (mediaTrack instanceof AudioTrack && Math.abs(bitrate - format.bitrate) > 10_000)) {
+        if (bitrate == null || bitrate < format.bitrate
+                || (mediaTrack instanceof AudioTrack && Math.abs(bitrate - format.bitrate) > 10_000)) {
             int diff = mediaTrack instanceof AudioTrack ? 0 : 500_000; // video bitrate min diff
             mBlacklist.put(formatId, format.bitrate + diff);
             return true;
@@ -806,8 +854,9 @@ public class TrackSelectorManager implements TrackSelectorCallback {
     }
 
     /**
-     *  Trying to fix error 'AudioSink.InitializationException: AudioTrack init failed'<br/>
-     *  By removing mp4a tracks with high bitrate.
+     * Trying to fix error 'AudioSink.InitializationException: AudioTrack init
+     * failed'<br/>
+     * By removing mp4a tracks with high bitrate.
      */
     private boolean isErrorInAudio(MediaTrack mediaTrack) {
         if (mediaTrack == null || mediaTrack.format == null) {

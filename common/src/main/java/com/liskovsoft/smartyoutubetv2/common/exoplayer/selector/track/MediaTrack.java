@@ -2,7 +2,8 @@ package com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.track;
 
 import androidx.media3.common.Format;
 // TrackGroupArray removed in Media3, use Tracks
-import androidx.media3.exoplayer.trackselection.TrackSelection.Definition;
+import androidx.media3.common.TrackGroup;
+import androidx.media3.exoplayer.trackselection.ExoTrackSelection.Definition;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.TrackSelectorManager;
 import com.liskovsoft.smartyoutubetv2.common.exoplayer.selector.TrackSelectorUtil;
@@ -27,20 +28,22 @@ public abstract class MediaTrack {
         this.rendererIndex = rendererIndex;
     }
 
-    public static MediaTrack from(int rendererIndex, TrackGroupArray groups, Definition definition) {
+    public static MediaTrack from(int rendererIndex, TrackGroup group, Definition definition) {
         MediaTrack mediaTrack = forRendererIndex(rendererIndex);
 
-        if (mediaTrack == null || groups == null || definition == null || definition.tracks == null) {
+        if (mediaTrack == null || group == null || definition == null || definition.tracks == null) {
             return null;
         }
 
-        mediaTrack.groupIndex = groups.indexOf(definition.group);
+        // group index is not easily available in Media3 without the full Tracks object
+        // but we can store the group itself or its formats
         mediaTrack.trackIndex = definition.tracks[0];
 
         return mediaTrack;
     }
 
     public abstract int compare(MediaTrack track2);
+
     public abstract int inBounds(MediaTrack track2);
 
     public static MediaTrack forRendererIndex(int rendererIndex) {

@@ -25,7 +25,7 @@ public class VolumeBooster implements Player.Listener {
     }
 
     @Override
-    public void onAudioSessionId(int audioSessionId) {
+    public void onAudioSessionIdChanged(int audioSessionId) {
         if (VERSION.SDK_INT < 19 || mVolume <= 1) {
             return;
         }

@@ -3,6 +3,7 @@
     <!-- Color of currently focused player control -->
     <color name="lb_control_button_color_origin">#66EEEEEE</color>
     <color name="lb_control_button_color">#E8FFFFFF</color>
+    <color name="lb_preference_decor_list_background">#FF263238</color>
 
     <!-- Common colors -->
     <color name="default_background_gradient_start">#000000</color>

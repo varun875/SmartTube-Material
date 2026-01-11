@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="header_home">Home</string>
   <string name="title_search">Zoeken</string>
@@ -26,7 +26,7 @@
   <string name="auto_frame_rate">Automatische framerate</string>
   <string name="frame_rate_correction">Corrigeer fps:\n%s</string>
   <string name="category_background_playback">Afspelen op achtergrond</string>
-  <string name="not_implemented">Niet-geïmplementeerd</string>
+  <string name="not_implemented">Niet-geÃ¯mplementeerd</string>
   <string name="option_background_playback_off">Uit</string>
   <string name="option_background_playback_pip">Scherm-in-scherm</string>
   <string name="option_background_playback_only_audio">Alleen audio</string>
@@ -73,15 +73,15 @@
   <string name="donation">App ondersteunen</string>
   <string name="dialog_about">Informatie</string>
   <string name="dialog_player_ui">Videospeler</string>
-  <string name="player_show_ui_on_pause">Speler weergeven met oké-toets</string>
-  <string name="player_pause_on_ok">Video pauzeren met oké-toets</string>
-  <string name="player_ok_button_behavior">Oké-toets</string>
+  <string name="player_show_ui_on_pause">Speler weergeven met okÃ©-toets</string>
+  <string name="player_pause_on_ok">Video pauzeren met okÃ©-toets</string>
+  <string name="player_ok_button_behavior">OkÃ©-toets</string>
   <string name="player_only_ui">Speler weergeven</string>
   <string name="player_ui_and_pause">Speler weergeven en pauzeren</string>
   <string name="player_only_pause">Speler pauzeren</string>
   <string name="check_for_updates">Controleren op update</string>
   <string name="update_not_found">Geen update beschikbaar.</string>
-  <string name="update_in_progress">Even geduld…</string>
+  <string name="update_in_progress">Even geduldâ€¦</string>
   <string name="player_ui_hide_behavior">Speler verbergen</string>
   <string name="option_never">Nooit</string>
   <string name="side_panel_sections">Rubrieken</string>
@@ -152,7 +152,7 @@
   <string name="color_scheme_teal">Blauw-groen</string>
   <string name="color_scheme_teal_oled">Blauw-groen (OLED)</string>
   <string name="player_seek_preview_none">Niet voorvertonen</string>
-  <string name="player_seek_preview_single">Eén frame</string>
+  <string name="player_seek_preview_single">EÃ©n frame</string>
   <string name="player_seek_preview_carousel">Meerdere frames</string>
   <string name="player_seek_preview_carousel_slow">Meerdere frames (traag)</string>
   <string name="player_seek_preview_carousel_fast">Meerdere frames (snel)</string>
@@ -162,9 +162,9 @@
   <string name="share_link">Delen</string>
   <string name="share_qr_link">Delen (QR code)</string>
   <string name="subscribe_to_channel">Abonneren</string>
-  <string name="wait_data_loading">Bezig met laden van gegevens…</string>
+  <string name="wait_data_loading">Bezig met laden van gegevensâ€¦</string>
   <string name="auto_frame_rate_pause">Automatische framerate (pauze)</string>
-  <string name="auto_frame_rate_applying">Bezig met toepassen van automatische framerate \‘%sx%s\@%s\’</string>
+  <string name="auto_frame_rate_applying">Bezig met toepassen van automatische framerate \â€˜%1$sx%2$s\@%3$s\â€™</string>
   <string name="audio_shift">Audiosynchronisatie</string>
   <string name="player_remember_speed">Videosnelheid onthouden</string>
   <string name="mark_channel_as_watched">Markeren als bekeken</string>
@@ -172,8 +172,8 @@
   <string name="dialog_add_device">Apparaat toevoegen</string>
   <string name="dialog_remove_all_devices">Apparaten verwijderen</string>
   <string name="device_link_enabled">Meldingen weergeven</string>
-  <string name="device_connected">\‘%s\’ is gekoppeld</string>
-  <string name="device_disconnected">\‘%s\’ is ontkoppeld</string>
+  <string name="device_connected">\â€˜%s\â€™ is gekoppeld</string>
+  <string name="device_disconnected">\â€˜%s\â€™ is ontkoppeld</string>
   <string name="settings_ui_scale">Formaat</string>
   <string name="msg_restart_app">Start de app opnieuw op om de instellingen toe te passen</string>
   <string name="settings_block">Inhoudsblokkade</string>
@@ -189,9 +189,9 @@
   <string name="content_block_interaction">Interactie (abonneren/leuk vinden/volgen)</string>
   <string name="content_block_self_promo">Zelfpromotie/Onbetaalde promotie</string>
   <string name="content_block_music_off_topic">Intro-/Outrofilmpje van muziekvideo\'s</string>
-  <string name="confirm_segment_skip">Wil je\‘%s\’ overslaan \?</string>
+  <string name="confirm_segment_skip">Wil je\â€˜%s\â€™ overslaan \?</string>
   <string name="cancel_segment_skip">Niet overslaan</string>
-  <string name="msg_skipping_segment">\‘%s\’ wordt overgeslagen…</string>
+  <string name="msg_skipping_segment">\â€˜%s\â€™ wordt overgeslagenâ€¦</string>
   <string name="content_block_notification_type">Meldingen</string>
   <string name="content_block_notify_none">Geen melding weergeven</string>
   <string name="content_block_notify_toast">Melding weergeven</string>
@@ -200,9 +200,9 @@
   <string name="intent_force_close">Video van externe bron geforceerd afsluiten</string>
   <string name="btn_confirm">Bevestigen</string>
   <string name="player_low_video_quality">Lage videokwaliteit</string>
-  <string name="remote_session_closed">De sessie op afstand is beëindigd</string>
-  <string name="msg_mode_switch_error">De verhouding kan niet worden aangepast naar \‘%s\’</string>
-  <string name="msg_player_error">\‘%s\’ kan niet worden afgespeeld - er wordt opnieuw gestart</string>
+  <string name="remote_session_closed">De sessie op afstand is beÃ«indigd</string>
+  <string name="msg_mode_switch_error">De verhouding kan niet worden aangepast naar \â€˜%s\â€™</string>
+  <string name="msg_player_error">\â€˜%s\â€™ kan niet worden afgespeeld - er wordt opnieuw gestart</string>
   <string name="video_preset_disabled">Geen voorinstelling</string>
   <string name="video_preset_enabled">De kwaliteit van de volgende video wordt ingesteld volgens je voorinstelling</string>
   <string name="player_sleep_timer">Slaapklok</string>
@@ -371,9 +371,9 @@
   <string name="proxy_credentials_invalid">ongeldige gebruikersnaam of wachtwoord.</string>
   <string name="proxy_test_aborted">Test afgebroken, repareer eerst de proxy-instellingen.</string>
   <string name="proxy_application_aborted">Corrigeer eerst de proxy-instellingen.</string>
-  <string name="proxy_test_start">Test#%d: %s …</string>
-  <string name="proxy_test_error">Error#%d: %s</string>
-  <string name="proxy_test_status">Status#%d: %s %d %s</string>
+  <string name="proxy_test_start">Test#%1$d: %2$s â€¦</string>
+  <string name="proxy_test_error">Error#%1$d: %2$s</string>
+  <string name="proxy_test_status">Status#%1$d: %1$s %1$d %1$s</string>
   <string name="openvpn_config_address_hint">Adres configuratiebestand (*.ovpn)</string>
   <string name="enable_openvpn">Gebruik OpenVPN</string>
   <string name="openvpn_settings_title">OpenVPN Settings</string>
@@ -389,7 +389,7 @@
   <string name="subtitle_scale">Ondertitel schaal</string>
   <string name="audio_sync_fix_desc">Een alternatieve manier om audio/video te synchroniseren. Het wordt als achterhaald beschouwd, maar kan in sommige gevallen helpen.</string>
   <string name="audio_sync_fix">Audiosynchronisatie oplossing</string>
-  <string name="ambilight_ratio_fix_desc">Corrigeert afwezige biasverlichting. Corrigeert onjuiste beeldverhouding. Lost lege schermafbeeldingen op. Beïnvloedt de prestaties!</string>
+  <string name="ambilight_ratio_fix_desc">Corrigeert afwezige biasverlichting. Corrigeert onjuiste beeldverhouding. Lost lege schermafbeeldingen op. BeÃ¯nvloedt de prestaties!</string>
   <string name="ambilight_ratio_fix">Ambilight/beeldverhouding/screenshots opgelost</string>
   <string name="force_legacy_codecs_desc">Verbetert de prestaties op low-end apparaten aanzienlijk. Maximale resolutie is 720p.</string>
   <string name="force_legacy_codecs">Legacy codecs afdwingen (720p)</string>
@@ -457,7 +457,7 @@
   <string name="unset_stream_reminder">Streamherinnering uitschakelen</string>
   <string name="set_stream_reminder">Streamherinnering instellen</string>
   <string name="playback_starts_shortly">Het afspelen start automatisch wanneer de stream klaar is</string>
-  <string name="starting_stream">De stream starten…</string>
+  <string name="starting_stream">De stream startenâ€¦</string>
   <string name="action_playlist_remove">Verwijderen uit afspeellijst</string>
   <string name="signin_view_title">Gebruikerscode wordt geladen...</string>
   <string name="signin_view_description">Voer deze code in op pagina %s\n om in te loggen. Opmerking: Werkt alleen met Firefox- of Chrome-browsers.</string>
@@ -514,7 +514,7 @@
   <string name="protect_settings_with_password">Bescherm alle instellingen met een wachtwoord</string>
   <string name="enter_settings_password">Voer het instellingenwachtwoord in</string>
   <string name="child_mode">Kinder modus</string>
-  <string name="child_mode_desc">In deze modus kan de gebruiker de zoekfunctie niet gebruiken of voorgestelde inhoud bekijken.  De instellingen staan ​​onder het wachtwoord.</string>
+  <string name="child_mode_desc">In deze modus kan de gebruiker de zoekfunctie niet gebruiken of voorgestelde inhoud bekijken.  De instellingen staan â€‹â€‹onder het wachtwoord.</string>
   <string name="lost_setting_warning">De app-instellingen worden gewijzigd.  Zorg ervoor dat u een back-up van de instellingen hebt gemaakt.</string>
   <string name="player_button_long_click">Een korte klik op de knop naar snelle actie en een lange naar instellingen dialoog</string>
   <string name="pause_history">Geschiedenis onderbreken</string>
@@ -523,7 +523,7 @@
   <string name="chapters">Hoofdstukken</string>
   <string name="card_multiline_subtitle">Meerregelige ondertitels</string>
   <string name="auto_frame_rate_modes">Ondersteunde video-modi</string>
-  <string name="loading">Bezig met laden…</string>
+  <string name="loading">Bezig met ladenâ€¦</string>
   <string name="hide_streams">Verberg streams van abonnementen</string>
   <string name="video_rotate">Het beeld draaien</string>
   <string name="trending_searches">Populaire zoekopdrachten</string>
@@ -566,7 +566,7 @@
   <string name="unlock_all_formats">Ontgrendel alle videoformaten</string>
   <string name="okhttp_desc">Deze netwerkengine is het langzaamst, maar is wel stabiel.</string>
   <string name="select_channel_section">Open de overeenkomstige sectie wanneer de app wordt gestart vanuit ATV-kanalen</string>
-  <string name="enable_voice_search_desc">De officiële app wordt vervangen door een zogenaamde \"bridge\". Een bridge helpt om wereldwijde zoekopdrachten over te brengen naar onze app.</string>
+  <string name="enable_voice_search_desc">De officiÃ«le app wordt vervangen door een zogenaamde \"bridge\". Een bridge helpt om wereldwijde zoekopdrachten over te brengen naar onze app.</string>
   <string name="enable_master_password">Hoofdwachtwoord inschakelen</string>
   <string name="enter_master_password">Voer het hoofdwachtwoord in</string>
   <string name="disable_stream_buffer">Buffer op streams uitschakelen</string>
@@ -665,7 +665,7 @@
   <string name="long_press_for_options">LANG DRUKKEN VOOR OPTIES</string>
   <string name="device_specific_backup">Alleen back-up voor dit apparaat</string>
   <string name="local_backup">Lokale back-up</string>
-  <string name="auto_backup">Automatische back-up (één keer per dag)</string>
+  <string name="auto_backup">Automatische back-up (Ã©Ã©n keer per dag)</string>
   <string name="repeat_mode_reverse_list">Speel de afspeellijst of kanaalvideo\'s in omgekeerde volgorde af</string>
   <string name="calm_msg">We lossen het probleem op. Controleer van tijd tot tijd op updates</string>
   <string name="without_picture">Zonder beeld</string>

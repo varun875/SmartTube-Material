@@ -16,13 +16,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.util.Pair;
 import androidx.media3.common.PlaybackException;
-import androidx.media3.exoplayer.ExoPlayerLibraryInfo;
+import androidx.media3.common.MediaLibraryInfo;
 import androidx.media3.common.Format;
 import androidx.media3.common.PlaybackParameters;
 import androidx.media3.common.Player;
+import androidx.media3.common.Tracks;
 import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.exoplayer.Timeline;
-import androidx.media3.decoder.DecoderCounters;
+import androidx.media3.common.Timeline;
+import androidx.media3.common.Timeline;
+import androidx.media3.exoplayer.DecoderCounters;
 import androidx.media3.exoplayer.mediacodec.MediaCodecInfo;
 // TrackGroupArray removed in Media3, use Tracks
 // TrackSelectionArray removed in Media3
@@ -52,7 +54,8 @@ import java.util.Locale;
 // https://github.com/google/ExoPlayer/blob/release-v2/library/ui/src/main/java/com/google/android/exoplayer2/ui/DebugTextViewHelper.java
 
 /**
- * A helper class for periodically updating a {@link TextView} with debug information obtained from
+ * A helper class for periodically updating a {@link TextView} with debug
+ * information obtained from
  * a {@link ExoPlayer}.
  */
 public final class DebugInfoManager implements Runnable, Player.Listener {
@@ -75,9 +78,11 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     private final String mAppVersion;
 
     /**
-     * @param activity context
-     * @param player   The {@link ExoPlayer} from which debug information should be obtained.
-     * @param resLayoutId The {@link TextView} that should be updated to display the information.
+     * @param activity    context
+     * @param player      The {@link ExoPlayer} from which debug information should
+     *                    be obtained.
+     * @param resLayoutId The {@link TextView} that should be updated to display the
+     *                    information.
      */
     public DebugInfoManager(Activity activity, ExoPlayer player, int resLayoutId) {
         mPlayer = player;
@@ -109,7 +114,8 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     }
 
     /**
-     * Starts periodic updates of the {@link TextView}. Must be called from the application's main
+     * Starts periodic updates of the {@link TextView}. Must be called from the
+     * application's main
      * thread.
      */
     private void create() {
@@ -125,7 +131,8 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     }
 
     /**
-     * Stops periodic updates of the {@link TextView}. Must be called from the application's main
+     * Stops periodic updates of the {@link TextView}. Must be called from the
+     * application's main
      * thread.
      */
     private void destroy() {
@@ -143,12 +150,17 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     // Player.Listener implementation.
 
     @Override
-    public void onLoadingChanged(boolean isLoading) {
+    public void onIsLoadingChanged(boolean isLoading) {
         // NOP
     }
 
     @Override
-    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+    public void onPlaybackStateChanged(int playbackState) {
+        // NOP
+    }
+
+    @Override
+    public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
         // NOP
     }
 
@@ -158,7 +170,7 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     }
 
     @Override
-    public void onPositionDiscontinuity(int reason) {
+    public void onPositionDiscontinuity(Player.PositionInfo oldPosition, Player.PositionInfo newPosition, int reason) {
         // NOP
     }
 
@@ -168,17 +180,17 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     }
 
     @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
+    public void onTimelineChanged(Timeline timeline, int reason) {
         // Do nothing.
     }
 
     @Override
-    public void onPlayerError(ExoPlaybackException error) {
+    public void onPlayerError(PlaybackException error) {
         // Do nothing.
     }
 
     @Override
-    public void onTracksChanged(TrackGroupArray tracks, TrackSelectionArray selections) {
+    public void onTracksChanged(Tracks tracks) {
         // NOP
     }
 
@@ -203,7 +215,7 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
         appendPlayerState();
         appendDisplayInfo();
         appendDisplayModeId();
-        //appendPlayerWindowIndex();
+        // appendPlayerWindowIndex();
         appendVersion();
         appendDeviceNameSDKCache();
         appendMemoryInfo();
@@ -246,21 +258,20 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
                 getFormatMimeType(video),
                 getFormatId(video),
                 getFormatMimeType(audio),
-                getFormatId(audio)
-        )));
+                getFormatId(audio))));
         mVideoInfo.add(new Pair<>("Video/Audio bitrate", String.format(
                 "%s/%s",
                 toHumanReadable(video.bitrate),
-                toHumanReadable(audio.bitrate)
-        )));
+                toHumanReadable(audio.bitrate))));
         // Aspect info is not valid since we're using custom views
-        //String par = video.pixelWidthHeightRatio == Format.NO_VALUE ||
-        //        video.pixelWidthHeightRatio == 1f ?
-        //        DEFAULT : String.format(Locale.US, "%.02f", video.pixelWidthHeightRatio);
-        //mVideoInfo.add(new Pair<>("Aspect Ratio", par));
+        // String par = video.pixelWidthHeightRatio == Format.NO_VALUE ||
+        // video.pixelWidthHeightRatio == 1f ?
+        // DEFAULT : String.format(Locale.US, "%.02f", video.pixelWidthHeightRatio);
+        // mVideoInfo.add(new Pair<>("Aspect Ratio", par));
         String videoCodecName = getVideoDecoderNameV2();
         mVideoInfo.add(new Pair<>("Video decoder name", videoCodecName));
-        mVideoInfo.add(new Pair<>("Hardware accelerated", String.valueOf(Helpers.isHardwareAccelerated(videoCodecName))));
+        mVideoInfo
+                .add(new Pair<>("Hardware accelerated", String.valueOf(Helpers.isHardwareAccelerated(videoCodecName))));
     }
 
     private void appendRuntimeInfo() {
@@ -270,7 +281,8 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
 
         counters.ensureUpdated();
         appendRow("Dropped/Rendered frames", counters.droppedBufferCount + "/" + counters.renderedOutputBufferCount);
-        appendRow("Buffer size (seconds)", (int)(mPlayer.getBufferedPosition() - mPlayer.getCurrentPosition()) / 1_000);
+        appendRow("Buffer size (seconds)",
+                (int) (mPlayer.getBufferedPosition() - mPlayer.getCurrentPosition()) / 1_000);
     }
 
     private void appendPlayerState() {
@@ -319,8 +331,10 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
         mDisplayModeId.add(new Pair<>("UI resolution", currentResolution != null ? currentResolution : NOT_AVAILABLE));
         mDisplayModeId.add(new Pair<>("Boot resolution", bootResolution != null ? bootResolution : NOT_AVAILABLE));
 
-        mDisplayModeId.add(new Pair<>("Display mode ID", currentMode != null ? String.valueOf(currentMode.getModeId()) : NOT_AVAILABLE));
-        mDisplayModeId.add(new Pair<>("Display modes length", supportedModes != null ? String.valueOf(supportedModes.length) : NOT_AVAILABLE));
+        mDisplayModeId.add(new Pair<>("Display mode ID",
+                currentMode != null ? String.valueOf(currentMode.getModeId()) : NOT_AVAILABLE));
+        mDisplayModeId.add(new Pair<>("Display modes length",
+                supportedModes != null ? String.valueOf(supportedModes.length) : NOT_AVAILABLE));
     }
 
     private void appendDisplayInfo() {
@@ -336,17 +350,19 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     }
 
     private void appendPlayerWindowIndex() {
-        appendRow("Window index", mPlayer.getCurrentWindowIndex());
+        appendRow("Window index", mPlayer.getCurrentMediaItemIndex());
     }
 
     private void appendVersion() {
-        appendRow("ExoPlayer version", ExoPlayerLibraryInfo.VERSION);
+        appendRow("ExoPlayer version", MediaLibraryInfo.VERSION);
         appendRow("ExoPlayer engine",
-                PlayerTweaksData.instance(mContext).getPlayerDataSource() == PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP ? "OkHttp" :
-                        PlayerTweaksData.instance(mContext).getPlayerDataSource() == PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET ? "Cronet" :
-                        "Default");
+                PlayerTweaksData.instance(mContext).getPlayerDataSource() == PlayerTweaksData.PLAYER_DATA_SOURCE_OKHTTP
+                        ? "OkHttp"
+                        : PlayerTweaksData.instance(mContext)
+                                .getPlayerDataSource() == PlayerTweaksData.PLAYER_DATA_SOURCE_CRONET ? "Cronet"
+                                        : "Default");
         appendRow("Cronet version", ApiVersion.getCronetVersion());
-        //appendRow("OkHttp version", Version.userAgent());
+        // appendRow("OkHttp version", Version.userAgent());
         appendRow(mAppVersion, AppInfoHelpers.getAppVersionName(mContext));
     }
 
@@ -354,9 +370,9 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
         appendRow("Device name", Helpers.getDeviceName());
         appendRow("Android SDK", VERSION.SDK_INT);
         appendRow("Disk cache size (MB)", String.valueOf(
-                (FileHelpers.getDirSize(FileHelpers.getInternalCacheDir(mContext)) + FileHelpers.getDirSize(FileHelpers.getExternalCacheDir(mContext)))
-                        / 1024 / 1024
-        ));
+                (FileHelpers.getDirSize(FileHelpers.getInternalCacheDir(mContext))
+                        + FileHelpers.getDirSize(FileHelpers.getExternalCacheDir(mContext)))
+                        / 1024 / 1024));
     }
 
     private void appendMemoryInfo() {
@@ -373,7 +389,8 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
     }
 
     private void appendVideoInfoVersion() {
-        AppInfo appInfo = Helpers.firstNonNull(MediaServiceData.instance().getFailedAppInfo(), MediaServiceData.instance().getAppInfo());
+        AppInfo appInfo = Helpers.firstNonNull(MediaServiceData.instance().getFailedAppInfo(),
+                MediaServiceData.instance().getAppInfo());
         String playerUrl = appInfo != null ? appInfo.getPlayerUrl() : null;
         if (playerUrl != null) {
             String playerVersion = UrlQueryStringFactory.parse(Uri.parse(playerUrl)).get("player");
@@ -462,7 +479,8 @@ public final class DebugInfoManager implements Runnable, Player.Listener {
         return result;
     }
 
-    // NOTE: Be aware. This info isn't real! It's like caps or something like that. To get real info use method below.
+    // NOTE: Be aware. This info isn't real! It's like caps or something like that.
+    // To get real info use method below.
     private String getVideoDecoderNameV1(Format format) {
         if (format == null) {
             return null;

@@ -22,46 +22,50 @@ public class BlacklistMediaCodecSelector implements MediaCodecSelector {
             "OMX.MTK.VIDEO.DECODER.VP9", "OMX.amlogic.vp9.decoder.awesome", "OMX.amlogic.avc.decoder.awesome",
             "OMX.qcom.video.decoder.avc", "OMX.rk.video_decoder.avc", "OMX.allwinner.video.decoder.avc"
     };
-    final static String[] SW_DECODERS = {"OMX.google"};
-    final static String[] HW_DECODERS = {"OMX.amlogic", "OMX.MTK", "OMX.Nvidia", "OMX.qcom", "OMX.rk", "OMX.allwinner"};
+    final static String[] SW_DECODERS = { "OMX.google" };
+    final static String[] HW_DECODERS = { "OMX.amlogic", "OMX.MTK", "OMX.Nvidia", "OMX.qcom", "OMX.rk",
+            "OMX.allwinner" };
 
     // Ver. 2.9.6
-    //@Override
-    //public List<MediaCodecInfo> getDecoderInfos(String mimeType, boolean requiresSecureDecoder) throws MediaCodecUtil.DecoderQueryException {
+    // @Override
+    // public List<MediaCodecInfo> getDecoderInfos(String mimeType, boolean
+    // requiresSecureDecoder) throws MediaCodecUtil.DecoderQueryException {
     //
-    //    List<MediaCodecInfo> codecInfos = MediaCodecUtil.getDecoderInfos(
-    //            mimeType, requiresSecureDecoder);
-    //    // filter codecs based on blacklist template
-    //    List<MediaCodecInfo> filteredCodecInfos = new ArrayList<>();
-    //    for (MediaCodecInfo codecInfo: codecInfos) {
-    //        Log.d(TAG, "Checking codec: " + codecInfo);
-    //        boolean blacklisted = false;
-    //        for (String blackListedCodec: BLACKLISTEDCODECS) {
-    //            if (codecInfo != null && codecInfo.name.toLowerCase().contains(blackListedCodec.toLowerCase())) {
-    //                Log.d(TAG, "Blacklisting codec: " + blackListedCodec);
-    //                blacklisted = true;
-    //                break;
-    //            }
-    //        }
-    //        if (!blacklisted) {
-    //            filteredCodecInfos.add(codecInfo);
-    //        }
-    //    }
-    //    return filteredCodecInfos;
-    //}
+    // List<MediaCodecInfo> codecInfos = MediaCodecUtil.getDecoderInfos(
+    // mimeType, requiresSecureDecoder);
+    // // filter codecs based on blacklist template
+    // List<MediaCodecInfo> filteredCodecInfos = new ArrayList<>();
+    // for (MediaCodecInfo codecInfo: codecInfos) {
+    // Log.d(TAG, "Checking codec: " + codecInfo);
+    // boolean blacklisted = false;
+    // for (String blackListedCodec: BLACKLISTEDCODECS) {
+    // if (codecInfo != null &&
+    // codecInfo.name.toLowerCase().contains(blackListedCodec.toLowerCase())) {
+    // Log.d(TAG, "Blacklisting codec: " + blackListedCodec);
+    // blacklisted = true;
+    // break;
+    // }
+    // }
+    // if (!blacklisted) {
+    // filteredCodecInfos.add(codecInfo);
+    // }
+    // }
+    // return filteredCodecInfos;
+    // }
 
     // Exo 2.10 and up
     @Override
-    public List<MediaCodecInfo> getDecoderInfos(String mimeType, boolean requiresSecureDecoder, boolean requiresTunnelingDecoder) throws MediaCodecUtil.DecoderQueryException {
+    public List<MediaCodecInfo> getDecoderInfos(String mimeType, boolean requiresSecureDecoder,
+            boolean requiresTunnelingDecoder) throws MediaCodecUtil.DecoderQueryException {
 
         List<MediaCodecInfo> codecInfos = MediaCodecUtil.getDecoderInfos(
                 mimeType, requiresSecureDecoder, requiresTunnelingDecoder);
         // filter codecs based on blacklist template
         List<MediaCodecInfo> filteredCodecInfos = new ArrayList<>();
-        for (MediaCodecInfo codecInfo: codecInfos) {
+        for (MediaCodecInfo codecInfo : codecInfos) {
             Log.d(TAG, "Checking codec: " + codecInfo);
             boolean blacklisted = false;
-            for (String blacklistedDecoder: HW_DECODERS) {
+            for (String blacklistedDecoder : HW_DECODERS) {
                 if (codecInfo != null && codecInfo.name.toLowerCase().startsWith(blacklistedDecoder.toLowerCase())) {
                     Log.d(TAG, "Blacklisting decoder: " + blacklistedDecoder);
                     blacklisted = true;
@@ -76,9 +80,6 @@ public class BlacklistMediaCodecSelector implements MediaCodecSelector {
     }
 
     // Exo 2.10
-    @Nullable
-    @Override
-    public MediaCodecInfo getPassthroughDecoderInfo() throws MediaCodecUtil.DecoderQueryException {
-        return MediaCodecUtil.getPassthroughDecoderInfo();
-    }
+    // Removed, not present in MediaCodecSelector interface in Media3
+
 }

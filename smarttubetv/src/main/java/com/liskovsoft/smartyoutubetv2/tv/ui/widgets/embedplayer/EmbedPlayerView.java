@@ -188,7 +188,7 @@ public class EmbedPlayerView extends PlayerView implements PlaybackView {
 
     @Override
     public void showProgressBar(boolean show) {
-        
+
     }
 
     @Override
@@ -482,7 +482,7 @@ public class EmbedPlayerView extends PlayerView implements PlaybackView {
 
     @Override
     public void setVideoGravity(int gravity) {
-        
+
     }
 
     @Override
@@ -513,7 +513,8 @@ public class EmbedPlayerView extends PlayerView implements PlaybackView {
 
         // Fullscreen playback is running. Skipping
         PlaybackView view = mPlaybackPresenter.getView();
-        if (view == null || view instanceof EmbedPlayerView || !PlaybackPresenter.instance(getContext()).isEngineInitialized()) {
+        if (view == null || view instanceof EmbedPlayerView
+                || !PlaybackPresenter.instance(getContext()).isEngineInitialized()) {
             initPlayer();
             createPlayerObjects();
             mPlaybackPresenter.onNewVideo(video);
@@ -542,18 +543,21 @@ public class EmbedPlayerView extends PlayerView implements PlaybackView {
             return;
         }
 
-        // Use default or pass your bandwidthMeter here: bandwidthMeter = new DefaultBandwidthMeter.Builder(getContext()).build()
-        DefaultTrackSelector trackSelector = new RestoreTrackSelector(new AdaptiveTrackSelection.Factory());
+        // Use default or pass your bandwidthMeter here: bandwidthMeter = new
+        // DefaultBandwidthMeter.Builder(getContext()).build()
+        DefaultTrackSelector trackSelector = new RestoreTrackSelector(getContext(),
+                new AdaptiveTrackSelection.Factory());
         mExoPlayerController.setTrackSelector(trackSelector);
 
         DefaultRenderersFactory renderersFactory = new CustomOverridesRenderersFactory(getContext());
         mPlayer = mPlayerInitializer.createPlayer(getContext(), renderersFactory, trackSelector);
         mPlayer.setPlayWhenReady(true);
-        //mPlayer.setRepeatMode(Player.REPEAT_MODE_ONE);
+        // mPlayer.setRepeatMode(Player.REPEAT_MODE_ONE);
 
         mExoPlayerController.setPlayer(mPlayer);
-        //mExoPlayerController.setVideo(mVideo);
-        mExoPlayerController.selectFormat(mQuality == QUALITY_LOW ? FormatItem.VIDEO_SUB_SD_AVC_30 : FormatItem.VIDEO_SD_AVC_30);
+        // mExoPlayerController.setVideo(mVideo);
+        mExoPlayerController
+                .selectFormat(mQuality == QUALITY_LOW ? FormatItem.VIDEO_SUB_SD_AVC_30 : FormatItem.VIDEO_SD_AVC_30);
         // Don't use subs! Not efficient. High cpu load. Cause input lags.
         mExoPlayerController.selectFormat(FormatItem.SUBTITLE_NONE);
         if (mIsMute) {

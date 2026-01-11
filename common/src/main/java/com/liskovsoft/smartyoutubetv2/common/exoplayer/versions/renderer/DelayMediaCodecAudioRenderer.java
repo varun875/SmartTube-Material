@@ -6,11 +6,11 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.media3.common.PlaybackException;
 import androidx.media3.common.Format;
+import androidx.media3.exoplayer.ExoPlaybackException;
 import androidx.media3.exoplayer.audio.AudioRendererEventListener;
 import androidx.media3.exoplayer.audio.AudioSink;
 import androidx.media3.exoplayer.audio.MediaCodecAudioRenderer;
-import androidx.media3.exoplayer.drm.DrmSessionManager;
-import androidx.media3.exoplayer.drm.ExoMediaDrm;
+import androidx.media3.exoplayer.mediacodec.MediaCodecAdapter;
 import androidx.media3.exoplayer.mediacodec.MediaCodecSelector;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 
@@ -22,28 +22,12 @@ public class DelayMediaCodecAudioRenderer extends MediaCodecAudioRenderer {
     private boolean mIsAudioSyncFixEnabled;
     private boolean mIsAudioSyncFixChanged;
 
-    // Exo 2.9
-    //public CustomMediaCodecAudioRenderer(Context context, MediaCodecSelector mediaCodecSelector,
-    //                                           @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager,
-    //                                           boolean playClearSamplesWithoutKeys, @Nullable Handler eventHandler,
-    //                                           @Nullable AudioRendererEventListener eventListener, AudioSink audioSink) {
-    //    super(context, mediaCodecSelector, drmSessionManager, playClearSamplesWithoutKeys, eventHandler, eventListener, audioSink);
-    //}
-
-    // Exo 2.10, 2.11
+    // Media3 constructor
     public DelayMediaCodecAudioRenderer(Context context, MediaCodecSelector mediaCodecSelector,
-                                        @Nullable DrmSessionManager<ExoMediaDrm> drmSessionManager,
-                                        boolean playClearSamplesWithoutKeys, boolean enableDecoderFallback, @Nullable Handler eventHandler,
-                                        @Nullable AudioRendererEventListener eventListener, AudioSink audioSink) {
-        super(context, mediaCodecSelector, drmSessionManager, playClearSamplesWithoutKeys, enableDecoderFallback, eventHandler, eventListener, audioSink);
+            boolean enableDecoderFallback, @Nullable Handler eventHandler,
+            @Nullable AudioRendererEventListener eventListener, AudioSink audioSink) {
+        super(context, mediaCodecSelector, enableDecoderFallback, eventHandler, eventListener, audioSink);
     }
-
-    // Exo 2.12, 2.13
-    //public DelayMediaCodecAudioRenderer(Context context, MediaCodecSelector mediaCodecSelector,
-    //                                        boolean enableDecoderFallback, @Nullable Handler eventHandler,
-    //                                        @Nullable AudioRendererEventListener eventListener, AudioSink audioSink) {
-    //    super(context, mediaCodecSelector, enableDecoderFallback, eventHandler, eventListener, audioSink);
-    //}
 
     @Override
     public long getPositionUs() {
@@ -59,15 +43,20 @@ public class DelayMediaCodecAudioRenderer extends MediaCodecAudioRenderer {
     }
 
     @Override
-    protected boolean processOutputBuffer(long positionUs, long elapsedRealtimeUs, MediaCodec codec, ByteBuffer buffer, int bufferIndex,
-                                          int bufferFlags, long bufferPresentationTimeUs, boolean isDecodeOnlyBuffer, boolean isLastBuffer, Format format) throws ExoPlaybackException {
+    protected boolean processOutputBuffer(long positionUs, long elapsedRealtimeUs, @Nullable MediaCodecAdapter codec,
+            @Nullable ByteBuffer buffer,
+            int bufferIndex,
+            int bufferFlags, int sampleCount, long bufferPresentationTimeUs, boolean isDecodeOnlyBuffer,
+            boolean isLastBuffer,
+            Format format) throws ExoPlaybackException {
         boolean result = super.processOutputBuffer(
-                positionUs, elapsedRealtimeUs, codec, buffer, bufferIndex, bufferFlags,
-                bufferPresentationTimeUs, isDecodeOnlyBuffer, isLastBuffer, format
-        );
+                positionUs, elapsedRealtimeUs, codec, buffer, bufferIndex, bufferFlags, sampleCount,
+                bufferPresentationTimeUs, isDecodeOnlyBuffer, isLastBuffer, format);
 
-        // Disable the use of AudioTrack.getTimestamp and force ExoPlayer to go through the legacy path of using
-        // AudioTrack.getPlaybackHeadPosition instead, which might help if the first one drifts but the second one doesn't.
+        // Disable the use of AudioTrack.getTimestamp and force ExoPlayer to go through
+        // the legacy path of using
+        // AudioTrack.getPlaybackHeadPosition instead, which might help if the first one
+        // drifts but the second one doesn't.
         if (mIsAudioSyncFixEnabled && mIsAudioSyncFixChanged) {
             Object audioSink = Helpers.getField(this, "audioSink");
             if (audioSink != null) {
